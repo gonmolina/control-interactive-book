@@ -1,0 +1,8 @@
+jupyter-book
+matplotlib
+numpy
+control
+sympy
+scipy
+slycot
+ipywidgets
