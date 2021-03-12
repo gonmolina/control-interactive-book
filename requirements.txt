@@ -1,8 +1,9 @@
 jupyter-book
 matplotlib
 numpy
+slycot
 control
 sympy
 scipy
-slycot
 ipywidgets
+
