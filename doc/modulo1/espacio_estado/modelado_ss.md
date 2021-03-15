@@ -42,14 +42,14 @@ En forma matricial se puede expresar como:
 
 $$
 \begin{aligned}
-\dot{\mathbf x}(t) &= f(\mathbf x, \mathbf u) = A \mathbf x (t) + B \mathbf u(t) \\
-\mathbf y(t) &= g(\mathbf x, \mathbf u) = C \mathbf x(t) + D\mathbf u(t) 
+\dot{\mathbf x}(t) &=\mathbf f(\mathbf x, \mathbf u) =\mathbf A \mathbf x (t) +\mathbf B \mathbf u(t) \\
+\mathbf y(t) &=\mathbf g(\mathbf x, \mathbf u) =\mathbf C \mathbf x(t) +\mathbf D\mathbf u(t) 
 \end{aligned}
 $$
 
 +++
 
-desarrollando las matrices:
+desarrollando las matrices para el caso particular anterior de una entrada y una salida tenemos:
 
 $$
 \begin{bmatrix} \dot{x_1}\\\dot{x_2}\\ \vdots \\ \dot{x_n} \end{bmatrix} 
@@ -58,14 +58,14 @@ $$
   0 & 0 & 1 & \cdots & 0 \\
   \vdots & \vdots & \vdots & \ddots &  \vdots \\
   -\frac{a_{0}}{a_n} & - \frac{a_{1}}{a_n} & -\frac{a_{2}}{a_n} &\cdots & -\frac{a_{n-1}}{a_n} 
- \end{bmatrix}}_{=A} \begin{bmatrix} {x_1}\\{x_2}\\ \vdots \\ {x_n} \end{bmatrix} 
- + \underbrace{\begin{bmatrix} 0 \\0\\ \vdots \\ \frac{1}{a_n} \end{bmatrix}}_{=B}~ u
+ \end{bmatrix}}_{=\mathbf A} \begin{bmatrix} {x_1}\\{x_2}\\ \vdots \\ {x_n} \end{bmatrix} 
+ + \underbrace{\begin{bmatrix} 0 \\0\\ \vdots \\ \frac{1}{a_n} \end{bmatrix}}_{=\mathbf B}~ u
 $$
  
 $$
-y= \underbrace{\begin{bmatrix}  1 & 0 & \cdots & 0 \end{bmatrix}}_{ =~C} 
+y= \underbrace{\begin{bmatrix}  1 & 0 & \cdots & 0 \end{bmatrix}}_{ =\mathbf C} 
    \begin{bmatrix} {x_1}\\{x_2}\\ \vdots \\ {x_n} \end{bmatrix} 
- + \underbrace{\begin{bmatrix}0\end{bmatrix}}_{=~D} ~u
+ + \underbrace{\begin{bmatrix}0\end{bmatrix}}_{= D} ~u
  $$
 
 +++

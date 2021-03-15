@@ -38,16 +38,16 @@ Una forma general de representación de espacios de estado de un sistema lineal 
 
 $$
 \begin{aligned}
-    \dot {\mathbf{x}}(t) & = A(t)\mathbf{x}(t)+B(t)\mathbf{u}(t)\\ 
-    \mathbf {y} (t)&=C(t)\mathbf {x} (t)+D(t)\mathbf {u}(t) 
+    \dot {\mathbf{x}}(t) & =\mathbf A(t)\mathbf{x}(t)+\mathbf B(t)\mathbf{u}(t)\\ 
+    \mathbf {y} (t)&=\mathbf C(t)\mathbf {x} (t)+\mathbf D(t)\mathbf {u}(t) 
 \end{aligned}
 $$
 
-donde $x(t)\in \mathbb{R}^{n}$ es el vector de estados,$y(t)\in \mathbb{R}^{q}$ es el vector de salidas, $u(t)\in \mathbb{R}^{p}$ es el vector de entradas, $A(t)\in \mathbb{R}^{n\times n}$ es la matriz de estados, $B(t)\in \mathbb{R}^{n\times p}$ es la matriz de entrada, $C(t)\in \mathbb{R}^{q\times n}$ es la matriz de salida, $D(t)\in \mathbb{R}^{q\times p}$ es la matriz de transmisión directa y $\dot{\mathbf{x}}(t):= \frac{d\mathbf{x}(t)}{dt}$
+donde $\mathbf x(t)\in \mathbb{R}^{n}$ es el vector de estados,$\mathbf y(t)\in \mathbb{R}^{q}$ es el vector de salidas, $\mathbf u(t)\in \mathbb{R}^{p}$ es el vector de entradas, $\mathbf A(t)\in \mathbb{R}^{n\times n}$ es la matriz de estados, $\mathbf B(t)\in \mathbb{R}^{n\times p}$ es la matriz de entrada, $\mathbf C(t)\in \mathbb{R}^{q\times n}$ es la matriz de salida, $\mathbf D(t)\in \mathbb{R}^{q\times p}$ es la matriz de transmisión directa y $\dot{\mathbf{x}}(t):= \frac{d\mathbf{x}(t)}{dt}$
 
 +++
 
-Nótese que en esta formulación general se supone que todas las matrices son variantes en el tiempo, p. ej.: algunos o todos sus elementos pueden depender del tiempo. En los sistemas invariantes en el tiempo las matrices $A$, $B$, $C$ y $D$ son constantes, no son función de $t$.
+Nótese que en esta formulación general se supone que todas las matrices son variantes en el tiempo, p. ej.: algunos o todos sus elementos pueden depender del tiempo. En los sistemas invariantes en el tiempo las matrices $\mathbf A$, $\mathbf B$, $\mathbf C$ y $\mathbf D$ son constantes, no son función de $t$.
 
 La variable temporal $t$ puede ser una "continua" ($t\in \mathbb {R}$) o una discreta (p. ej.: $t\in \mathbb {Z}$): en este último caso la variable temporal es generalmente indicada como $k$. Dependiendo de las consideraciones tomadas, la representación del modelo de espacios de estado puede tomar las siguientes formas:
 
@@ -59,31 +59,34 @@ La variable temporal $t$ puede ser una "continua" ($t\in \mathbb {R}$) o una dis
 
 $$
 \begin{aligned}
-\dot{\mathbf{x}}(t)= & A\mathbf{x}(t)+B\mathbf{u}(t)\\ 
-y(t)= & Cx(t)+Du(t)
+\dot{\mathbf{x}}(t)= &\mathbf A\mathbf{x}(t)+\mathbf B\mathbf{u}(t)\\ 
+\mathbf y(t)= & \mathbf C\mathbf x(t)+\mathbf D \mathbf u(t)
 \end{aligned}
 $$
 
 
 **Continuo y variante en el tiempo**
+
 $$
 \begin{aligned}
-    \dot {\mathbf{x}}(t) & = A(t)\mathbf{x}(t)+B(t)\mathbf{u}(t)\\ 
-    \mathbf {y} (t)&=C(t)\mathbf {x} (t)+D(t)\mathbf {u}(t) 
+    \dot {\mathbf{x}}(t) & =\mathbf A(t)\mathbf{x}(t)+\mathbf B(t)\mathbf{u}(t)\\ 
+    \mathbf {y} (t)&=\mathbf C(t)\mathbf {x} (t)+\mathbf D(t)\mathbf {u}(t) 
 \end{aligned}
 $$
 
 
 **Discreto e invariante en el tiempo**
+
 $$
 \begin{aligned}
-\mathbf{x}(k+1) &= A\mathbf {x} (k)+ B \mathbf{u}(k)\\
-\mathbf {y} (k) &= C\mathbf {x} (k)+D\mathbf {u} (k)
+\mathbf{x}(k+1) &=\mathbf A\mathbf {x} (k)+ \mathbf B \mathbf{u}(k)\\
+\mathbf {y} (k) &= \mathbf C\mathbf {x} (k)+\mathbf D\mathbf {u} (k)
 \end{aligned}
 $$
 
 
 **Discreto y variante en el tiempo**
+
 $$
 \begin{aligned}
 \mathbf {x} (k+1)&=\mathbf {A} (k)\mathbf {x} (k)+\mathbf {B} (k)\mathbf {u} (k)\\ 
@@ -93,19 +96,21 @@ $$
 
 
 **Transformada de Laplace del sistema continuo e invariante en el tiempo**
+
 $$
 \begin{aligned}
-s\mathbf {X} (s)&=A\mathbf {X} (s)+B\mathbf {U} (s)\\
-\mathbf{Y}(s)&=C\mathbf{X}(s)+D\mathbf {U} (s)
+s\mathbf {X} (s)&=\mathbf A\mathbf {X} (s)+\mathbf B\mathbf {U} (s)\\
+\mathbf{Y}(s)&=\mathbf C\mathbf{X}(s)+\mathbf D\mathbf {U} (s)
 \end{aligned}
 $$
 
 
 **Transformada Z del sistema discreto e invariante en el tiempo** 
+
 $$
 \begin{aligned}
-z\mathbf {X} (z)&=A\mathbf {X} (z)+B\mathbf {U} (z)\\
-\mathbf {Y} (z)&=C\mathbf {X} (z)+D\mathbf {U} (z)
+z\mathbf {X} (z)&=\mathbf A\mathbf {X} (z)+\mathbf B\mathbf {U} (z)\\
+\mathbf {Y} (z)&=\mathbf C\mathbf {X} (z)+\mathbf D\mathbf {U} (z)
 \end{aligned}
 $$
 
@@ -135,24 +140,25 @@ La función de transferencia de un modelo de espacio de estados continuo e invar
 
 Tomando la transformada de Laplace de
 
-$$\dot{\mathbf{x}}(t)=A\mathbf{x}(t)+B\mathbf{u}(t)$$
+$$\dot{\mathbf{x}}(t)=\mathbf A\mathbf{x}(t)+\mathbf B\mathbf{u}(t)$$
 
 tenemos que
 
-$$s\mathbf {X} (s)=A\mathbf {X} (s)+B\mathbf {U} (s)$$
+$$s\mathbf {X} (s)=\mathbf A\mathbf {X} (s)+\mathbf B\mathbf {U} (s)$$
 
 Luego, agrupamos y despejamos $\mathbf {X} (s)$, dando:
 
-$$s(\mathbf{I}-A)\mathbf {X} (s)=B\mathbf {U} (s)$$
+$$s(\mathbf{I}-\mathbf A)\mathbf {X} (s)=\mathbf B\mathbf {U} (s)$$
        
-$$\mathbf {X} (s)=(s\mathbf {I} -A)^{-1}B\mathbf {U} (s)$$
+$$\mathbf {X} (s)=(s\mathbf {I} -\mathbf A)^{-1}\mathbf B\mathbf {U} (s)$$
 
 esto es sustituido por $\mathbf {X} (s)$ en la ecuación de salida
 
-$$\mathbf {Y} (s)=C\mathbf {X} (s)+D\mathbf {U} (s)$$ 
+$$\mathbf {Y} (s)=C\mathbf {X} (s)+\mathbf D\mathbf {U} (s)$$ 
     
 nos queda
-$$ \mathbf {Y} (s)=C((s\mathbf {I} -A)^{-1}B\mathbf {U} (s))+D\mathbf {U} (s)$$
+
+$$ \mathbf {Y} (s)=\mathbf C((s\mathbf {I} -\mathbf A)^{-1}\mathbf B\mathbf {U} (s))+\mathbf D\mathbf {U} (s)$$
 
 +++
 
@@ -162,7 +168,7 @@ $$\mathbf {G} (s)=\mathbf {Y} (s)/\mathbf {U} (s)$$
 
 y sustituimos las expresiones previas por $\mathbf {Y} (s)$ con respecto a $\mathbf{U}(s)$, quedando
 
-$$\mathbf {G} (s)=C(s\mathbf {I} -A)^{-1}B+D$$
+$$\mathbf {G} (s)=\mathbf C(s\mathbf {I} -\mathbf A)^{-1}\mathbf B+\mathbf D$$
 
 Claramente $G(s)$ debe tener $q$ por $p$ dimensiones, así como un total de $q\times p$ elementos. Entonces para cada entrada hay $p$ funciones de transferencias, una por cada salida. Esta es la razón por la cual la representación de espacios de estados puede fácilmente en general es la mejor elección para sistemas MIMO.
 

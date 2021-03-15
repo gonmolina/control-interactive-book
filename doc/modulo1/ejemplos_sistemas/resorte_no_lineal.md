@@ -32,7 +32,7 @@ $$ ma(t) = F+mg - f_b - f_k \implies m \ddot x(t) = F + mg - b \dot x(t) - K x^3
 
 +++
 
-Podemos escribir las ecuaciones de estado, suponiedo los estados son $\dot x = x_1$ y $x = x_2$. Entonces resultan:
+Podemos escribir las ecuaciones de estado, suponiendo los estados son $\dot x = x_1$ y $x = x_2$. Entonces resultan:
 
 $$
   \left\{
@@ -49,13 +49,13 @@ El objetivo es linealizar el sistema en torno al punto de operación. Vamos a ob
 
 +++
 
-Usaremos para este trabajo `SymPy para que nos ayude con la matemática simbólica.
+Usaremos para este trabajo `SymPy` para que nos ayude con la matemática simbólica.
 
 +++
 
 ## Sympy para la linealización
 
-Primero importamos el paquete de cálculo simbólico e incializamos la forma en este paquete mostrará las formulas en pantalla.
+Primero importamos el paquete de cálculo simbólico e inicializamos la forma en que este paquete mostrará las formulas en pantalla.
 
 ```{code-cell} ipython3
 import sympy as sp
@@ -70,7 +70,7 @@ dx1 = -b/m*x1-K/m*x2**3+F/m+g
 dx2 = x1
 ```
 
-Ahora vemos como muestra `SymPt` las ecuaciones
+Ahora vemos como muestra `SymPy` las ecuaciones
 
 ```{code-cell} ipython3
 dx1
@@ -182,13 +182,13 @@ Chequeemos ahora el tipo de datos de la matriz A1:
 type(A1)
 ```
 
-Vemos que ahora es de tipo `ndarray` de numpy, que es software de algebra númerico  (no simbólico). Este tipo de datos es aceptado por el paquete de control, por lo que podemos usar las matrices A1 y B1 para definir nuestro sistema en espacio de estados.
+Vemos que ahora es de tipo `ndarray` de numpy, que es software de algebra numérico  (no simbólico). Este tipo de datos es aceptado por el paquete de control, por lo que podemos usar las matrices A1 y B1 para definir nuestro sistema en espacio de estados.
 
 ```{code-cell} ipython3
 sys = ctrl.ss(A1,B1,[0,1],0)
 ```
 
-Con este modelo podemos faciménte simular la respuesta al escalón
+Con este modelo podemos fácilmente simular la respuesta al escalón
 
 ```{code-cell} ipython3
 t,y = ctrl.step_response(sys, T=np.linspace(0,40,1000))
@@ -223,7 +223,7 @@ def resorte_no_lineal(t, x, b=1, m=3, K=2, g=9.8, step_amp=1):
     return dx1, dx2
 ```
 
-Para comenzar necesitamos también los valores númericos de las condiciones iniciales
+Para comenzar necesitamos también los valores numéricos de las condiciones iniciales
 
 ```{code-cell} ipython3
 x0 = np.float64(sol1[x1].subs([(b,1),(K,2),(m,3),(g,9.8)])), np.float64(sol1[x2].subs([(b,1),(K,2),(m,3),(g,9.8)]))

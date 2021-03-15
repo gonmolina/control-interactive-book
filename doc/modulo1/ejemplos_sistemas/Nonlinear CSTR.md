@@ -18,11 +18,13 @@ kernelspec:
 
 Este cuaderno se estudia el sistema discutido en Seborg, Edgar, Melichamp & Doyle "Process Dynamics and Control" (3rd Ed).
 
+
 ![CSTR](cstr.png)
 
 +++
 
 ## Modelo
+
 $$
 \begin{align}
 k &= k_0\exp\left(\frac{-E}{RT}\right)\\
@@ -34,7 +36,7 @@ $$
 
 +++
 
-Blanace de Energía: 
+Balance de Energía: 
 
 $$\frac{dE}{dt} = E_{in} - E_{out}$$
 
@@ -42,13 +44,13 @@ Balance de Masa:
 
 $$\frac{dm}{dt} = \dot m_{in} - \dot m_{out}$$
 
-Balance de compocisión: 
+Balance de composición: 
 
 $$\frac{dN_A}{dt} = N_{A,in} - N_{A, out} + N_{A, \text{gen}} - N_{A, \text{consumed}}$$
 
 +++
 
-## Simulación númerica del sistema
+## Simulación numérica del sistema
 
 ```{code-cell} ipython3
 import numpy as np
@@ -84,7 +86,7 @@ Tc = Tc0 = 300  # K
 
 +++ {"lang": "es"}
 
-Estos son los valores inicialesde los estados. Tenga en cuenta que estos no son 100% exactos. Cuando usando estos estos valores, no obtenemos una línea recta perfecta (derivadas iguales a cero) como deberíamos al usar los valores de estado estacionario (completamente estacionado).
+Estos son los valores iniciales de los estados. Tenga en cuenta que estos no son 100% exactos. Cuando usando estos estos valores, no obtenemos una línea recta perfecta (derivadas iguales a cero) como deberíamos al usar los valores de estado estacionario (completamente estacionado).
 
 ```{code-cell} ipython3
 cA0 = 0.5  # mol/L
@@ -161,7 +163,7 @@ ax.grid();
 
 +++ {"lang": "es"}
 
-## Resolver el estado etacionario estable
+## Resolver el estado estacionario estable
 Ahora, resolvamos un mejor valor inicial estableciendo los derivados igual a cero
 
 ```{code-cell} ipython3

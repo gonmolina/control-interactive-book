@@ -7,7 +7,8 @@
   chapters:
   - file: doc/intro_python/Introducción a los notebooks de Jupyter
   - file: doc/intro_python/Extra_Python
-  - file: doc/intro_python/Lectura-4-Matplotlib
+  - file: doc/intro_python/Intro-Matplotlib
+  - file: doc/intro_python/intro_sympy
   # faltaría poner algo del módulo de control
 
 - part: Señales, sistemas y modelos
@@ -22,7 +23,7 @@
   - file: doc/modulo1/linealizacion/linealizacion
   - file: doc/modulo1/ejemplos_sistemas/ejemplos_sistemas
     sections:
-      - file: doc/modulo1/ejemplos_sistemas/resorte_no_lineal 
+      - file: doc/modulo1/ejemplos_sistemas/resorte_no_lineal
       - file: doc/modulo1/ejemplos_sistemas/CineticaPuntual
       - file: doc/modulo1/ejemplos_sistemas/Nonlinear CSTR
       - file: doc/modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador

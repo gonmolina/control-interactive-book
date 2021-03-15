@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Cosas de Python útiles
+# Introducción a Python
 
 +++
 
@@ -76,7 +76,7 @@ print(' La suma de a + b es: ', a+b)
 print('El conjugado de a vale: ', a.conjugate())
 ```
 
-Facilemente podemos obtener la parte real e imaginaria
+Fácilmente podemos obtener la parte real e imaginaria
 
 ```{code-cell} ipython3
 print('La parte real de a es ', a.real, ' y la parte imaginaria es ',
@@ -85,7 +85,7 @@ print('La parte real de a es ', a.real, ' y la parte imaginaria es ',
 
 Notar la diferencia entre el **método** `conjugate` y la **propiedad**
 `real` y la **propiedad** `imag`. Mientras que `conjugate` se comporta como
-una función propia de número complejo y debemos llamarla usando parentesis,
+una función propia de número complejo y debemos llamarla usando paréntesis,
 `imag` y `real` se comportan como datos o variables del número complejo.
 
 +++
@@ -227,7 +227,7 @@ Pero si ejecutamos
 t.append(1)
 ```
 
-## Expansión de la tupla
+### Expansión de la tupla
 
 Una característica muy útil y general del operador de asignación en Python es
 que las tuplas se expandirán y asignarán en patrones coincidentes:
@@ -267,7 +267,7 @@ for e in lista_variada:
     print(e)
 ```
 
-Par un diccionario, podemo va a devolver en cada iteración la key es decir:
+Para un diccionario,  va a devolver en cada iteración la `key` es decir:
 
 ```{code-cell} ipython3
 mi_diccionario = {"el_1": "Primer item", 2: "segundo item", "3": 45*3.2}
@@ -294,8 +294,8 @@ for i in n:
 ## Funciones
 
 Las funciones en Python se definen a partir de la palabra calve `def`.
-Pueden tomar argumentos posicionales, y argumentos con nombres y valores por
-defecto. El siguiente es un ejemplo.
+Pueden tomar argumentos posicionales, y argumentos con nombres y con valores 
+por defecto. El siguiente es un ejemplo.
 
 ```{code-cell} ipython3
 def cambio_de_escala(x, m=1, h=0):
@@ -303,10 +303,10 @@ def cambio_de_escala(x, m=1, h=0):
     return y
 ```
 
-El argumento x es un argumento posicional y tiene es obligatorio a la hora
+El argumento x es un argumento posicional y es obligatorio a la hora
 de llamar a la función `cambio_de_escala`. Los otros dos, pueden estar o no
-presentes a la hora de llamar. Si no lo están usan el valor por defecto
-defino en la función.
+presentes a la hora de llamar. Si no están presentes, usan el valor por defecto
+definido en la función.
 
 ```{code-cell} ipython3
 x = [1, 2, 3, 4, 5]
@@ -332,8 +332,6 @@ print(x2)
 O equivalentemente:
 
 ```{code-cell} ipython3
-:tags: []
-
 x2 = cambio_de_escala(x, 1, 2)
 print(x2)
 ```

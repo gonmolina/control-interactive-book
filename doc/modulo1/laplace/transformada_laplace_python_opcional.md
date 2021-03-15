@@ -20,7 +20,7 @@ kernelspec:
 
 ## Definición:
 
-Es una función matemática que utilizaremos para trnasformar señales en el dominio temporal a un dominio de frecuencia generalizada, que llamaremos dominio transformado de *Laplace*. 
+Es una función matemática que utilizaremos para transformar señales en el dominio temporal a un dominio de frecuencia generalizada, que llamaremos dominio transformado de *Laplace*. 
 
 La transformada de Laplace se define como
 
@@ -62,7 +62,7 @@ El **teorema del valor final** lo estaremos usando en las próximas clases para 
 
 ## Cálculo de la transformada de Laplace mediante SymPy.
 
-Durante el transcurso de este curso utilizaremos las tablas para las obtener la transformada y antitransformada de Laplace. Sin embargo, aquí se presenta como material adicional para quien le interese, la forma de obtener estas fuciones mediante el uso de `SymPy`
+Durante el transcurso de este curso utilizaremos las tablas para las obtener la transformada y antitransformada de Laplace. Sin embargo, aquí se presenta como material adicional para quien le interese, la forma de obtener estas funciones mediante el uso de `SymPy`
 
 ```{code-cell} ipython3
 import sympy as sp
@@ -206,11 +206,10 @@ Fs
 
 ```{code-cell} ipython3
 F = ((s + 1)*(s + 2)* (s + 3))/((s + 4)*(s + 5)*(s + 6))
-```
-
-```{code-cell} ipython3
 F
 ```
+
+Podemos hacer fracciones simples:
 
 ```{code-cell} ipython3
 F.apart(s)
@@ -237,7 +236,5 @@ invL(F).simplify()
 No, todavía presenta una transformada laplace "desconocida". Pero, si hacemos primero la expansión de fracciones parciales, obtenemos una respuesta limpia:
 
 ```{code-cell} ipython3
-:lang: en
-
 invL(F.apart(s))
 ```

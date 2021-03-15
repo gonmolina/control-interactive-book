@@ -22,10 +22,12 @@ kernelspec:
 
 Las ecuaciones de cinética puntual del núcleo de un reactor a un grupo de energía y a un grupo de precursores sin fuente de neutrones son:
 
-$$\begin{eqnarray}
+$$
+\begin{eqnarray}
 \frac{dn(t)}{dt}&=&\frac{\rho(t)-\beta}{\Lambda}n(t)+\lambda c(t)\\
 \frac{dc(t)}{dt}&=&\frac{\beta}{\Lambda}n(t)-\lambda c(t)
-\end{eqnarray}$$
+\end{eqnarray}
+$$
 
 con $n$ el flujo neutrónico normalizado (en realidad es población de neutrones, pero bajo ciertas condiciones se puede considerar proporcional al flujo neutrónico o potencia nuclear), $c$ la concentración de precursores, y $\rho$ la reactividad introducida en el mismo por las barras de control. Los parámetros del sistema son: $\Lambda = 1,76e^{-4} s$ (tiempo de reproducción de los neutrones rápidos), $\lambda = 0,076 1/s$ y $\beta = 765$pcm (fracción de neutrones que son absorbidos por precursores).
 
@@ -107,9 +109,6 @@ r0=sol0[r]
 
 ```{code-cell} ipython3
 An=A.subs([(l, 0.076), (b,765e-5),(L,1.76e-4),(n,1),(r,r0),(c,c0)])
-```
-
-```{code-cell} ipython3
 Bn=B.subs([(l, 0.076), (b,765e-5),(L,1.76e-4),(n,1),(r,r0),(c,c0)])
 ```
 
@@ -118,7 +117,7 @@ Bn=B.subs([(l, 0.076), (b,765e-5),(L,1.76e-4),(n,1),(r,r0),(c,c0)])
 ```{code-cell} ipython3
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
-# %matplotlib qt5  # descomentar para ver las figuras en ventamas emergentes
+# %matplotlib qt5  # descomentar para ver las figuras en ventanas emergentes
 ```
 
 ```{code-cell} ipython3
@@ -159,7 +158,7 @@ Dn=np.zeros((2,1))
 
 ```{code-cell} ipython3
 sys = ctrl.ss(An,Bn,Cn,Dn)
-t2,y2 = ctrl.step_response(sys)
+t2,y2 = ctrl.step_response(sys, T=np.linspace(0,7,1001))
 ```
 
 Entonces ahora podemos visualizar los resultados en las siguientes figuras:
@@ -215,7 +214,7 @@ n=sol.y[0]
 c=sol.y[1]
 ```
 
-Y los resutaldos los vemos en las siguientes graficas:
+Y los resultados los vemos en las siguientes gráficas:
 
 ```{code-cell} ipython3
 :tags: [hide-input]
