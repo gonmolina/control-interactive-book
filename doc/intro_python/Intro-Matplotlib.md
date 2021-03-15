@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Paquete de Python MATPLOTLIB - Figuras 2D y 3D en Python
+# Figuras en Python - MATPLOTLIB
 
 +++
 
@@ -352,30 +352,6 @@ ax.set_ylabel(r'$y$')
 ax.set_title('title');
 ```
 
-O, como alternativa, podemos pedir que matplotlib use LaTeX para representar los elementos de texto en la figura:
-
-```{code-cell} ipython3
-matplotlib.rcParams.update({'font.size': 18, 'text.usetex': True})
-```
-
-```{code-cell} ipython3
-fig, ax = plt.subplots()
-
-ax.plot(x, x**2, label=r"$y = \alpha^2$")
-ax.plot(x, x**3, label=r"$y = \alpha^3$")
-ax.legend(loc=2) # upper left corner
-ax.set_xlabel(r'$\alpha$')
-ax.set_ylabel(r'$y$')
-ax.set_title('title');
-```
-
-```{code-cell} ipython3
-# restore
-matplotlib.rcParams.update({'font.size': 12, 'font.family': 'sans', 'text.usetex': False})
-```
-
-+++ {"lang": "es"}
-
 ### Configuración de colores, tipos de línea y marcadores
 
 +++
@@ -413,8 +389,8 @@ Para cambiar el ancho de línea, podemos usar el argumento de la palabra clave `
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(12,6))
 
-ax.plot(x, x+1, color="blue", linewidth=0.25)
-ax.plot(x, x+2, color="blue", linewidth=0.50)
+ax.plot(x, x+1, color="blue", lw=0.25) # lw=linewidth
+ax.plot(x, x+2, color="blue", lw=0.50)
 ax.plot(x, x+3, color="blue", lw=1.00)
 ax.plot(x, x+4, color="blue", linewidth=2.00)
 
@@ -850,86 +826,6 @@ fig, ax = plt.subplots()
 cnt = ax.contour(Z, cmap=matplotlib.cm.RdBu, vmin=abs(Z).min(), vmax=abs(Z).max(), extent=[0, 1, 0, 1])
 ```
 
-+++ {"lang": "es"}
-
-### figuras 3D
-
-+++ {"lang": "es"}
-
-Para usar gráficos 3D en matplotlib, primero necesitamos crear una instancia de la clase `Axes3D`. Los ejes 3D se pueden agregar a un lienzo de figuras de matplotlib exactamente de la misma manera que los ejes 2D; o, más convenientemente, pasando un argumento de palabra clave `projection = '3d'` a los métodos `add _axes` o `add_ subplot`.
-
-```{code-cell} ipython3
-from mpl_toolkits.mplot3d.axes3d import Axes3D
-```
-
-+++ {"lang": "es"}
-
-#### Parcelas de superficie
-
-```{code-cell} ipython3
-fig = plt.figure(figsize=(14,6))
-
-# `ax` is a 3D-aware axis instance because of the projection='3d' keyword argument to add_subplot
-ax = fig.add_subplot(1, 2, 1, projection='3d')
-
-p = ax.plot_surface(X, Y, Z, rstride=4, cstride=4, linewidth=0)
-
-# surface_plot with color grading and color bar
-ax = fig.add_subplot(1, 2, 2, projection='3d')
-p = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=matplotlib.cm.coolwarm, linewidth=0, antialiased=False)
-cb = fig.colorbar(p, shrink=0.5)
-```
-
-+++ {"lang": "es"}
-
-#### Diagrama de alambre
-
-```{code-cell} ipython3
-fig = plt.figure(figsize=(8,6))
-
-ax = fig.add_subplot(1, 1, 1, projection='3d')
-
-p = ax.plot_wireframe(X, Y, Z, rstride=4, cstride=4)
-```
-
-+++ {"lang": "es"}
-
-#### Sub-figuras con contornos y con proyecciones.
-
-```{code-cell} ipython3
-fig = plt.figure(figsize=(8,6))
-
-ax = fig.add_subplot(1,1,1, projection='3d')
-
-ax.plot_surface(X, Y, Z, rstride=4, cstride=4, alpha=0.25)
-cset = ax.contour(X, Y, Z, zdir='z', offset=-np.pi, cmap=matplotlib.cm.coolwarm)
-cset = ax.contour(X, Y, Z, zdir='x', offset=-np.pi, cmap=matplotlib.cm.coolwarm)
-cset = ax.contour(X, Y, Z, zdir='y', offset=3*np.pi, cmap=matplotlib.cm.coolwarm)
-
-ax.set_xlim3d(-np.pi, 2*np.pi);
-ax.set_ylim3d(0, 3*np.pi);
-ax.set_zlim3d(-np.pi, 2*np.pi);
-```
-
-#### Cambia el ángulo de visión
-
-+++
-
-Podemos cambiar la perspectiva de una gráfica 3D utilizando el método `view_init`, que toma dos argumentos: ángulo de elevación y ángulo de azimut (en grados):
-
-```{code-cell} ipython3
-fig = plt.figure(figsize=(12,6))
-
-ax = fig.add_subplot(1,2,1, projection='3d')
-ax.plot_surface(X, Y, Z, rstride=4, cstride=4, alpha=0.25)
-ax.view_init(30, 45)
-
-ax = fig.add_subplot(1,2,2, projection='3d')
-ax.plot_surface(X, Y, Z, rstride=4, cstride=4, alpha=0.25)
-ax.view_init(70, 30)
-
-fig.tight_layout()
-```
 
 ### Otras lecturas
 
