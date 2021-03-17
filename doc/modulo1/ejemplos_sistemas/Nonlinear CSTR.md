@@ -53,6 +53,8 @@ $$\frac{dN_A}{dt} = N_{A,in} - N_{A, out} + N_{A, \text{gen}} - N_{A, \text{cons
 ## Simulación numérica del sistema
 
 ```{code-cell} ipython3
+:tags: []
+
 import numpy as np
 import scipy as sc
 import scipy.optimize as opt
@@ -128,6 +130,8 @@ Eso no parece muy cerca de cero ...
 Ahora, simulemos
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 import matplotlib.pyplot as plt
 %matplotlib inline
 ```
@@ -148,11 +152,13 @@ cA, T = simulate()
 ```
 
 ```{code-cell} ipython3
-fig = plt.figure()
+:tags: [hide-input]
+
+fig = plt.figure(figsize=(10,4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,T, label=r'Temperatura')
 ax.set_title('Respuesta del sistema sin perturbar')
-ax.set_xlabel('Tiempo [s]')
+ax.set_xlabel('Tiempo [min]')
 ax.set_ylabel('Temperatura $^0K$')
 ax.grid();
 ```
@@ -195,7 +201,12 @@ Mucho mejor, simulemos:
 
 ```{code-cell} ipython3
 cA, T = simulate()
-fig=plt.figure()
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+fig=plt.figure(figsize=(10,4))
 ax=fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,T, label='Temperatura')
 ax.set_title('Respuesta del sistema sin perturbar')
@@ -211,7 +222,9 @@ ax.grid();
 Pero mira detenidamente y podrás ver que el eje está extrañamente indicado. Cuando nos alejamos un poco, la solución es más clara:
 
 ```{code-cell} ipython3
-fig=plt.figure()
+:tags: [hide-input]
+
+fig=plt.figure(figsize=(10,4))
 ax=fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,T, label='Temperatura')
 ax.set_title('Respuesta del sistema sin perturbar')
@@ -230,7 +243,9 @@ Yo diría que eso es lo suficientemente bueno.
 Ahora estamos listos para crear la figura.
 
 ```{code-cell} ipython3
-fig, (axT, axcA) = plt.subplots(2, 1, figsize=(7, 8))
+:tags: [hide-input]
+
+fig, (axT, axcA) = plt.subplots(2, 1, figsize=(10, 8))
 for Tc in [290, 300, 305]:
     cA, T = simulate()
     axT.plot(t, T, label='{} K'.format(Tc))
@@ -263,7 +278,9 @@ for Tc in Tcs:
 ```
 
 ```{code-cell} ipython3
-fig=plt.figure()
+:tags: [hide-input]
+
+fig=plt.figure(figsize=(10,6))
 ax=fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(Tcs,Tends, label='Temperatura')
 ax.set_xlabel('Cooling water step (K)')

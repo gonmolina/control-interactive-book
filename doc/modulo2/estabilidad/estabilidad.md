@@ -91,8 +91,12 @@ En este caso vemos que la condición que la salida sea permanezca acotada debe s
 ### Conclusión:
 **Una condición necesaria y suficiente para la BIBO estabilidad es que los polos esten ubicados en el semiplano izquierdo abierto (polos con parte real negativa)**
 
-<img style="display:block; margin-left: auto; margin-right: auto;" src="bibo_plano_s.png" width="600" alt="cond. estabilidad">
+:::{figure-md}
+<img style="display:block; margin-left: auto; margin-right: auto;" src="bibo_plano_s.png" width="450" alt="cond. estabilidad">
 
+Zona de estabilidad de en el plano $s$
+
+:::
 +++
 
 ## Formalizando matemáticamente BIBO estabildad (opcional CEATEN)
@@ -140,10 +144,12 @@ Un sistema LTI es BIBO estable si y solo si su función transferencia tiene todo
 +++
 
 ### Ejemplo:
-<figure>
+
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="circRC.png" width="200" alt="Circuito RC Serie">
-<figcaption style="text-align:center; "><i>Circuito R-C</i></figcaption>
-</figure>
+
+Circuito R-C
+:::
 
 Analicemos la estabilidad del circuito eléctrico que muestra la figura anterior.
 

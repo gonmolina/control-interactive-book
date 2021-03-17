@@ -70,9 +70,12 @@ Se puede interpretar la ecuación como el crecimiento de los depredadores por la
 ## Simulación numérica
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 import numpy as np
 import scipy.integrate as integ
 import matplotlib.pyplot as plt
+# %matplotlib qt5 # descomentar par afiguras en ventanas emergentes interactivas
 ```
 
 Primero definimos las constantes del sistema

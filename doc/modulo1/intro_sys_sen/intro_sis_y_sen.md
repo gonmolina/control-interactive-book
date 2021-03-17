@@ -27,17 +27,29 @@ kernelspec:
 
 #### Señales de Voz (variable independiente: tiempo).
 
+:::{figure-md} signal-void
 <img style="display:block; margin-left: auto; margin-right: auto;" src="signal_voice.png" width="600" alt="Señal de voz">
 
+Señal de vos
+:::
 +++
 
 #### Señales en un electrocardiógrafo, o electroencefalógrafo (variable independiente tiempo)
+:::{figure-md} electroencefalograma
 <img style="display:block; margin-left: auto; margin-right: auto;" src="signal_electro.png" width="600" alt="Señal de Electrocardiograma">
 
+Señal de electroencefalograma
+:::
 +++
 
 #### Imagen digital (dos variables independientes: coordenadas espaciales del pixel)
+
+:::{figure-md} imagen 
 <img style="display:block; margin-left: auto; margin-right: auto;" src="signal_image.png" width="256" alt="Imagen Digital (256x256) pixels">
+
+Señal de imagen
+:::
+
 
 +++
 
@@ -96,8 +108,11 @@ Es decir, la derivada de la función escalón es la función impulso unitario.
 
 ### Esquema básico de un sistema
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="sis_general2.png" width="400" alt="Esquema de sistema">
 
+Sistema General
+:::
 
 Los sistemas no necesariamente están restringidos a sistemas físicos. Pueden ser biológicos, económicos, computacionales, informáticos, sociales, etc.
 
@@ -105,21 +120,31 @@ Los sistemas no necesariamente están restringidos a sistemas físicos. Pueden s
 
 ### Ejemplos
 
-+++ {"slideshow": {"slide_type": "slide"}}
++++ 
 
 #### Sistema de Calefacción Sistema de Calefacción Solar Solar
 
-+++ {"slideshow": {"slide_type": "slide"}}
++++ 
+:::{figure-md} ejem-calefa
 
 <img style="display:block; margin-left: auto; margin-right: auto;" src="calefa_solar.png" width="450" alt="Sistema de calefacción solar">
 
-+++ {"slideshow": {"slide_type": "fragment"}}
+Sistema de calefacción solar
+:::
+
++++ 
+
+:::{figure-md} esquema-calefa
 
 <img style="display:block; margin-left: auto; margin-right: auto;" src="esquema_calefa_solar.png" width="450" alt="Esquema de calefacción solar">
 
-+++ {"slideshow": {"slide_type": "slide"}}
+Esquema de sistema de calefacción solar
+:::
+
++++ 
 
 #### Ecosistema
+
 Ambiente aislado compuesto por dos clases de individuos: presas (P: población de presas) y depredadores (D: población de depredadores).
 
 Hipótesis del modelo:
@@ -150,15 +175,27 @@ Un sistema es **lineal** si verifica el **Principio de Superposición**, tanto p
 Si para una entrada $u_1$ aplicada en el instante $t_0$, con el sistema en un estado inicial $\sum_0$, la salida es $y_1$ , y para una entrada $u_2$ aplicada en el instante $t_0$, con el sistema en un estado inicial $\sum_0$, la salida es $y_2$
 entonces si se aplica una $c_1u_1 +c_2u_2$  entrada en el instante $t_0$, con el sistema en un estado inicial $\sum_0$, la salida será $c_1y_1 +c_2y_2$
 
-+++ {"slideshow": {"slide_type": "subslide"}}
++++ 
+
+:::{figure-md}
 
 <img style="display:block; margin-left: auto; margin-right: auto;" src="superposicion1.png" width="450" alt="Hipótesis de superposición">
 
-+++ {"slideshow": {"slide_type": "fragment"}}
+Hipótesis linealidad
+:::
+
++++ 
+
+:::{figure-md} 
 
 <img style="display:block; margin-left: auto; margin-right: auto;" src="superposicion2.png" width="400" alt="Conclusión superposición">
 
-+++ {"slideshow": {"slide_type": "notes"}}
+Requerimiento de linealidad
+
+:::
+
+
++++ 
 
 *  Es claro que esta propiedad, como fue definida, es imposible de verificar en la práctica, ya que no se pueden realizar los ensayos propuestos en el mismo período de tiempo.
 * Debemos asumir entonces que el sistema no cambia con el tiempo (propiedad de **estacionariedad** o **invariancia en el tiempo**, que definiremos a continuación), de manera que podemos realizar los ensayos a distintos tiempos a partir del sistema en el mismo estado inicial.
@@ -173,15 +210,26 @@ Un sistema es invariante en el tiempo si su salida es siempre la misma cada vez 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
 #### Desplazamiento temporal
+
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="estacionariedad.png" width="400" alt="Desplazamiento temporal">
+
+Operador desplazamiento temporal
+:::
 
 Por lo tanto, el sistema es estacionario estacionario si para una entrada $u(t)$ aplicada en el instante $t_0$ resulta la salida es $y(t),$ entonces para una entrada = $z^\Delta u(t)$ aplicada en $t_0+\Delta$ la salida es $\tilde y(t) =z^\Delta y(t)$
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-#### Principio de estacionariedad
+#### Principio de estacionariedad o invariancia en el tiempo
+
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="estacionariedad2.png" width="400" alt="Principio de estacionariedad">
 
+Invariancia en el tiempo
+:::
 +++
 
 ### Sistemas SISO (Single-Input/Single-Output) 
@@ -240,16 +288,27 @@ Desde el punto de vista de las ecuaciones matemáticas los sistemas se puedes cl
 
 #### Esquema de la idealización física del motor eléctrico
 
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig_circuito_motor.png" width="450" alt="Sistema electromecánico">
 
+Diagrama idealizado del motor de corriente continua
+
+:::
 +++
 
 #### Diagrama del sistema desde el punto de vista de entradas y salidas
 
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="esquema_motor.png" width="450" alt="Esquema Rotacional">
 
+Esquema entrada/salida del motor de corriente continua
+:::
+
 #### Descripción del motor y su funcionamiento
-A continuación se deja un video decribiendo las partes de un motor y la forma de funcionamiento.
+
+A continuación se deja un video describiendo las partes de un motor y la forma de funcionamiento.
 
 [![motor: descripción](motor_parte0.png)](https://youtu.be/ztMgB1UofxU "Motor eléctrico: descripción")
 

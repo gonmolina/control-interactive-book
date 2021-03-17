@@ -43,7 +43,7 @@ $$
 \end{aligned}
 $$
 
-donde $\mathbf x(t)\in \mathbb{R}^{n}$ es el vector de estados,$\mathbf y(t)\in \mathbb{R}^{q}$ es el vector de salidas, $\mathbf u(t)\in \mathbb{R}^{p}$ es el vector de entradas, $\mathbf A(t)\in \mathbb{R}^{n\times n}$ es la matriz de estados, $\mathbf B(t)\in \mathbb{R}^{n\times p}$ es la matriz de entrada, $\mathbf C(t)\in \mathbb{R}^{q\times n}$ es la matriz de salida, $\mathbf D(t)\in \mathbb{R}^{q\times p}$ es la matriz de transmisión directa y $\dot{\mathbf{x}}(t):= \frac{d\mathbf{x}(t)}{dt}$
+donde $\mathbf x(t)\in \mathbb{R}^{n}$ es el vector de estados,$\mathbf y(t)\in \mathbb{R}^{q}$ es el vector de salidas, $\mathbf u(t)\in \mathbb{R}^{p}$ es el vector de entradas, $\mathbf A(t)\in \mathbb{R}^{n\times n}$ es la matriz de estados, $\mathbf B(t)\in \mathbb{R}^{n\times p}$ es la matriz de entrada, $\mathbf C(t)\in \mathbb{R}^{q\times n}$ es la matriz de salida, $\mathbf D(t)\in \mathbb{R}^{q\times p}$ es la matriz de transmisión directa y $\dot{\mathbf{x}}(t):= \dfrac{d\mathbf{x}(t)}{dt}$
 
 +++
 
@@ -118,13 +118,13 @@ $$
 
 Nótese que los sistemas invariantes se expresan solamente en el dominio del tiempo; sólo los invariantes se expresan también en el dominio de la frecuencia (con la transformada de Laplace o Z).
 
-La estabilidad y la respuesta natural característica de un sistema puede ser estudiado mediante los autovalores (o valores propios) de la matriz $A$. La estabilidad de un modelo de espacio de estados invariante en el tiempo puede ser fácilmente determinado observando la función transferencia del sistema en forma factorizada. Tendría una forma parecida a la siguiente
+La estabilidad y la respuesta natural característica de un sistema puede ser estudiado mediante los autovalores (o valores propios) de la matriz $\mathbf{A}$. La estabilidad de un modelo de espacio de estados invariante en el tiempo puede ser fácilmente determinado observando la función transferencia del sistema en forma factorizada. Si el sistema es SISO, Tendría una forma parecida a la siguiente:
 
-$$\textbf{G}(s) =k \dfrac{(s-z_1)(s-z_2)(s-z_3)}{(s-p_1)(s-p_2)(s-p_3)(s-p_4)}$$
+$$G(s) =k \dfrac{(s-z_1)(s-z_2)(s-z_3)}{(s-p_1)(s-p_2)(s-p_3)(s-p_4)}$$
 
-El denominador de la función transferencia es igual al polinomio característico encontrado tomando el determinante de $sI-A$.
+El denominador de la función transferencia es igual al polinomio característico encontrado tomando el determinante de $s\mathbf{I}-\mathbf{A}$.
 
-$$\mathbf {\lambda } (s)=|sI-A|$$
+$$\mathbf{\Lambda }(s)=|s\mathbf{I}-\mathbf{A}|$$
 
 +++
 
@@ -154,23 +154,23 @@ $$\mathbf {X} (s)=(s\mathbf {I} -\mathbf A)^{-1}\mathbf B\mathbf {U} (s)$$
 
 esto es sustituido por $\mathbf {X} (s)$ en la ecuación de salida
 
-$$\mathbf {Y} (s)=C\mathbf {X} (s)+\mathbf D\mathbf {U} (s)$$ 
+$$\mathbf {Y} (s)=\mathbf C \mathbf {X} (s)+\mathbf D\mathbf {U} (s)$$ 
     
 nos queda
 
-$$ \mathbf {Y} (s)=\mathbf C((s\mathbf {I} -\mathbf A)^{-1}\mathbf B\mathbf {U} (s))+\mathbf D\mathbf {U} (s)$$
+$$ \mathbf {Y} (s)=\mathbf C\left((s\mathbf {I} -\mathbf A)^{-1}\mathbf B\mathbf {U} (s)\right)+\mathbf D\mathbf {U} (s)$$
 
 +++
 
 Como la función de transferencia está definida como la tasa de salida sobre la entrada de un sistema, tomamos
 
-$$\mathbf {G} (s)=\mathbf {Y} (s)/\mathbf {U} (s)$$
+$$\mathbf {G} (s)=\dfrac{\mathbf {Y} (s)}{\mathbf {U} (s)}$$
 
 y sustituimos las expresiones previas por $\mathbf {Y} (s)$ con respecto a $\mathbf{U}(s)$, quedando
 
 $$\mathbf {G} (s)=\mathbf C(s\mathbf {I} -\mathbf A)^{-1}\mathbf B+\mathbf D$$
 
-Claramente $G(s)$ debe tener $q$ por $p$ dimensiones, así como un total de $q\times p$ elementos. Entonces para cada entrada hay $p$ funciones de transferencias, una por cada salida. Esta es la razón por la cual la representación de espacios de estados puede fácilmente en general es la mejor elección para sistemas MIMO.
+Claramente $\mathbf{G}(s)$ debe tener $q$ por $p$ dimensiones, así como un total de $q\times p$ elementos, o sea es una matriz de funciones transferencias. Entonces para cada entrada hay $p$ funciones de transferencias, una por cada salida. Esta es una  de las razones por la cual la representación de espacios de estados en general es la mejor elección para sistemas MIMO en lugar de la representación en transformadas de Laplace.
 
 ```{code-cell} ipython3
 

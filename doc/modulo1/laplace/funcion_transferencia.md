@@ -226,7 +226,15 @@ slideshow:
 ---
 T1=np.linspace(0,1000,101)
 t1,y1=ctrl.step_response(G, T=T1) # cantidad de puntos por defecto
-fig, ax =  plt.subplots(1, 1)
+```
+
+```{code-cell} ipython3
+---
+slideshow:
+  slide_type: subslide
+tags: [hide-input]
+---
+fig, ax =  plt.subplots(1, 1, figsize=(10,4))
 ax.plot(t1,y1,label="101 puntos de sim")
 ax.grid()
 ax.set_xlabel('Tiempo [s]')
@@ -243,7 +251,15 @@ slideshow:
 ---
 T2=np.linspace(0,1000,1001)
 t2,y2=ctrl.step_response(G,T=T2)
-fig, ax =  plt.subplots(1, 2, figsize=(12,3))
+```
+
+```{code-cell} ipython3
+---
+slideshow:
+  slide_type: subslide
+tags: [hide-input]
+---
+fig, ax =  plt.subplots(1, 2, figsize=(12,4))
 ax[0].plot(t1,y1,label="101 puntos de sim")
 ax[0].plot(t2,y2,alpha=0.6, label="1001 puntos de sim")
 ax[0].grid()
@@ -256,7 +272,8 @@ ax[1].set_xlim([0,30])
 ax[1].grid()
 ax[1].set_xlabel('Tiempo [s]')
 ax[1].set_ylabel('$x$')
-ax[1].set_title('Primeros segundos de la evolución');
+ax[1].set_title('Primeros segundos de la evolución')
+fig.tight_layout()
 ```
 
 En estas figuras podemos ver como la simulación que devuelve solo 100 puntos no nos muestra de forma correcta la evolución del sistema. Sin embargo, los puntos donde está calculado los valores de la respuesta al escalón si son correctos.
@@ -270,7 +287,14 @@ slideshow:
 ---
 T3=np.linspace(0,1400,5001)
 t3,y3=ctrl.step_response(G,T=T3)
-fig, ax =  plt.subplots(1, 2, figsize=(12,3))
+```
+
+```{code-cell} ipython3
+---
+slideshow:
+  slide_type: subslide
+---
+fig, ax =  plt.subplots(1, 2, figsize=(12,4))
 ax[0].plot(t3,y3,label="5001 puntos de sim")
 ax[0].grid()
 ax[0].set_xlabel('Tiempo [s]')
@@ -282,6 +306,7 @@ ax[1].grid()
 ax[1].set_xlabel('Tiempo [s]')
 ax[1].set_ylabel('$x$')
 ax[1].set_title('Primeros segundos de la evolución');
+fig.tight_layout()
 ```
 
 En los primeros segundos vemos una dinámica que produce rápidas oscilaciones, y se va que muy lentamente el sistema empieza a disminuir esas oscilaciones. En la figura de la izquierda vemos que esta oscilaciones tienden a 0, en un tiempo suficientemente grande. Estos sistemas que tienen dinámicas tan diferentes, por un lado la "lentas" como la que produce la extinción de las oscilaciones en un tiempo grande, y por otro lado las rápidas que se manifiestan en las oscilaciones se los conoce como `sistemas rígidos` o `sistemas stiff`.

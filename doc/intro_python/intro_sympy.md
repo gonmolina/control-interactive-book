@@ -16,9 +16,7 @@ kernelspec:
 
 # Introducción a SymPy
 
-Necesitamos importar
-[el paquete SymPy](http://docs.sympy.org/latest/index.html)
-para obtener capacidades matemáticas simbólicas.
+`SymPy es una librería para Python de matemática simbólica. Para poder usarlo necesitamos importar [el paquete SymPy](http://docs.sympy.org/latest/index.html).
 
 ```{code-cell} ipython3
 import sympy as sp
@@ -26,30 +24,25 @@ import sympy as sp
 
 +++ {"lang": "es"}
 
-Necesitamos comenzar la forma de imprimir formulas por pantalla para obtener
-una visualización tipográfica agradable.
-
-_Tenga en cuenta que esto cambia algo en función de la versión de sympy_
+Para imprimir las fórmulas por pantalla y obtener una visualización tipográfica agradable, además es necesario ejecutar:
 
 ```{code-cell} ipython3
 sp.init_printing()
 ```
+_Tenga en cuenta que esto cambia algo en función de la versión de sympy_
 
 +++ {"lang": "es"}
 
-Para hacer cálculos simbólicos, necesitamos crear un símbolo.
+Luego, ya para comenzar con la operatorio simbólica, necesitamos crear un símbolo.
 
 ```{code-cell} ipython3
 x = sp.Symbol('x')
-```
-
-```{code-cell} ipython3
 x
 ```
 
 +++ {"lang": "es"}
 
-Sympy nos permite hacer muchas operaciones matemáticas que serían tediosas a
+`SymPy` nos permite hacer muchas operaciones matemáticas que serían tediosas a
 mano. Por ejemplo, podemos expandir un polinomio:
 
 ```{code-cell} ipython3
@@ -92,11 +85,11 @@ Por supuesto, también podemos factorizar polinomios:
 (x**2 + 2*x + 1).factor()
 ```
 
-+++ {"lang": "es"}
++++ 
 
 ## Cálculo
 
-Sympy sabe integrar y diferenciar.
+`SymPy` sabe integrar y diferenciar.
 
 ```{code-cell} ipython3
 polynomial.diff(x)  # First derivative
@@ -121,7 +114,7 @@ polynomial.integrate((x, 1, 2))
 
 ## Límites
 
-Podemos evaluar los límites usando SymPy, incluso para límites "interesantes"
+Podemos evaluar los límites usando `SymPy`, incluso para límites "interesantes"
 donde necesitaríamos la regla de L'Hopital
 
 ```{code-cell} ipython3
@@ -132,7 +125,7 @@ sp.limit((2*sp.sin(x) - sp.sin(2*x))/(x - sp.sin(x)), x, 0)
 
 ## Aproximación
 
-SymPy tiene soporte incorporado para la expansión de series de Taylor
+`SymPy` tiene soporte incorporado para la expansión de series de Taylor
 
 ```{code-cell} ipython3
 nonlinear_expression = sp.sin(x)
@@ -152,7 +145,7 @@ temp.removeO()
 
 +++ {"lang": "es"}
 
-También notará que el comportamiento predeterminado de SymPy es retener
+También notará que el comportamiento predeterminado de `SymPy` es retener
 representaciones exactas de ciertos números:
 
 ```{code-cell} ipython3
@@ -163,11 +156,10 @@ number
 +++ {"lang": "es"}
 
 Para convertir las representaciones exactas de arriba en representaciones
-aproximadas de [punto flotante]
-(https://en.wikipedia.org/wiki/Floating_point), use uno de estos métodos.
-`sympy.N` funciona con expresiones complicadas que también contienen
-variables. `float` devolverá un número de tipo `float` de Python normal y es
-útil cuando se interactúa con programas que no son de SymPy.
+aproximadas de [punto flotante](https://en.wikipedia.org/wiki/Floating_point), use uno de estos métodos:
+- `sympy.N` funciona con expresiones complicadas que también contienen variables. 
+- `float` devolverá un número de tipo `float` de Python normal y es útil cuando se interactúa 
+con programas que no son de `SymPy`.
 
 ```{code-cell} ipython3
 sp.N(number*x)
@@ -177,11 +169,11 @@ sp.N(number*x)
 float(number)
 ```
 
-+++ {"lang": "es"}
++++
 
 ## Resolver ecuaciones
 
-SymPy puede ayudarnos a resolver y manipular  ecuaciones utilizando la
+`SymPy` puede ayudarnos a resolver y manipular  ecuaciones utilizando la
 función `solve`. Como muchas funciones de resolución, encuentra ceros de una
 función, por lo que tenemos que reescribir las ecuaciones de igualdad para
 que sean iguales a cero,
@@ -204,7 +196,7 @@ solutions[0]
 
 +++ {"lang": "es"}
 
-También podemos usar `sympy.Eq` para construir ecuaciones
+También podemos usar `sp.Eq` para construir ecuaciones
 
 ```{code-cell} ipython3
 equation = sp.Eq(2*x**2 + 2, 4)

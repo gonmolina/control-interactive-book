@@ -289,17 +289,11 @@ G(s)=\dfrac{1}{s} & H(\omega)= \dfrac{1}{j\omega} & \text{polo en} & s=0
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf(1,[1,0])
-ctrl.pzmap(G);
-plt.gcf().savefig('Figure_1.png');
-```
++++
 
 :::{figure-md} pzmap-polo-en-cero
 
-<img src="Figure_1.png" alt="Figure_1" width="600px">
+<img style="display:block; margin-left: auto; margin-right: auto;" src="Figure_1.png" width="600" alt="Figure_1.png">
 
 Polo en 0
 :::
@@ -323,13 +317,7 @@ $$
 \angle{G(j\omega)} = -\dfrac{\pi}{2} ~\forall~ \omega
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf(1,[1,0])
-ctrl.bode(G,dB=True);
-plt.gcf().savefig('Figure_2.png');
-```
++++
 
 :::{figure-md} bode-polo-en-cero
 
@@ -348,13 +336,7 @@ G(s)=\dfrac{1}{s^n} & G(j\omega)= \dfrac{1}{j^n\omega^n} & \text{n polos en} & s
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf(1,[1,0,0])
-ctrl.pzmap(G)
-plt.gcf().savefig('Figure_3.png')
-```
++++
 
 :::{figure-md} pzmap-polo-multiple-en-cero
 
@@ -385,13 +367,7 @@ $$
 \angle{G(j\omega)} = -n \dfrac{\pi}{2} ~\forall~ \omega
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-plt.figure()
-ctrl.bode(G,dB=True)
-plt.gcf().savefig('Figure_4.png')
-```
++++
 
 :::{figure-md} bode-polo-multiple-0
 
@@ -410,13 +386,7 @@ G(s)=\dfrac{1}{\tau s+1} & H(\omega)= G(j\omega)= \dfrac{1}{j\omega\tau+1} & \te
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf(1,[1,1])
-ctrl.pzmap(G)
-plt.gcf().savefig('Figure_5.png')
-```
++++
 
 :::{figure-md} polo-real-negativo
 
@@ -465,13 +435,7 @@ $$
 \end{array}\right.
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-ctrl.bode(G)
-fig.savefig('Figure_6.png')
-```
++++
 
 :::{figure-md} bode-polo-real-simple
 <img style="display:block; margin-left: auto; margin-right: auto;" src="Figure_6.png" width="600" alt="Figure_6.png">
@@ -489,16 +453,7 @@ $$
 
 donde $\xi$ es el coeficiente de amortiguamiento, $\omega_n$ es la frecuencia natural y los polos se ubican en $\underbrace{p_{1,2}=-\xi\omega_n\pm \omega_n\sqrt{\xi^2-1}}_{\text{complejos conjugados}}$ para $0<\xi<1$ y $|p_{1,2}|=\omega_n$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-xi=0.5
-wn=1
-G=ctrl.tf(wn**2,[1,2*xi*wn,wn**2])
-_=ctrl.pzmap(G)
-fig=plt.gcf()
-fig.savefig('Figure_7.png')
-```
++++
 
 :::{figure-md} polos-complejos-map
 
@@ -555,17 +510,7 @@ $$
 \end{array}\right.
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-xi=[0.9,0.7,0.5,0.3,0.1,0.01]
-wn=1
-for i in range(np.size(xi)):
-    G=ctrl.tf(wn**2,[1,2*xi[i]*wn,wn**2])
-    ctrl.bode(G,dB=True, omega_num=2001)
-fig.savefig('Figure_8.png')
-```
++++
 
 :::{figure-md} polos-complejos-bode
 
@@ -584,14 +529,7 @@ G(s)=s & H(\omega)= {j\omega} & \text{un cero en} & s=0
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf([1,0],1)
-ctrl.pzmap(G)
-fig=plt.gcf()
-fig.savefig('Figure_9.png')
-```
++++
 
 :::{figure-md} cero-en-cero-map
 
@@ -602,23 +540,20 @@ Cero de $G(s)$ en $s=0$
 :::
 
 el módulo resulta
+
 $$
 |G(j\omega)| = {\omega} \Longrightarrow \underbrace{|G(j\omega)|_{dB} = 20\log{\omega}}_{\substack{\text{recta con}\\ \text{pendiente de 20dB/dec}}}
 $$
+
 para
+
 $$
 |G(j\omega)|_{\omega = 1 \dfrac{rad}{seg}} = 0 dB
 $$
 
 la fase $\angle{G(j\omega)} = \dfrac{\pi}{2} ~\forall~ \omega$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-ctrl.bode(G,dB=True)
-fig.savefig('Figure_10.png')
-```
++++
 
 :::{figure-md} cero-en-cero-bode
 
@@ -638,14 +573,7 @@ G(s)={s^n} & G(j\omega)= {j^n\omega^n} & \text{n ceros en} & s=0
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf([1,0,0],1)
-ctrl.pzmap(G)
-fig=plt.gcf()
-fig.savefig('Figure_11.png')
-```
++++
 
 :::{figure-md} ceros-en-ceros-map
 
@@ -672,13 +600,7 @@ $$
 \angle{G(j\omega)} = n \dfrac{\pi}{2} ~\forall~ \omega
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-ctrl.bode(G,dB=True)
-fig.savefig('Figure_12.png')
-```
++++
 
 :::{figure-md} ceros-en-cero-bode
 
@@ -697,14 +619,7 @@ G(s)={\tau s+1} & H(\omega)= G(j\omega)= {j\omega\tau+1} & \text{un cero en} & s
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf([1,0],1)
-ctrl.pzmap(G)
-fig=plt.gcf()
-fig.savefig('Figure_13.png')
-```
++++
 
 :::{figure-md} cero-real-simple-map
 
@@ -753,13 +668,7 @@ $$
 \end{array}\right.
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-ctrl.bode(G,dB=True)
-fig.savefig('Figure_14.png')
-```
++++
 
 :::{figure-md} cero-real-simple-bode
 
@@ -777,17 +686,7 @@ $$
 G(s)=\dfrac{s^2+2\xi\omega_ns+\omega_n^2}{\omega_n^2}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-xi=[0.9,0.7,0.5,0.3,0.1,0.01]
-wn=1
-fig=plt.figure()
-for i in range(np.size(xi)):
-    G=ctrl.tf([1,2*xi[i]*wn,wn**2],wn**2)
-    ctrl.bode(G,dB=True, omega_num=2001)
-fig.savefig('Figure_15.png')
-```
++++
 
 :::{figure-md} cero-complejo-conjugado-bode
 
@@ -806,14 +705,7 @@ G(s)={1-\tau s} & H(\omega)= G(j\omega)= {1-j\omega\tau} & \text{un cero en } & 
 \end{matrix}
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-G=ctrl.tf([1,-1],1)
-ctrl.pzmap(G)
-fig=plt.gcf()
-fig.savefig('Figure_16.png')
-```
++++
 
 :::{figure-md} cero-simple-positivo
 
@@ -862,13 +754,7 @@ $$
 \end{array}\right.
 $$
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig=plt.figure()
-ctrl.bode(G,dB=True)
-fig.savefig('Figure_17.png')
-```
++++
 
 :::{figure-md} cero-real-positivo-bode
 
@@ -989,3 +875,26 @@ $$
 
 Bode asintótico de $G(s)$
 :::
+
++++
+
+:::{figure-md}
+
+<img style="display:block; margin-left: auto; margin-right: auto;" src="asintotico_mag.png" width="700" alt="asintotico_mag.png">
+
+
+Bode asintótico de maginitud $G(s)$
+:::
+
+
+:::{figure-md}
+
+
+<img style="display:block; margin-left: auto; margin-right: auto;" src="asintotico_fase.png" width="700" alt="asintotico_fase.png">
+
+Bode asintótico de fase $G(s)$
+:::
+
+```{code-cell} ipython3
+
+```

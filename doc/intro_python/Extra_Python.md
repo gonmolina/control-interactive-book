@@ -15,6 +15,17 @@ kernelspec:
 
 # Introducción a Python
 
+Este cuaderno usará Python como lenguaje de programación. Esto significa que
+la mayor parte de lo aprendido en este curso puede ser desarrollado y
+aplicado en cuadernos. Los cuadernos se dividen en celdas donde se puede
+poner código y luego correrlo haciendo **Mayúscula + Enter**.
+
+Aquí intenta ase intentará mostrarles algunos de los tipo de datos más comunes de 
+Python con el fin de comenzar a interiorizarnos tanto con el lenguaje como con los 
+cuadernos de de Jupyter.
+
+
+
 +++
 
 ## Números

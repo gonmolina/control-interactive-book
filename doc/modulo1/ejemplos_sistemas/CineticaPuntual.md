@@ -166,7 +166,7 @@ Entonces ahora podemos visualizar los resultados en las siguientes figuras:
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10,4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,n,'r', label='Modelo no lineal')
 ax.plot(t2,y2[0,:]*-10e-5+n0,'b', alpha=0.6, label='Modelo lineal')
@@ -180,7 +180,7 @@ ax.set_ylabel('Flujo neutrónico');
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10,4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,c,'r', label='Modelo no lineal')
 ax.plot(t2,y2[1,:]*-10e-5+c0,'b', alpha=0.6, label='Modelo lineal')
@@ -219,7 +219,7 @@ Y los resultados los vemos en las siguientes gráficas:
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10,4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,n,'r', label='Modelo no lineal')
 ax.plot(t2,y2[0,:]*-200e-5+n0,'b', alpha=0.6, label='Modelo lineal')
@@ -233,7 +233,7 @@ ax.set_ylabel('Flujo neutrónico');
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10,4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,c,'r', label='Modelo no lineal')
 ax.plot(t2,y2[1,:]*-200e-5+c0,'b', alpha=0.6, label='Modelo lineal')

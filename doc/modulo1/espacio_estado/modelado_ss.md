@@ -141,6 +141,8 @@ $$
 ### Simulación
 
 ```{code-cell} ipython3
+:tags: [hide-cell]
+
 import control as ctrl
 import matplotlib.pyplot as plt
 import numpy as np
@@ -192,6 +194,8 @@ t,y=ctrl.step_response(motor_ss,T=t)
 Una vez que tenemos la salida (para este caso es una sola), podemos graficarla:
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 fig, ax = plt.subplots(figsize=(12,4))
 ax.plot(t,y)
 ax.set_title('Posición angular del motor')
@@ -202,8 +206,7 @@ ax.grid()
 
 Ahora supongamos que deseamos medir velocidad angular del motor, es decir la variable de estado $x_2$, entonces podemos definir la matriz $C$ de la siguiente manera:
 
-$$C = \begin{bmatrix}
-1 &0&0\\
+$$\mathbf C = \begin{bmatrix}
 0 & 1 & 0\\
 \end{bmatrix}$$ 
 
@@ -214,6 +217,10 @@ C=[0,1,0]
 motor_vel_ss=ctrl.ss(A,B,C,D)
 t=np.linspace(0,0.1,200)
 t,y=ctrl.step_response(24*motor_vel_ss,T=t)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
 
 fig, ax = plt.subplots(figsize=(12,4))
 ax.plot(t,y, label=r'$\theta$')
@@ -237,27 +244,28 @@ Ahora podemos simular la respuesta al escalón
 ```{code-cell} ipython3
 t=np.linspace(0,0.12,500)
 t,y=ctrl.step_response(24*motor_ss,T=t)
+```
 
+```{code-cell} ipython3
+:tags: [hide-input]
 
 fig, axes = plt.subplots(3, 1, figsize=(15, 15))
 
 axes[0].plot(t,y[0,:])
 axes[0].grid()
 axes[0].set_title(r"Corriente de armadura $i_a$")
-ax.set_xlabel('Tiempo[s]')
-ax.set_ylabel(r'$i_a[A]$')
+axes[0].set_ylabel(r'$i_a[A]$')
 
 axes[1].plot(t,y[1,:], 'g');
 axes[1].grid()
 axes[1].set_title(r"Velocidad angular del motor $\omega_m (t)$")
-ax.set_xlabel('Tiempo[s]')
-ax.set_ylabel(r'$\omega$[rad/seg]')
+axes[1].set_ylabel(r'$\omega$[rad/seg]')
 
 axes[2].plot(t,y[2,:], 'r', label="y = x")
 axes[2].grid()
 axes[2].set_title( r"Posición angular del motor $\theta_m(t)$")
-ax.set_xlabel('Tiempo[s]')
-ax.set_ylabel(r'$\theta_m(t)$');
+axes[2].set_xlabel('Tiempo[s]')
+axes[2].set_ylabel(r'$\theta_m(t)$');
 
 fig.tight_layout()
 ```

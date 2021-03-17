@@ -53,7 +53,7 @@ Usaremos para este trabajo `SymPy` para que nos ayude con la matemática simból
 
 +++
 
-## Sympy para la linealización
+## SymPy para la linealización
 
 Primero importamos el paquete de cálculo simbólico e inicializamos la forma en que este paquete mostrará las formulas en pantalla.
 
@@ -122,6 +122,8 @@ B.subs(sol0)
 Podemos resolver también ahora si ponemos una $F=1$
 
 ```{code-cell} ipython3
+:tags: []
+
 ec_est_f1 = ec_est.subs([(F,1)]) 
 sol1 = sp.solve(ec_est_f1,(x1,x2),dict=True)
 sol1
@@ -164,6 +166,8 @@ Esto nos dice que es un objeto de tipo simbólico. Para poder usarlo aún debemo
 ## Utilización numérica de los resultados simbólicos
 
 ```{code-cell} ipython3
+:tags: [hide-input]
+
 import numpy as np
 import control as ctrl
 import matplotlib.pyplot as plt
@@ -199,7 +203,7 @@ Ahora utilizaremos lo visto en el cuaderno de figuras
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10, 4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,y)
 ax.set_title('Respuesta al escalón')
@@ -216,7 +220,8 @@ Primero debemos definir el sistema no lineal en una función para que después p
 
 ```{code-cell} ipython3
 def resorte_no_lineal(t, x, b=1, m=3, K=2, g=9.8, step_amp=1):
-    F=1+step_amp # Hacemos la entrada igual a 2 ya que al sistema lineal le aplicamos un escalón unitario sobre el punto de trabajo que era F=1
+    F=1+step_amp # Hacemos la entrada igual a 2 ya que al sistema lineal le aplicamos 
+                 # un escalón unitario sobre el punto de trabajo que era F=1
     x1,x2 = x
     dx1 = -b/m*x1-K/m*x2**3+F/m+g
     dx2 = x1
@@ -227,9 +232,6 @@ Para comenzar necesitamos también los valores numéricos de las condiciones ini
 
 ```{code-cell} ipython3
 x0 = np.float64(sol1[x1].subs([(b,1),(K,2),(m,3),(g,9.8)])), np.float64(sol1[x2].subs([(b,1),(K,2),(m,3),(g,9.8)]))
-```
-
-```{code-cell} ipython3
 x0
 ```
 
@@ -250,7 +252,7 @@ Ahora veamos los resultados de la simulación del sistema no lineal
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10, 4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t1,x2, label='$x$')
 ax.set_title('Respuesta al escalón')
@@ -269,7 +271,7 @@ yc = y+x0[1]
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig = plt.figure()
+fig = plt.figure(figsize=(10, 4))
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 ax.plot(t,yc, label=r'$x$ del sistema linealizado')
 ax.plot(t1, x2, label=r'$x$ del sistema no lienal', alpha=0.6)

@@ -17,17 +17,8 @@ kernelspec:
 
 # Introducción a los cuadernos de Jupyter
 
-Sympy es un paquete de algebra para Python. A este paquete, y luego a todos
-los demás los utilizaremos a usaremos a través de una interfaz conveniente
-que son los [Jupyter Notebook](http://jupyter.org/). Este cuaderno intenta
-mostrarles algunos de los tipo de datos más comunes de Python 
-de esta manera comenzar a interiorizarnos con el uso de los cuadernos.
-
-Este cuaderno usará Python como lenguaje de programación. Esto significa que
-la mayor parte de lo aprendido en este curso puede ser desarrollado y
-aplicado en cuadernos. Los cuadernos se dividen en celdas donde se puede
-poner código y luego correrlo haciendo **Mayúscula + Enter**.
-
+Estaremos utilizando Python a través de una interfaz conveniente
+que son los [Jupyter Notebook](http://jupyter.org/). 
 Si a este cuaderno lo está visualizando a través de una pagina web, puede
 descargarlo haciendo click en icono de descarga ubicado arriba a la izquierda
 y seleccionando el formato `ipynb`. También se puede ejecutar a desde la web, 
