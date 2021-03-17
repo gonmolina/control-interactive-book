@@ -211,12 +211,12 @@ with plt.xkcd():
     ax.spines['bottom'].set_position(('data', 0))
     ax.yaxis.set_ticks_position('left')
     ax.spines['left'].set_position(('data', 0.01))
-
     ax.semilogx(w, 20*np.log10(mag), 'k-.', alpha=0.45, label='Bode final a mano')
-    ax.scatter([0.011, 10, 50], [0, 0, 0], color='red', s=100, marker='x',
-               linewidths=3)
-    ax.scatter([0.5], [0], s=100, marker='o', color='r', linewidths=3)
     ax.legend(loc='lower left')
+
+ax.plot([0.011, 10, 50], [0, 0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red") 
+ax.plot([0.5], [0], lw=0, marker='o', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red")
+
 fig.savefig('asintotico_mag.png')
 
 # %%
@@ -237,7 +237,6 @@ with plt.xkcd():
     ax.set_yticks([-180, -135, -90, -45, 0])
 
 ax.plot([0.011, 10, 50], [0, 0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red") 
-
 ax.plot([0.5], [0], lw=0, marker='o', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red")
 fig.savefig('asintotico_fase.png')
 
