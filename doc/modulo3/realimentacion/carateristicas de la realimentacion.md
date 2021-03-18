@@ -20,7 +20,12 @@ kernelspec:
 
 El control **realimentado** o a **lazo cerrado** tiene la característica de que medimos la salida y luego la comparamos con un valor deseado. El error resultante lo utilizamos para corregir la salida del sistema.
 
+:::{figure-md}
+
 <img src="fig1.png" width=400px>
+
+Lazo cerrado versus lazo abierto
+:::
 
 +++
 
@@ -110,7 +115,7 @@ Por lo tanto, aquí el diseñador puede elegir un compensador $D$, de módulo gr
 
 +++
 
-Cabe observar aquí que para los sistemas retroalimentados debemos escoger un muy buen sensor. 
+Cabe observar aquí que para los sistemas realimentados debemos escoger un muy buen sensor.
 
 +++
 
@@ -164,7 +169,7 @@ El diseñador puede tomar un $K_{cc}$ de modo que $K_0K_{cc} >> 1$ y $K_0 K_{cc}
 
 Los errores del sistema son menos sensibles a las perturbaciones en los sistemas de lazo cerrado que en los sistemas a lazo abierto.
 
-Otra característica de los sistemas retroalimentados es que la velocidad de respuesta se puede mejorar con respecto a su sistema a lazo abierto (cuidado: sistemas con más polos afecta la estabilidad del sistema; menos amortiguados y hasta inestables).
+Otra característica de los sistemas realimentados es que la velocidad de respuesta se puede mejorar con respecto a su sistema a lazo abierto (cuidado: sistemas con más polos afecta la estabilidad del sistema; menos amortiguados y hasta inestables).
 
 ```{code-cell} ipython3
 

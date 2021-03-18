@@ -16,11 +16,12 @@ kernelspec:
 ## Introducción
 Considerando el sistema a lazo cerrado
 
-
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig1.png" width="700" alt="est_fig1.png">
 
-<figcaption style="text-align:center; "><i>Diagrama de Nyquist de $L(j\omega)$</i></figcaption>
+Diagrama de Nyquist de $L(j\omega)$
 
+:::
 
 con función de transferencia:
 
@@ -28,7 +29,7 @@ $$
 T(s)=\frac{Y(s)}{R(s)}= \frac{kG(s)}{1+kG(s)H(s)}= \frac{kG(s)}{1+L(s)}
 $$
 
-donde $L(s)$ es la función de transfencia de lazo
+donde $L(s)$ es la función de transferencia de lazo
 
 o lo que es lo mismo 
 
@@ -70,29 +71,36 @@ $$
 
 con $\phi(\omega)=\angle{L(j\omega)}$, donde:
 
-<figure>
-    
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig2.png" width="700" alt="est_fig2.png">
     
-<figcaption style="text-align:center; "><i>Diagrama de Nyquist de $L(j\omega)$</i></figcaption>
+Diagrama de Nyquist de $L(j\omega)$
 
-</figure>
+:::
 
 
 El criterio de estabilidad permite determinar la estabilidad del sistema en lazo cerrado a partir del diagrama de Nyquist a lazo abierto de $L(j\omega)$
 
 El criterio de estabilidad de Nyquist se basa en el principio del argumento del análisis complejo.
 
++++
+
 ### Principio de argumento
+
 El mapeo de un contorno cerrado de una función compleja solo puede encerrar el origen, si el contorno contiene una singularidad (lo que nosotros llamamos, polo o cero) de la función.
 
-<figure>
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig3.png" width="700" alt="est_fig3.png">
 
-<figcaption style="text-align:center; "><i>Diagrama de Nyquist de $L(j\omega)$</i></figcaption>
-</figure>
+Diagrama de Nyquist de $L(j\omega)$
+
+:::
+
++++
 
 ### Mapeo de contornos
+
 El mapeo del contorno de una función de transferencia $L(s)$ es el camino cerrado descripto por $L(s)$ en el plano complejo, cuando la variable $s$ recorre un contorno ( o camino) cerrado en el plano complejo "$s$"
 
 Supongamos el ejemplo genérico:
@@ -101,10 +109,12 @@ $$
 L_1(s)= k \frac{(s-z_1)(s-z_2)}{(s-p_1)(s-p_2)}
 $$
 
-<figure>
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig4.png" width="700" alt="est_fig4.png">
-<figcaption style="text-align:center; "><i> de Nyquist de $L_1(j\omega)$</i></figcaption>
-</figure>
+Nyquist de $L_1(j\omega)$
+
+:::
 
 donde
 
@@ -116,12 +126,14 @@ cuando "$s$" recorre la curva $\mathscr{C}_1$ en sentido horario, el ángulo $\a
 
 consideremos ahora $L_2(s)$ como se muestra:
 
-<figure>
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig5.png" width="700" alt="est_fig5.png">
-<figcaption style="text-align:center; "><i>Mapeo de la curva $\mathscr{C}_1$ para $L_2(s)$</i></figcaption>
-</figure>
+Mapeo de la curva $\mathscr{C}_1$ para $L_2(s)$
+:::
 
-En este caso como hay una singularidad de $L_2(s)$ dentro del contorno $\mathscr{C}_1$. Cuando "$s$" recorre $\mathscr{C}_1$ hay un cambio neto de $360º$ en la fase $phi_2$ correspondiente a la singularidad dentro del contorno $\mathscr{C}_1$ lo que hace que $\alpha$ cambie $360º$ esto significa que el mapeo encierra el origen.
++++
+
+En este caso como hay una singularidad de $L_2(s)$ dentro del contorno $\mathscr{C}_1$. Cuando "$s$" recorre $\mathscr{C}_1$ hay un cambio neto de $360^\text o$ en la fase $phi_2$ correspondiente a la singularidad dentro del contorno $\mathscr{C}_1$ lo que hace que $\alpha$ cambie $360º$ esto significa que el mapeo encierra el origen.
 
 Vamos a analizar la ecuación característica, por ser la que define la ubicación de los polos del sistema:
 
@@ -131,10 +143,12 @@ $$
 
 por lo que para aplicar el principio del argumento usaremos el contorno que encierra todo el semiplano derecho, es decir, la región de inestabilidad $\mathbb{C}^+$
 
-<figure>
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig6.png" width="700" alt="est_fig6.png">
-<figcaption style="text-align:center; "><i>Contorno que encierra $\mathbb{C}^+$</i></figcaption>
-</figure>
+
+Contorno que encierra $\mathbb{C}^+$
+:::
 
 Entonces si el mapeo de $L(s)$ encierra el origen si el contorno $\mathscr{C}$ encierra un número de polos y ceros tal que:
 
@@ -183,7 +197,7 @@ para que el sistema sea estable debe ser $Z=0$
 
 ## Diagrama de Nyquist
 
-Receta para dibujar un diagrama de Nyquist asintotico (No hace falta mas que esto para determinar la estabilidad):
+Receta para dibujar un diagrama de Nyquist asintótico (No hace falta mas que esto para determinar la estabilidad):
 
 1. Con la ayuda de un diagrama de Bode determinar la forma para $0 \leq \omega \leq \infty$
 2. Evaluar el cierre del diagrama por infinito
@@ -200,7 +214,6 @@ $$
 4. Determinar los polos de $L(s)$ en el RHP, esto es P
 5. Calcular la estabilidad $\Longrightarrow ~ Z=N+P$
 
-
 +++
 
 ### Ejemplo: Diagrama de Nyquist para determinar la estabilidad
@@ -211,20 +224,79 @@ $$
 G(s)=\frac{1}{(s+1)^2}
 $$
 
+```{raw-cell}
 1. Dibujamos un diagrama de Bode de la función de lazo $L(s)= kG(s)$, en este caso es suficiente con un Bode asintótico.
+```
 
-<figure>
-<img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig7.png" width="700" alt="est_fig7.png">
-<figcaption style="text-align:center; "><i>Lugar de las raíces asintótico de $G(s)$</i></figcaption>
-</figure>
+```{code-cell} ipython3
+:tags: [remove-input]
+
+import control as ctrl
+import numpy as np
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+G=ctrl.tf(1,[1,2,1])
+asin1_x=[0.01, 1, 10, 100]
+asin1_y=[0, 0, -40, -80]
+angx=[0.01, 1, 1, 100]
+angy=[0, 0, -180, -180]
 
 
-2. Con la ayuda del Bode anterior dibujamos el Nyquist para las frecuencias $0 \leq \omega \leq \infty$ y el simetrico para frecuencias negativas
+fig, ax=plt.subplots(2,1, figsize=(12,8))
 
-<figure>
-<img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig8.png" width="700" alt="est_fig8.png">
-<figcaption style="text-align:center; "><i>Lugar de las raíces asintótico de $G(s)$</i></figcaption>
-</figure>
+
+
+mag, ph, w = ctrl.bode(G, omega_limits=(0.01, 100), omega_num=2001,
+                       dB=True, plot=False)
+
+with plt.xkcd():
+    ax[0].spines['right'].set_color('none')
+    ax[0].spines['top'].set_color('none')
+    ax[0].xaxis.set_ticks_position('bottom')
+    ax[0].spines['bottom'].set_position(('data', 0))
+    ax[0].yaxis.set_ticks_position('left')
+    ax[0].spines['left'].set_position(('data', 0.012))
+    ax[0].semilogx(w, 20*np.log10(mag), 'k-', alpha=0.45)
+
+
+ax[0].semilogx(asin1_x, asin1_y, '--', alpha=0.7, label='Asíntotas polo dolbe en -1')
+ax[0].set_xlim([0.012, 100])
+ax[0].plot([0.97, 1.03], [0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red") 
+
+
+with plt.xkcd():
+    ax[1].spines['right'].set_color('none')
+    ax[1].spines['top'].set_color('none')
+    ax[1].xaxis.set_ticks_position('bottom')
+    ax[1].spines['bottom'].set_position(('data', 0))
+    ax[1].yaxis.set_ticks_position('left')
+    ax[1].spines['left'].set_position(('data', 0.012))
+    ax[1].semilogx(w, ph*180/np.pi, 'k-', alpha=0.45, label="fase a mano")
+
+ax[1].set_xlim([0.01, 100])
+ax[1].set_yticks([-180, -135, -90, -45, 0])
+ax[1].semilogx(angx, angy, '--', alpha=0.7)
+ax[1].set_xlim([0.012, 100])
+ax[1].plot([0.97, 1.03], [0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red");
+```
+
+```{code-cell} ipython3
+
+```
+
+2. Con la ayuda del Bode anterior dibujamos el Nyquist para las frecuencias $0 \leq \omega \leq \infty$ y el simétrico para frecuencias negativas
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+with plt.xkcd():
+    _=ctrl.nyquist(G, arrowhead_length=0.1, arrowhead_width=0.1, omega=np.logspace(-2,12,2001))
+# <figure>
+# <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig8.png" width="700" alt="est_fig8.png">
+# <figcaption style="text-align:center; "><i>Lugar de las raíces asintótico de $G(s)$</i></figcaption>
+# </figure>
+```
 
 3. Para este problema no es necesario evaluar el cierre porque se une en infinito.
 4. Contamos las vueltas alrededor de -1 y los polos en $\mathbb{C}^+$ a lazo abierto, es decir de $L(s)$
@@ -237,45 +309,58 @@ P = 0 \text{ en este caso no hay polos de } G(s) \text{ en } \mathbb{C}^+
 $$ 
 
 5. Usamos el criterio de Nyquist para determinar la estabilidad del sistema es:
+
 $$
 Z= N+P= 0
 $$
-No hay polos en el RHP, por lo que el sitema es estable para cualquier valor de $k$
 
-6. Para verificar la estabilidad del sistema, dibujamos el lugar de las raíces asintótico para este sistema con realimentación unitaria y ganancia $k$, esto es:
-
-<figure>
-<img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig9.png" width="700" alt="est_fig9.png">
-<figcaption style="text-align:center; "><i>Lugar de las raíces asintótico de $G(s)$</i></figcaption>
-</figure>
+No hay polos en el RHP, por lo que el sistema es estable para cualquier valor de $k$
 
 +++
 
+6. Para verificar la estabilidad del sistema, dibujamos el lugar de las raíces asintótico para este sistema con realimentación unitaria y ganancia $k$, esto es:
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+with plt.xkcd():
+    _=ctrl.rlocus(G, grid=False)
+```
+
 ### Otro ejemplo: Con cierre por $\infty$
-En este caso analizaremos un sitema en el que hay que cerrar el diagrama de Nyquist por el infinito de la función
+En este caso analizaremos un sistema en el que hay que cerrar el diagrama de Nyquist por el infinito de la función
 
 $$
 G(s) = \frac{1}{s(s+1)}
 $$
 
-<figure>
+::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig10.png" width="700" alt="est_fig10.png">
-<figcaption style="text-align:center; "><i>Bode asintótico de $G(s)$</i></figcaption>
-</figure>
 
-<figure>
+Bode asintótico de $G(s)$
+:::
+
++++
+
+::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig11.png" width="700" alt="est_fig11.png">
-<figcaption style="text-align:center; "><i>Lugar de las raíces asintótico de $G(s)$</i></figcaption>
-</figure>
 
-Dibujamos la parte del Nyquist para frecuencias positivas $\omega>0$ a partir del Bode, y el simetrico para frecuencias negativas.
+Lugar de las raíces asintótico de $G(s)$
+:::
 
-<figure>
++++
+
+Dibujamos la parte del Nyquist para frecuencias positivas $\omega>0$ a partir del Bode, y el simétrico para frecuencias negativas.
+
+::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig12.png" width="700" alt="est_fig12.png">
-<figcaption style="text-align:center; "><i>Nyquist de $G(s)$ sin cerrar</i></figcaption>
-</figure>
+Nyquist de $G(s)$ sin cerrar
+:::
+
++++
 
 Analizamos el cierre por infinito, para lo que usaremos el contorno $\mathscr{C}_3$ que se parametriza como:
+
 $$
 \mathscr{C}_3: s=\rho e^{j\theta} \text{ con } \rho \longrightarrow 0 \text{ y } -\frac{\pi}{2}<\theta<\frac{\pi}{2} \text{ pasando por }\theta = 0
 $$
@@ -296,10 +381,13 @@ De lo anterior con $\rho \longrightarrow 0$ tenemos que el módulo del mapeo tie
 |  45       | -45                 |
 |  90       | -90                 |
 
-<figure>
++++
+
+::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig13.png" width="700" alt="est_fig13.png">
-<figcaption style="text-align:center; "><i>Nyquist de $G(s)$ cerrado</i></figcaption>
-</figure>
+
+Nyquist de $G(s)$ cerrado
+:::
 
 Final mente con el diagrama cerrado podemos, contamos la vueltas al -1 y los polos de $G(s)$ en el RHP y calculamos la estabilidad del sistema:
 
@@ -309,23 +397,24 @@ N=0 & \text{ y } & P=0 & \Longrightarrow & Z=0 ~~ \forall k \text{( siempre es e
 \end{matrix}
 $$
 
-Un detalle del gráfico, **"que no es relevante para determinar la estabilidad"**, que suele aparecer al dibujar el diagrama de Nyquist con alguna herramienta de simulación. Cuando la frecuencia es muy grande la curva de Nyquist no se hace asintótica al eje $j\omega$ en realidad para este ejemplo, se hace asintótia al eje -1.
+Un detalle del gráfico, **"que no es relevante para determinar la estabilidad"**, que suele aparecer al dibujar el diagrama de Nyquist con alguna herramienta de simulación. Cuando la frecuencia es muy grande la curva de Nyquist no se hace asintótica al eje $j\omega$ en realidad para este ejemplo, se hace asintótica al eje -1.
 
 $$
 \lim_{\omega \rightarrow 0^+} G(\omega)=\lim_{\omega \rightarrow 0^+}\bigg(\frac{-1}{\omega^2+1}-j\frac{1}{\omega(\omega^2+1)} \bigg)= -1
 $$
 
-<figure>
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig14.png" width="700" alt="est_fig14.png">
-<figcaption style="text-align:center; "><i>Asíntota de Nyquist</i></figcaption>
-</figure>
+
+Asíntota de Nyquist
+:::
 
 +++
 
 ## Margen de Fase (MF) y Margen de Ganancia (MG)
 
 Usando diagramas de Nyquist se definen dos mediciones cuantitativas de "cuan estable es el sistema que estamos analizando". Estas son el margen de ganancia y el margen de fase.
-Sistemas con margenes de estabilidad de ganancia y fase grandes pueden soportar grandes variaciones en los parámetros antes de hacerce inestables. En el lugar de las raíces esto sería equivalente a cuan lejos se encuentran los polos del eje $j\omega$.
+Sistemas con margenes de estabilidad de ganancia y fase grandes pueden soportar grandes variaciones en los parámetros antes de hacerse inestables. En el lugar de las raíces esto sería equivalente a cuan lejos se encuentran los polos del eje $j\omega$.
 
 ### Definición de Margen de Fase $\Phi_M$
 Es el cambio en la ganancia a lazo abierto, expresado en decibeles ($dB$), requerida a fase $180º$ para hacer que el sistema se inestabilice a lazo cerrado.
@@ -372,14 +461,19 @@ $$
 \omega_c \longrightarrow \phi= -112.3 \Longrightarrow \Phi_M=-112.3+180=67.7º
 $$
 
-
 +++
 
 ## Margenes de estabilidad en diagramas de Bode
 
 Graficamente en el diagrama de Bode los margenes de estabilidad, el margen de ganancia y el margen de fase se indican como muestra la figura siguiente:
  
-<figure>
+:::{figure-md}
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="est_fig16.png" width="700" alt="est_fig16.png">
-<figcaption style="text-align:center; "><i>Margenes de estabilidad en el diagrama de Bode</i></figcaption>
-</figure>
+
+Margenes de estabilidad en el diagrama de Bode
+:::
+
+```{code-cell} ipython3
+
+```
