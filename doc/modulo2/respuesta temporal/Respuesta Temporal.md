@@ -22,7 +22,7 @@ $$G(s)=\frac{b(s)}{a(s)}$$
 
 donde $a(s)$ y $b(s)$ son polinomios en $s$ y no tienen factores en común. Para sistemas físicamente reales el orden del polinomio denominador $a(s)$ siempre es mayor o igual al orden del numerador $b(s)$, por razones de causalidad.
 
-**Un sistema donde el orden del polinomio denominador de la función transferencia es menor que el del numerador, represetna un sistema que depende de valores futuros de la entrada.**
+**Un sistema donde el orden del polinomio denominador de la función transferencia es menor que el del numerador, representa un sistema que depende de valores futuros de la entrada.**
 
 +++
 
@@ -45,7 +45,7 @@ Supongamos la siguiente función de transferencia:
 
 $$H(s) = \frac{2s+1}{s^2+3s+2}$$
 
-a partir de la definicion del sistema LTI, tanto por función de transferencia, `tf` o por variables de estado, `ss`, es posible usar métodos (o funciones propias del objeto) para obtener información relacionada al sistema, como ser `pole()`, `zero()` y `dcgain()`, que nos permite obtener los polos, los ceros y la ganancia estacionaria del sistema H(s), respectivamente:
+a partir de la definición del sistema LTI, tanto por función de transferencia, `tf` o por variables de estado, `ss`, es posible usar métodos (o funciones propias del objeto) para obtener información relacionada al sistema, como ser `pole()`, `zero()` y `dcgain()`, que nos permite obtener los polos, los ceros y la ganancia estacionaria del sistema H(s), respectivamente:
 
 ```{code-cell} ipython3
 import control as ctrl
@@ -61,13 +61,13 @@ print('Polos de la función H(s):', H.dcgain())
 
 **Nota:** también es posible usar las funciones anteriores (en lugar de los métodos del propio objeto) de la forma `ctrl.pole(H)`, `ctrl.zero(H)` y `ctrl.dcgain(H)`
 
-Otra forma de hallar los polo y ceros de un sitema es usando la función `roots()` de numpy, que permite calcular las raices de un polinomio:
+Otra forma de hallar los polo y ceros de un sistema es usando la función `roots()` de numpy, que permite calcular las raíces de un polinomio:
 
 ```{code-cell} ipython3
 np.roots(H.den[0][0])
 ```
 
-Las singularidade de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con circulos (o) para los ceros de la función, como lo muestra la función `pzmap` de la librería `control`
+Las singularidade de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con círculos (o) para los ceros de la función, como lo muestra la función `pzmap` de la librería `control`
 
 ```{code-cell} ipython3
 ctrl.pzmap(H);
@@ -91,7 +91,7 @@ h(t) = \left\{ \begin{array}{rl}
        \end{array} \right.
 $$
 
-Graficamos $h(t)$ obtenido a partir de aplicar la antitransforada de Laplace (usando tablas) de la respuesta impulsiva del sistema. 
+Graficamos $h(t)$ obtenido a partir de aplicar la antitransformada de Laplace (usando tablas) de la respuesta impulsiva del sistema. 
 
 $$\mathcal{L}^{-1}\{Y(s)\} =\mathcal{L}^{-1}\{ H(s)\cdot U(s) \}= \mathcal{L}^{-1}\{H(s)\cdot 1\}=\mathcal{L}^{-1}\{ H(s)\}=h(t)$$
 
@@ -114,7 +114,7 @@ ax.legend()
 plt.grid()
 ```
 
-Por lo dicho antes, como la función transferencia de un sistema es la transformada de Laplace de la respuesta al impuplso, y la transformada del impulso es 1, podemos graficar esta función temporal, graficando la repsuesta al impulso con el comando `impulse_response`:
+Por lo dicho antes, como la función transferencia de un sistema es la transformada de Laplace de la respuesta al impulso, y la transformada del impulso es 1, podemos graficar esta función temporal, graficando la respuesta al impulso con el comando `impulse_response`:
 
 ```{code-cell} ipython3
 t, y = ctrl.impulse_response(H)
@@ -131,7 +131,7 @@ ax.set_ylabel("Amplitud")
 ax.grid()
 ```
 
-Veremos otra forma de definir una Función de Transferencia a partir de la definición de la "función de transferencia elemental, s", luego es posible hacer operaciones algebraicas (sumas, restas, diviciones y productos) con esta función para definir la función de transferencia de un sistma dinámico cualquiera.
+Veremos otra forma de definir una Función de Transferencia a partir de la definición de la "función de transferencia elemental, s", luego es posible hacer operaciones algebraicas (sumas, restas, divisiones y productos) con esta función para definir la función de transferencia de un sistema dinámico cualquiera.
 
 ```{code-cell} ipython3
 s = ctrl.tf("s")
@@ -196,7 +196,7 @@ ax.grid()
 
 ## Respuesta al escalón de un sistema de **primer orden**
 
-Un sistema de primer orden se peude escribr de forma general:
+Un sistema de primer orden se puede escribir de forma general:
 
 $$H(s) = \frac{K}{\tau .s+1}$$
 
@@ -216,7 +216,7 @@ Utilizando tablas podemos obtener:
 
 $$y(t) = K-Ke^{-t/\tau} = K(1-e^{-t/\tau})$$
 
-El parámetro $\tau$, que es el resciproco del polo del sistema de primer orden, está relacionado con el tiempo de respuesta del sistema y se la conoce como constante de tiempo. Su unidad es tiempo (segundo, minuto , horas, etc).
+El parámetro $\tau$, que es el reciproco del polo del sistema de primer orden, está relacionado con el tiempo de respuesta del sistema y se la conoce como constante de tiempo. Su unidad es tiempo (segundo, minuto , horas, etc).
 
 Vamos aver como se comporta según su valor de $\tau$. Para Esto vamos a hacer  $K=1$, y tomaremos tres valors posibles de $\tau$.
 
@@ -251,7 +251,7 @@ ax.set_ylabel("Amplitud");
 
 Vemos primero, que como los sistemas tienen el mismo valor de $K$ entonces el valor final es el mismo para los tres sistemas.
 
-Vemos que el sismtea que tiene el $\tau$ más chico, o lo que es lo mismo el polo $\dfrac{1}{\tau}$ más grande es el sistema más rápido.
+Vemos que el sistema que tiene el $\tau$ más chico, o lo que es lo mismo el polo $\dfrac{1}{\tau}$ más grande es el sistema más rápido.
 
 Voy a graficar unas lineas horizontales sobre la figura anterior
 
@@ -280,9 +280,9 @@ Análogamente, podemos ver que los tres sistemas cortan a la linea gris inferior
 
 +++
 
-El parámetro $K$ es la ganacia del sistema. Esta realacionado con el valor final al cual llegará el sistema.
+El parámetro $K$ es la ganancia del sistema. Esta relacionado con el valor final al cual llegará el sistema.
 
-Para analizar que sucede con $K$ vamos graficar el tres sitemas con $\tau=1$ variando la ganancia.
+Para analizar que sucede con $K$ vamos graficar tres sistemas con $\tau=1$ variando la ganancia.
 
 ```{code-cell} ipython3
 k_1=0.5
@@ -313,7 +313,7 @@ ax.set_xlabel("Tiempo")
 ax.set_ylabel("Amplitud");
 ```
 
-Si se tiene un sistema de orden $n$ con todas raíces reales se puede decomponer por fracciones simples y analizar las repuesta de los $n$ polos por seprados, y de estar forma analizar como se comporta el sistema.
+Si se tiene un sistema de orden $n$ con todas raíces reales se puede descomponer por fracciones simples y analizar las repuesta de los $n$ polos por separados, y de estar forma analizar como se comporta el sistema.
 
 Por lo tanto nos quedaría analizar que pasa cunado los polos del sistema son complejos conjugados
 
@@ -359,7 +359,7 @@ Como vemos, la respuesta al impulso a un par de polos complejos conjugados es un
 
 +++
 
-Otra forma de resolver analiticamente cuando se tienen polos complejos conjugados es buscar la suma de un seno y un coseno de la misma frecuencia, ambos con fase 0. Es decir:
+Otra forma de resolver analíticamente cuando se tienen polos complejos conjugados es buscar la suma de un seno y un coseno de la misma frecuencia, ambos con fase 0. Es decir:
 
 $$G(s)=A_1\frac{s+a}{(s+a)^2+\omega^2}+A_2\frac{\omega}{(s+a)^2+\omega^2}$$
 
@@ -369,7 +369,7 @@ Para este ejemplo:
 
 $$G(s)=\frac{(2s+1)}{(s+1)^2+4}=A_1\frac{s+1}{(s+1)^2+4}+A_2\frac{2}{(s+1)^2+4}=2\frac{s+1}{(s+1)^2+4}-\frac{1}{2}\frac{2}{(s+1)^2+4}$$
 
-Entonces de tablas y propiedades trigonometricas se obtiene:
+Entonces de tablas y propiedades trigonométricas se obtiene:
 
 $$g(t)=\left(2\cos(2t)-\frac{1}{2}\sin(2t)\right)=\sqrt{\left(\frac{1}{2}\right)^2+2^2} \cos\left(2 t - \tan^{-1}\left(\dfrac{-1/2}{2}\right)\right)$$
 
@@ -377,9 +377,12 @@ $$g(t)=\left(2\cos(2t)-\frac{1}{2}\sin(2t)\right)=\sqrt{\left(\frac{1}{2}\right)
 
 En la figura siguiente se esquematiza las respuestas naturales (al impulso) de los sistemas dependiendo de la ubicación de los polos.
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig1.gif" width="600" alt="fig1.gif">
 
-<figcaption style="text-align:center; "><i>Respuestas temporales asociadas con los respectivos polos en el plano $s$</i></figcaption>
+Respuestas temporales asociadas con los respectivos polos en el plano $s$
+:::
+
 
 +++
 
@@ -399,7 +402,7 @@ $$G(s) = \frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}=\frac{1}{\frac{s^2}{\
 
 +++
 
-Comparando las dos últimas ecuaciones, encuentramos la relación entre los parámetros:
+Comparando las dos últimas ecuaciones, encontramos la relación entre los parámetros:
 
 $$\sigma = \zeta\omega_n$$      
 
@@ -410,10 +413,11 @@ $$\omega_d = \omega_n \sqrt{1-\zeta^2}$$
 A $\zeta$ la conocemos como **coeficiente de amortiguamiento**, y a $\omega_n$ como **frecuencia natural no-amortiguada**. A $\omega_d$ se la conoce como **frecuencia amortiguada** del sistema y se corresponde con la parte imaginaria del sistema. Además, $\sigma$ es la parte real de los polos complejos.
 
 En la figura siguiente observamos el significado gráfico de cada uno de estos parámetros.
-
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig2.gif" width="250" alt="fig2.gif">
 
-<figcaption style="text-align:center; "><i>Significado de los parámetros parámetros respecto la ubicación de los polos en el plano $s$</i></figcaption>
+Significado de los parámetros parámetros respecto la ubicación de los polos en el plano $s$
+:::
 
 +++
 
@@ -446,17 +450,20 @@ for i in range(11):
 ax.grid()
 ax.set_xlabel(r'$\omega_n$ t')
 ax.set_ylabel('y(t)')
-ax.set_title(r'Respuesta de un sistema de segundo orden para distintos valores de $\zeta$');
+ax.set_title(r' Respuesta de un sistema de segundo orden para distintos valores de $\zeta$');
 ```
 
 +++ {"tags": ["hide-input"]}
 
 ## Especificaciones en el dominio temporal
-Las especificaciones para el diseño de un sistema de control frecuentemente involucran ciertos requerimientos asociados a la respuesta temporal del sistema. Los requerimientos para una respuesta a un escalón los expresamos en términos de valores estandar ilustrados en la figura siguiente:
+Las especificaciones para el diseño de un sistema de control frecuentemente involucran ciertos requerimientos asociados a la respuesta temporal del sistema. Los requerimientos para una respuesta a un escalón los expresamos en términos de valores estándar ilustrados en la figura siguiente:
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig4.png" width="450" alt="fig4.png">
 
-<figcaption style="text-align:center; "><i>Definiciones de tiempo de crecimiento, tiempo de establecimiento, tiempo del pico y sobrepico de una respuesta a un escalón.</i></figcaption>
+Definiciones de tiempo de crecimiento, tiempo de establecimiento, tiempo del pico y sobrepico de una respuesta a un escalón.
+
+:::
 
 +++
 
@@ -500,7 +507,7 @@ $$t_s= \frac{4.6}{\sigma} =\frac{4.6}{\zeta\omega_n} \qquad \text{(considerando 
 
 +++
 
-Analogamente al 2%:
+Análogamente al 2%:
 
 $$e^{-\zeta\omega_nt_s}=0.02$$
 
@@ -513,9 +520,11 @@ $$t_s = \frac{4}{\sigma} =\frac{4}{\zeta\omega_n} \qquad \text{(considerando la 
      
 Este tipo de especificaciones nos darán inecuaciones que limitarán los parámetros $\omega_n$, $\zeta$, y $\sigma$; que a su vez limitarán la ubicación de los polos en el plano s, como mostramos en la figura siguiente.
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig5.png" width="650" alt="fig5.png">
 
-<figcaption style="text-align:center; "><i>Limitación de ubicación de los polos en el plano $s$ respecto a las especificaciones.</i></figcaption>
+Limitación de ubicación de los polos en el plano $s$ respecto a las especificaciones.
+:::
 
 +++
 

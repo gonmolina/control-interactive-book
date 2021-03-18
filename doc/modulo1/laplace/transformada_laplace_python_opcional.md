@@ -176,6 +176,7 @@ A ver si podemos igualar las funciones en la tabla.
 
 ```{code-cell} ipython3
 omega = sp.Symbol('omega', real=True)
+n = sp.Symbol('n', integer=True)
 exp = sp.exp
 sin = sp.sin
 cos = sp.cos
@@ -189,6 +190,7 @@ functions = [1,
          1 - exp(-a*t),
          exp(-a*t)*sin(omega*t),
          exp(-a*t)*cos(omega*t),
+         (t**n)*(exp(-a*t))
          ]
 functions
 ```
@@ -197,6 +199,8 @@ functions
 Fs = [L(f) for f in functions]
 Fs
 ```
+
+Podemos ver que la última no la escribio exactamente de la misma manera, pero que es lo misma función transformada de Laplace que figura en la table.
 
 +++ {"lang": "es"}
 

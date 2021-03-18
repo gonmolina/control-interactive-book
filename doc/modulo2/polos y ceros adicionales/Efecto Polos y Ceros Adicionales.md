@@ -16,17 +16,21 @@ kernelspec:
 Hasta ahora hemos estudiado el comportamiento de los sistemas de segundo orden. Ahora estudiaremos como afectan a la respuesta temporal agregar un cero o un polo.
 
 Estudiemos el siguiente caso, tenemos una función de transferencia de la siguiente forma:
+
 $$G_1=\frac{2}{(s+1)(s+2)}$$
 
 Separando en fracciones simples queda:
+
 $$G_1=\frac{2}{s+1}-\frac{2}{s+2}$$
 
 Vemos que ambas exponenciales tienen una amplitud similar.
 
 Agreguemos un cero en -1.1. La función de transferencia quedará de la forma:
+
 $$G_1=\frac{2(s+1.1)}{1.1(s+1)(s+2)}$$
 
 Y separando en fracciones simples nos queda:
+
 $$G_1=\frac{0.18}{s+1}+\frac{1.64}{s+2}$$
 
 Como vemos, la exponencial más rápida disminuyó su amplitud en más de 10 veces.
@@ -34,6 +38,7 @@ Como vemos, la exponencial más rápida disminuyó su amplitud en más de 10 vec
 +++
 
 Hagamos un análisis más detallado:
+
 Tengamos en cuenta la función de transferencia normalizada de la siguiente manera:
 
 Observemos que el cero lo agregamos a un factor $\alpha$ con respecto a la parte real de los polos complejos conjugados: $s = -\alpha\zeta\omega_n = -\alpha\sigma$
@@ -44,18 +49,20 @@ Observemos que el cero lo agregamos a un factor $\alpha$ con respecto a la parte
 
 +++
 
-
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig6.png" width="400" alt="respuesta">
 
-<figcaption style="text-align:center; "><i>Respuestas al escalón de  $G(s)=\dfrac{\frac{s}{\alpha\zeta\omega_n}+1}{(s/\omega_n)^2 + 2\zeta(s/\omega_n)}$ para $\zeta = 0.5$ y para distintos valores de $\alpha$</i></figcaption>
-
+Respuestas al escalón de  $G(s)=\dfrac{\dfrac{s}{\alpha\zeta\omega_n}+1}{(s/\omega_n)^2 + 2\zeta(s/\omega_n)}$ para $\zeta = 0.5$ y para distintos valores de $\alpha$
+:::
 
 +++
 
-
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig7.png" width="400" alt="Sobrepico">
 
-<figcaption style="text-align:center; "><i>Sobrepico en función de $\alpha$ y $\zeta$</i></figcaption>
+Sobrepico en función de $\alpha$ y $\zeta$
+
+:::
 
 +++
 
@@ -63,28 +70,31 @@ Si queremos analizar como se comporta con el cero sobre el eje real positivo (se
 
 +++
 
-De la figura concluímos que a medida que el cero se acerca al valor de la parte real de los polos, el sobrepico aumenta. En la figura anterior. vemos como aumenta el sobrepico al disminuir el valor de $\alpha$ para distintos valores de $\zeta$ . De la misma podemos afirmar que el valor del sobrepico no es muy afectado por el cero si el mismo se encuantra más alla de un factor 4 de la parte real de los polos complejos conjugados.
+De la figura concluímos que a medida que el cero se acerca al valor de la parte real de los polos, el sobrepico aumenta. En la figura anterior. vemos como aumenta el sobrepico al disminuir el valor de $\alpha$ para distintos valores de $\zeta$ . De la misma podemos afirmar que el valor del sobrepico no es muy afectado por el cero si el mismo se encuentra más allá de un factor 4 de la parte real de los polos complejos conjugados.
 
 +++
 
 Si escribimos la función de transferencia de la siguiente manera:
-$$G(s)=\frac{1}{s^2+2\zeta s+1}+\frac{1}{\alpha\zeta}\frac{s}{s^2+2\zeta s+1}$$
 
-Notamos que el primer término es la función de transferencia original (sin el cero), y el segundo término es la derivada de la función de transferencia original afectada por una constante $\frac{1}{\alpha\zeta}$. Por lo tanto, la respuesta a un escalón de la función de transferencia $G(s)$ será la respuesta a un escalón de la función de transferencia sin el cero, más la derivada de esa respuesta por la constante. De esta manera podemos explicar la presencia de un sobrepico mayor. En la figura siguiente muestra la respuesta a un escalón para el sistema original, su derivada y la suma de ambas (respuesta al sistema con el cero).
+$$G(s)=\dfrac{1}{s^2+2\zeta s+1}+\dfrac{1}{\alpha\zeta}\dfrac{s}{s^2+2\zeta s+1}$$
 
+Notamos que el primer término es la función de transferencia original (sin el cero), y el segundo término es la derivada de la función de transferencia original afectada por una constante $\dfrac{1}{\alpha\zeta}$. Por lo tanto, la respuesta a un escalón de la función de transferencia $G(s)$ será la respuesta a un escalón de la función de transferencia sin el cero, más la derivada de esa respuesta por la constante. De esta manera podemos explicar la presencia de un sobrepico mayor. En la figura siguiente muestra la respuesta a un escalón para el sistema original, su derivada y la suma de ambas (respuesta al sistema con el cero).
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig8.png" width="400" alt="Sobrepico">
 
-<figcaption style="text-align:center; "><i>Respuesta del sistema original, su derivada y la suma de ambas</i></figcaption>
-
+Respuesta del sistema original, su derivada y la suma de ambas
+:::
 +++
 
 Para el caso de un cero en el semiplano derecho, debemos considerar $\alpha < 0$, y sigue valiendo el mismo análisis. La próxima figura, mostramos la evolución de la respuesta a un escalón del sistema original, su derivada cambiada de signo y la respuesta del sistema con un cero en el semiplano derecho (un cero de no mínima fase). De esta figura observamos que la 
 respuesta al escalón puede comenzar en sentido contrario a la referencia y luego se corrige.
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig9.png" width="400" alt="Sobrepico">
 
-<figcaption style="text-align:center; "><i>Respuesta a un escalón del sistema original, su derivada cambiada de signo y la suma de ambas.</i></figcaption>
+Respuesta a un escalón del sistema original, su derivada cambiada de signo y la suma de ambas.
+:::
 
 
 +++
@@ -152,12 +162,14 @@ interact(update, alpha=(-20.01,50,0.1),wn=(0.01,10,0.1),zeta=(0.001,1.01,0.02),t
 
 Analicemos ahora el caso de agregar un polo. Escribamos la función de transferencia de la siguiente forma:
 
-$$G(s)=\dfrac{1}{\left(\frac{s}{\alpha\zeta\omega_n}+1\right)\left[\left(\frac{s}{\omega_n}\right)^2+2\zeta\left(\frac{s}{\omega_n}\right)+1\right]}, \text{para } \zeta = 0.5, \alpha = 1, 2, 5 ,100, \infty$$
+$$G(s)=\dfrac{1}{\left(\dfrac{s}{\alpha\zeta\omega_n}+1\right)\left[\left(\dfrac{s}{\omega_n}\right)^2+2\zeta\left(\dfrac{s}{\omega_n}\right)+1\right]}, \text{para } \zeta = 0.5, \alpha = 1, 2, 5 ,100, \infty$$
 
-
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig10.png" width="400" alt="Sobrepico">
 
-<figcaption style="text-align:center; "><i>Respuesta a un escalón para el sistema $$G(s) \text{ para } \zeta = 0.5, \alpha = 1, 2, 5 ,100, \infty$$</i></figcaption>
+Respuesta a un escalón para el sistema $G(s) \text{ para } \zeta = 0.5, \alpha = 1, 2, 5 ,100, \infty$
+
+:::
 
 Como podemos observar de la figura, la presencia de un polo adicional afecta sensiblemente al tiempo de crecimiento, y el mismo se hace más grande cuanto el polo adicional se acerca más al origen.
 
@@ -165,9 +177,11 @@ Como podemos observar de la figura, la presencia de un polo adicional afecta sen
 
 En la figura que sigue muestra el comportamiento del tiempo de crecimiento en función del valor de a parametrizada con $\zeta$. Del mismo podemos inferir que si el polo adicional está más lejos que 4 veces la parte real de los polos complejos conjugados, el tiempo de crecimiento no es prácticamente afectado.
 
+:::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig11.png" width="400" alt="Sobrepico">
 
-<figcaption style="text-align:center; "><i> Tiempo de crecimiento en función de a, para $\zeta$ = 0.5, 0.7 y 1.0</i></figcaption>
+Tiempo de crecimiento en función de a, para $\zeta$ = 0.5, 0.7 y 1.0
+:::
 
 +++
 
