@@ -1,28 +1,26 @@
 ---
 jupytext:
   encoding: '# -*- coding: utf-8 -*-'
-  formats: ipynb,md:myst,py:percent
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
 
-+++ {"lang": "en"}
-
 # Introducción a los cuadernos de Jupyter
 
 Estaremos utilizando Python a través de una interfaz conveniente
-que son los [Jupyter Notebook](http://jupyter.org/). 
+que son los [Jupyter Notebook](http://jupyter.org/).
 Si a este cuaderno lo está visualizando a través de una pagina web, puede
 descargarlo haciendo click en icono de descarga ubicado arriba a la izquierda
-y seleccionando el formato `ipynb`. También se puede ejecutar a desde la web, 
-usando *binder*, haciendo click donde se encuentra el cohete. Los archivos 
+y seleccionando el formato `ipynb`. También se puede ejecutar a desde la web,
+usando *binder*, haciendo click donde se encuentra el cohete. Los archivos
 con la extensión `.ipynb` son cuadernos de jupyter o jupyter notebooks.
 
 +++ {"lang": "en"}
@@ -50,12 +48,12 @@ utilizar Matlab y quieren o deben comenzar a utilizar Python y los cuadernos
 de jupyter.
 
 - Visual Studio Code: es un software gratuito de microsoft, que con un
-plugin (Python es el nombre del mismo) soporta todo lo referente a los cuadernos. 
+plugin (Python es el nombre del mismo) soporta todo lo referente a los cuadernos.
 Si bien utiliza jupyter para mostrar los cuadernos, provee una interface propia.
-Es recomendable para personas que están habituadas a programar o que quieran además 
-de utilizar los cuadernos, escribir programas en Python o cualquier otro lenguaje en 
+Es recomendable para personas que están habituadas a programar o que quieran además
+de utilizar los cuadernos, escribir programas en Python o cualquier otro lenguaje en
 un mismo entorno. La principal desventaja es que suele ser algo complejo de configurar.
-Sin embargo cuenta con una gran documentación en la web. Se puede descarga 
+Sin embargo cuenta con una gran documentación en la web. Se puede descarga
 [aquí](https://code.visualstudio.com/).
 
 +++ {"lang": "es"}
@@ -99,8 +97,10 @@ Haga doble clic en la fórmula anterior para ver el código que la produjo.
 
 +++
 
-Aprovechemos lo aprendido para introducirnos en el mundo de algebra
-simbólica con Python utilizando el paquete `SymPy`.
+Aprovechemos lo aprendido para introducirnos en el mundo de programación
+científica con Python.
 
-+++ {"lang": "es"}
-
+Los siguientes secciones de la introducción son a nivel informátivo. No es necesario
+estudiarlo en esta materia, pero puede ser útil utilizarlo como material de consulta
+para resolver problemas comunes de la materia así como también de otras disciplinas
+científicas/ingenieriles.
