@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -51,7 +51,9 @@ a partir de la definición del sistema LTI, tanto por función de transferencia,
 import control as ctrl
 import numpy as np
 import matplotlib.pyplot as plt
+```
 
+```{code-cell} ipython3
 H = ctrl.tf([2,1],[1,3,2])
 print(H)
 print('Polos de la función H(s):', H.pole())
@@ -377,14 +379,202 @@ $$g(t)=\left(2\cos(2t)-\frac{1}{2}\sin(2t)\right)=\sqrt{\left(\frac{1}{2}\right)
 
 En la figura siguiente se esquematiza las respuestas naturales (al impulso) de los sistemas dependiendo de la ubicación de los polos.
 
++++ {"tags": ["remove-cell"]}
+
 :::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig1.gif" width="600" alt="fig1.gif">
 
 Respuestas temporales asociadas con los respectivos polos en el plano $s$
 :::
 
+```{code-cell} ipython3
+:tags: [hide-input]
 
-+++
+from matplotlib import ticker
+
+fig = plt.figure(figsize=(12,6))
+
+# Eje principal
+
+ax0 = fig.add_axes([0.1, 0.1, 0.9, 0.9])
+ax0.plot([0, -1, -2, 1, 2, -1, 1, 0, 0], [0, 0, 0, 0, 0, 1, 1, 0.5, 1.5], 
+         lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="black") 
+ax0.spines['right'].set_color('none')
+ax0.spines['top'].set_color('none')
+ax0.xaxis.set_ticks_position('bottom')
+ax0.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax0.yaxis.set_ticks_position('left')
+ax0.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax0.set_xlim([-1.96, 2.4])
+ax0.set_ylim([-1.2, 2.2])
+ax0.yaxis.set_major_formatter(ticker.NullFormatter())
+ax0.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# Eje polo -2
+G1 = ctrl.tf(2,[1,2])
+t1,y1 = ctrl.impulse_response(G1,T=np.linspace(0,3))
+ax1 = fig.add_axes([0.15, 0.2, 0.15, 0.19])
+ax1.plot(t1,y1,'k')
+ax1.yaxis.set_major_formatter(ticker.NullFormatter())
+ax1.xaxis.set_major_formatter(ticker.NullFormatter())
+ax1.spines['right'].set_color('none')
+ax1.spines['top'].set_color('none')
+ax1.xaxis.set_ticks_position('bottom')
+ax1.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax1.yaxis.set_ticks_position('left')
+ax1.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax1.set_xlim([-0, 3])
+ax1.yaxis.set_major_formatter(ticker.NullFormatter())
+ax1.xaxis.set_major_formatter(ticker.NullFormatter())
+
+
+
+# Eje polo -1
+G2 = ctrl.tf(1,[1,1])
+t2,y2 = ctrl.impulse_response(G2,T=np.linspace(0,3))
+ax2 = fig.add_axes([0.33, 0.2, 0.15, 0.19])
+ax2.plot(t2,y2,'k')
+ax2.yaxis.set_major_formatter(ticker.NullFormatter())
+ax2.xaxis.set_major_formatter(ticker.NullFormatter())
+ax2.spines['right'].set_color('none')
+ax2.spines['top'].set_color('none')
+ax2.xaxis.set_ticks_position('bottom')
+ax2.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax2.yaxis.set_ticks_position('left')
+ax2.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax2.set_xlim([-0, 3])
+ax2.yaxis.set_major_formatter(ticker.NullFormatter())
+ax2.xaxis.set_major_formatter(ticker.NullFormatter())
+
+
+
+
+# Eje polo 0
+G3 = ctrl.tf(1,[1,0])
+t3,y3 = ctrl.impulse_response(G3,T=np.linspace(0,3))
+ax3 = fig.add_axes([0.51, 0.2, 0.15, 0.19])
+ax3.plot(t3,y3,'k')
+ax3.yaxis.set_major_formatter(ticker.NullFormatter())
+ax3.xaxis.set_major_formatter(ticker.NullFormatter())
+ax3.spines['right'].set_color('none')
+ax3.spines['top'].set_color('none')
+ax3.xaxis.set_ticks_position('bottom')
+ax3.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax3.yaxis.set_ticks_position('left')
+ax3.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax3.set_xlim([0, 3])
+ax3.set_ylim([0, 1.2])
+ax3.yaxis.set_major_formatter(ticker.NullFormatter())
+ax3.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# Eje polo 1
+G4 = ctrl.tf(-1,[-1,1])
+t4,y4 = ctrl.impulse_response(G4,T=np.linspace(0,2))
+ax4 = fig.add_axes([0.68, 0.2, 0.15, 0.19])
+ax4.plot(t4,y4,'k')
+ax4.yaxis.set_major_formatter(ticker.NullFormatter())
+ax4.xaxis.set_major_formatter(ticker.NullFormatter())
+ax4.spines['right'].set_color('none')
+ax4.spines['top'].set_color('none')
+ax4.xaxis.set_ticks_position('bottom')
+ax4.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax4.yaxis.set_ticks_position('left')
+ax4.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax4.set_xlim([-0, 2])
+ax4.set_ylim([0, 8])
+ax4.yaxis.set_major_formatter(ticker.NullFormatter())
+ax4.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# Eje polo 2
+G5 = ctrl.tf(-2,[-1,2])
+t5,y5 = ctrl.impulse_response(G5,T=np.linspace(0,2))
+ax5 = fig.add_axes([0.85, 0.2, 0.15, 0.19])
+ax5.plot(t5,y5,'k')
+ax5.yaxis.set_major_formatter(ticker.NullFormatter())
+ax5.xaxis.set_major_formatter(ticker.NullFormatter())
+ax5.spines['right'].set_color('none')
+ax5.spines['top'].set_color('none')
+ax5.xaxis.set_ticks_position('bottom')
+ax5.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax5.yaxis.set_ticks_position('left')
+ax5.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax5.set_xlim([-0, 2])
+ax5.set_ylim([0, 8])
+ax5.yaxis.set_major_formatter(ticker.NullFormatter())
+ax5.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# polo en -0.5j
+G6 = ctrl.tf(0.5,[1,0,0.25])
+t6,y6 = ctrl.impulse_response(G6,T=np.linspace(0,30, 1000))
+ax6 = fig.add_axes([0.53, 0.45, 0.15, 0.19])
+ax6.plot(t6,y6,'k')
+ax6.yaxis.set_major_formatter(ticker.NullFormatter())
+ax6.xaxis.set_major_formatter(ticker.NullFormatter())
+ax6.spines['right'].set_color('none')
+ax6.spines['top'].set_color('none')
+ax6.xaxis.set_ticks_position('bottom')
+ax6.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax6.yaxis.set_ticks_position('left')
+ax6.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax6.set_xlim([0, 30])
+ax6.set_ylim([-1.1, 1.1])
+ax6.yaxis.set_major_formatter(ticker.NullFormatter())
+ax6.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# polo en -1.5j
+G7 = ctrl.tf(1.5,[1,0,2.25])
+t7,y7 = ctrl.impulse_response(G7,T=np.linspace(0,30,1000))
+ax7 = fig.add_axes([0.53, 0.7, 0.15, 0.19])
+ax7.plot(t7,y7,'k')
+ax7.yaxis.set_major_formatter(ticker.NullFormatter())
+ax7.xaxis.set_major_formatter(ticker.NullFormatter())
+ax7.spines['right'].set_color('none')
+ax7.spines['top'].set_color('none')
+ax7.xaxis.set_ticks_position('bottom')
+ax7.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax7.yaxis.set_ticks_position('left')
+ax7.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax7.set_xlim([0, 30])
+ax7.set_ylim([-1.1, 1.1])
+ax7.yaxis.set_major_formatter(ticker.NullFormatter())
+ax7.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# polo en -1-2j
+G8 = ctrl.tf(5,[1,-2,17])
+t8,y8 = ctrl.impulse_response(G8,T=np.linspace(0,3,1000))
+ax8 = fig.add_axes([0.75, 0.57, 0.15, 0.19])
+ax8.plot(t8,y8,'k')
+ax8.yaxis.set_major_formatter(ticker.NullFormatter())
+ax8.xaxis.set_major_formatter(ticker.NullFormatter())
+ax8.spines['right'].set_color('none')
+ax8.spines['top'].set_color('none')
+ax8.xaxis.set_ticks_position('bottom')
+ax8.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax8.yaxis.set_ticks_position('left')
+ax8.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax8.set_xlim([0, 3])
+ax8.set_ylim([-10,10])
+ax8.yaxis.set_major_formatter(ticker.NullFormatter())
+ax8.xaxis.set_major_formatter(ticker.NullFormatter())
+
+# polo en -1-2j
+G9 = ctrl.tf(5,[1,2,17])
+t9,y9 = ctrl.impulse_response(G9,T=np.linspace(0,3,1000))
+ax9 = fig.add_axes([0.33, 0.57, 0.15, 0.19])
+ax9.plot(t9,y9,'k')
+ax9.yaxis.set_major_formatter(ticker.NullFormatter())
+ax9.xaxis.set_major_formatter(ticker.NullFormatter())
+ax9.spines['right'].set_color('none')
+ax9.spines['top'].set_color('none')
+ax9.xaxis.set_ticks_position('bottom')
+ax9.spines['bottom'].set_position(('data',0)) # set position of x spine to x=0
+ax9.yaxis.set_ticks_position('left')
+ax9.spines['left'].set_position(('data',0))   # set position of y spine to y=0
+ax9.set_xlim([0, 3])
+ax9.set_ylim([-1,1])
+ax9.yaxis.set_major_formatter(ticker.NullFormatter())
+ax9.xaxis.set_major_formatter(ticker.NullFormatter())
+```
 
 Los polos complejos conjugados los podemos definir en términos de sus partes real e imaginaria, tradicionalmente:
 

@@ -2,3 +2,5 @@
 _build/
 .ipynb_checkpoints
 .vscode/
+material_recolectado/
+.markdown.json
