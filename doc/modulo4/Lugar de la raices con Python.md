@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -100,7 +100,7 @@ Con el cálculo anterior pretendo mostrar que la función `angle()` devuelve el 
 
 ### Trazado del lugar geométrico de las raíces para ganancias negativas
 
-Internamente Python grafica el lugar de las raíces tomando una serie de ganancias y calculando los polos del sistema a lazo cerrado. 
+Internamente Python grafica el lugar de las raíces tomando una serie de ganancias y calculando los polos del sistema a lazo cerrado.
 
 Para obtener el Lugar geométrico de las raíces para ganancias negativas lo único necesario será cambiar el signo a la función transferencia.
 

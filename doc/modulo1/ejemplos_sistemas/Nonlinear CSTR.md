@@ -5,19 +5,16 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
 
-+++ {"lang": "es"}
-
 # Sistema CSTR
 
 Este cuaderno se estudia el sistema discutido en Seborg, Edgar, Melichamp & Doyle "Process Dynamics and Control" (3rd Ed).
-
 
 ![CSTR](cstr.png)
 
@@ -30,21 +27,21 @@ $$
 k &= k_0\exp\left(\frac{-E}{RT}\right)\\
 w &=q\rho \\
 V\frac{\mathrm{d}c_A}{\mathrm{d}t} &= q(c_{Ai} - c_A) - V k c_A \\
-V\rho C\frac{\mathrm{d}T}{\mathrm{d}t} &= wC(T_i - T) + (-\Delta H_R) V k c_A + UA(T_c - T) 
+V\rho C\frac{\mathrm{d}T}{\mathrm{d}t} &= wC(T_i - T) + (-\Delta H_R) V k c_A + UA(T_c - T)
 \end{align}
 $$
 
 +++
 
-Balance de Energía: 
+Balance de Energía:
 
 $$\frac{dE}{dt} = E_{in} - E_{out}$$
 
-Balance de Masa: 
+Balance de Masa:
 
 $$\frac{dm}{dt} = \dot m_{in} - \dot m_{out}$$
 
-Balance de composición: 
+Balance de composición:
 
 $$\frac{dN_A}{dt} = N_{A,in} - N_{A, out} + N_{A, \text{gen}} - N_{A, \text{consumed}}$$
 
@@ -170,6 +167,7 @@ ax.grid();
 +++ {"lang": "es"}
 
 ## Resolver el estado estacionario estable
+
 Ahora, resolvamos un mejor valor inicial estableciendo los derivados igual a cero
 
 ```{code-cell} ipython3

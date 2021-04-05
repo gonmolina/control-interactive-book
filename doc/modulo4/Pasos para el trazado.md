@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -14,16 +14,11 @@ kernelspec:
 
 # Pasos para trazar el lugar geométrico de las raíces
 
-## PASO 1
-
-**Dibujamos los polos y ceros de la función de transferencia a lazo abierto (con x y o) respectivamente.**
+## PASO 1. Dibujamos los polos y ceros de la función de transferencia a lazo abierto (con x y o) respectivamente
 
 +++
 
-   
-## PASO 2
-
-**Encontramos la parte del eje real de los lugares geométricos de las raíces.** 
+## PASO 2. Encontramos la parte del eje real de los lugares geométricos de las raíces
 
 Si tomamos un punto de prueba sobre el eje real, la contribución en ángulo de los ceros o polos complejos conjugados se anularán, puesto que uno de los ángulos se cancela con el de su conjugado.
 
@@ -33,15 +28,13 @@ Conclusión: Es lugar geométrico de las raíces, aquel lugar del eje real que e
 
 +++
 
-## PASO 3
-
-**Dibujamos las asíntotas para valores grandes de K.**
+## PASO 3. Dibujamos las asíntotas para valores grandes de K
 
 Cuando $K$ tiende a infinito, la ecuación $1 + KG(s) = 0$ se satisface solamente si  $G(s) = 0$.
 Esto puede ocurrir de dos maneras:
 
 1. En los ceros de $G(s)$, o sea las raíces del polinomio $b(s)$.
-1.  Escribamos la ecuación característica de la siguiente manera:
+1. Escribamos la ecuación característica de la siguiente manera:
 
 $$
 \begin{eqnarray}
@@ -68,7 +61,7 @@ El ángulo $\phi_l$ nos dará el ángulo que forman la asíntotas, que serán de
 
 $$\phi_l=\frac{180^o+l360^o}{n-m}, \qquad l=0,1,2,\ldots,n-m-1$$
 
-El lugar de origen de las asíntotas está en $s_o=\alpha$. Averiguemos cuánto vale $\alpha$:
+El lugar de origen de las asíntotas está en $s_o=\alpha$. Averigüemos cuánto vale $\alpha$:
 
 $$s^n+a_1 s^{n-1}+\ldots+a_n=(s-p_1)(s-p_2)\ldots(s-p_n)$$
 
@@ -94,17 +87,13 @@ $$\alpha = \dfrac{\sum_{i=1}^n p_i -\sum_{i=1}^m z_i}{n-m}$$
 
 +++
 
-## PASO 4 (solo para mejor resultado en esos puntos)
-
-**Calculamos los ángulos de salida y de llegada de polos y ceros.**
+## PASO 4 (solo para mejor resultado en esos puntos). Calculamos los ángulos de salida y de llegada de polos y ceros
 
 Esto lo analizamos considerando un punto de prueba muy cercano al polo o al cero, y aplicando el criterio de fase.
 
 +++
 
-## PASO 5 (es importante este valor)
-
-**Calculamos los puntos donde los lugares geométrico de las raíces cruzan el eje imaginario.**
+## PASO 5 (es importante este valor). Calculamos los puntos donde los lugares geométrico de las raíces cruzan el eje imaginario
 
 Esto podemos obtener determinando el $K$, para el cual el sistema se torna inestable (con el criterio de Routh), y luego determinando las raíces de la ecuación característica para ese $K$.
 
@@ -112,9 +101,7 @@ Otra manera de determinarlo es reemplazar en la ecuación característica $s$ po
 
 +++
 
-## PASO 6 (no es necesario para CEATEN)
-
-**Estimamos la localización de las raíces múltiples, especialmente en el eje real, y determinamos los ángulos de llegada y salida de estos lugares.**
+## PASO 6 (no es necesario para CEATEN). Estimamos la localización de las raíces múltiples, especialmente en el eje real, y determinamos los ángulos de llegada y salida de estos lugares
 
 Supongamos que para un determinado $K$, existen raíces múltiples. Llamemos en ese caso $r_i$, a las raíces de la ecuación característica para ese $K$, o sea:
 
@@ -126,7 +113,7 @@ $$F(s) = (s-r_{\alpha})^a \prod^{n-1}_{i=1}(s-r_i)$$
 
 +++
 
-Derivemos esta productoria, y evaluémosla en $s = r_\alpha$:
+Derivemos esta productoria, y evaluémos a la misma en $s = r_\alpha$:
 
 $$
 \begin{eqnarray}
@@ -158,9 +145,7 @@ $$\frac{d}{ds}\left(\left.\frac{-1}{G(s)}\right)\right|_{s=r_\alpha}=0$$
 
 +++
 
-## PASO 7
-
-**Completamos el dibujo, combinando los resultados anteriores.**
+## PASO 7. Completamos el dibujo, combinando los resultados anteriores
 
 +++
 
@@ -176,13 +161,13 @@ Dejamos como ejercicio al lector analizar como afecta este cambio a los siete pa
 
 +++
 
-## Ejemplo:
+## Ejemplo de trazado de lugar de las raíces
 
 Tenemos la siguiente función de transferencia a lazo abierto:
 
 $$ G(s) = \frac{s+1}{s^2(s+9)}$$
 
-En la figura que sigue mostramos los resultados de los sucesivos pasos seguidos para el trazado del lugar geométrico de las raíces para esta función de transferencia. 
+En la figura que sigue mostramos los resultados de los sucesivos pasos seguidos para el trazado del lugar geométrico de las raíces para esta función de transferencia.
 
 Para el paso 3, el cálculo del centro y ángulo de las asíntotas son:
 
@@ -216,8 +201,16 @@ Y los ángulos $\gamma$ de salida son:
 
 $$3\gamma-180^o=180^o+n360^o \Rightarrow \gamma=-120^o,0^o,120^o$$
 
-
+:::{figure-md} pasos-lr
 <img src="pasos_trazado_fig1.png" width=800px>
+
+Pasos del lugar de las raíces
+:::
+
+:::{figure-md} resultados-lr
 <img src="pasos_trazado_fig2.png" width=500px>
 
-En Python, lugar de las raíces se puede resolver facilmente usando el modulo de control.
+Resultado final
+:::
+
+En Python, lugar de las raíces se puede resolver fácilmente usando el módulo de control.

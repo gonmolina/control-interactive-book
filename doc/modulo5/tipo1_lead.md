@@ -5,12 +5,14 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
+
+# Problema con sistema de tipo 1
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -22,15 +24,13 @@ import matplotlib.pyplot as plt
 
 +++ {"id": "DY-PCt6BUuum"}
 
-# Problema con sistema de tipo 1
-
 Para el sistema :
 
 $$ G(s) = \frac{10}{s\left(\frac{s}{2.5}+1\right)\left(\frac{s}{6}+1\right)} $$
 
 +++
 
-Se requeire un sistema que tenga un margen de fase de 45 grados y una constante de velocidad $K_v=10$ 
+Se requiere un sistema que tenga un margen de fase de 45 grados y una constante de velocidad $K_v=10$
 
 ```{code-cell} ipython3
 :id: FIWjpMlgh-jy
@@ -178,7 +178,7 @@ ctrl.stability_margins(G1*Dc)
 
 +++ {"id": "VYg2W3IYZVAB"}
 
-Vemos que no se puede llegar a los 45 grados de margen de fase con solo un compensador de adelanto. 
+Vemos que no se puede llegar a los 45 grados de margen de fase con solo un compensador de adelanto.
 
 Voy a probar con dos dejando el siguiente compensador:
 

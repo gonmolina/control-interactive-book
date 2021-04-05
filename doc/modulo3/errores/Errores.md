@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -19,6 +19,7 @@ Al ver respuesta temporal, pudimos lograr la descripción de la respuesta transi
 +++
 
 ## Definición importante
+
 Se define la señal de error $E(s)$  el equivalente en el dominio de Laplace de la señal $e(t)$ como:
 
 $$
@@ -38,6 +39,7 @@ $$\lim_{t\rightarrow\infty}y(t)=\lim_{s\rightarrow 0}sY(s)$$
 +++
 
 ### Ejemplo 1. Uso del teorema
+
 Encontrar el valor final de la señal $y(t)$ cuya transformada de Laplace es $Y(s)=\dfrac{3(s+2)}{s(s^2+2s+10))}$.
 
 Par aver si podemos aplicar el teorema de valor final debemos fijarnos que todos los polos de $sY(s)$ estén en el lado izquierdo de plano $s$.
@@ -79,7 +81,8 @@ ax.set_title('Respuesta al impulso')
 ax.grid()
 ```
 
-### Ejemplo 2: Uso incorrecto de este teorema.
+### Ejemplo 2: Uso incorrecto de este teorema
+
 Obtener el valor final de la señal
 
 $$Y(s)=\frac{3}{s(s-2)}$$
@@ -148,12 +151,13 @@ Entonces tendremos:
 
 $$F(s) = \dfrac{E(s)}{R(s)} = \dfrac{1}{1+G(s)}$$
 
-Consideraremos a las entradas $r(t)$ polinómicas de la forma 
+Consideraremos a las entradas $r(t)$ polinómicas de la forma
 
 $$r(t) = \dfrac{t^k}{k!} \text{ para } t>0$$
 
-siendo su transformada de Laplace 
-$$R(s)=\dfrac{1}{s^{k+1}}$$ 
+siendo su transformada de Laplace
+
+$$R(s)=\dfrac{1}{s^{k+1}}$$
 
 Se toma como base un sistema mecánico genérico como referencia para la nomenclatura, llamando para las entradas con $k=0$ entrada de posición, para $k=1$ entrada de velocidad, y para $k=2$ entrada de aceleración, sin tener en cuenta las unidades de la señal de entrada actual. Aplicando el teorema del valor final
 
@@ -178,11 +182,11 @@ $$
 
 +++
 
-donde $r_{ss} = \lim_{t\rightarrow \infty} =1 $. 
+donde $r_{ss} = \lim_{t\rightarrow \infty} =1 $.
 
-Se define que este sistema es de **Tipo 0** y definimos la constante $G(0)\triangleq K_p$ que llamamos **constantes de error de posición**. 
+Se define que este sistema es de **Tipo 0** y definimos la constante $G(0)\triangleq K_p$ que llamamos **constantes de error de posición**.
 
-Notar que la ecuación anterior brinda **el error relativo**, es decir la relación entre el valor final del error y la y referencia. 
+Notar que la ecuación anterior brinda **el error relativo**, es decir la relación entre el valor final del error y la y referencia.
 
 Si la entrada fuera un polinomio mayor a 1, el error resultante crecería sin límites. Una **entrada polinómica de grado cero** es el grado más alto que un sistema de **Tipo 0** puede seguir con error fínito.
 
@@ -205,7 +209,7 @@ Para esta ecuación podemos ver que si $n> k$ entonces $e =0$ y si $n<k$  entonc
 
 Si $n = k = 0$ entonces $e_{ss} = \dfrac{1}{1+K_0}$ y si $n = k \neq 0$ entonces $e_{ss} = \frac{1}{K_n}$.
 
-Como se dijo anteriormente si $n= k =0$, la entrada es una señal polinomial de orden 0 y la constante $K_p$ se llama constante de posición, se la escribe $K_p$ y el sistema se clásifica como sistema de **Tipo 0**. 
+Como se dijo anteriormente si $n= k =0$, la entrada es una señal polinomial de orden 0 y la constante $K_p$ se llama constante de posición, se la escribe $K_p$ y el sistema se clásifica como sistema de **Tipo 0**.
 
 Si $n=k=1$, la entrada es un polinomio de orden 1 y se conoce como rampa o entrada de velocidad, y la constante $K_1$ se la llama constante de velocidad y se escribe $K_v$. Este sistema se clasifica como sistema de **Tipo 1**. De manera similar podemos extendernos a sistemas de **Tipo 2** y mayores.
 
@@ -216,7 +220,7 @@ En la siguiente tabla mostramos los principales resultados de los visto hasta re
 #### Errores en función del tipo de sistema
 
 | Tipo de entrada | Escalón (posición) | Rampa (velocidad) | Parabola (aceleración) |
-| :-: | :-: | :-: | :-: | 
+| :-: | :-: | :-: | :-: |
 | Tipo 0 | $\frac{1}{1+K_p}$ | $\infty$ | $\infty$ |
 | Tipo 1 | 0 | $\frac{1}{K_v}$ | $\infty$ |
 | Tipo 2 | 0 | 0 | $\frac{1}{K_a}$ |
@@ -317,7 +321,7 @@ ax.grid()
 
 Mismo que el caso anterior pero ahora el controlador es del tiempo integral, es decir que $D(s)=\dfrac{k_i}{s}$.
 
-**Solución**
+#### Solución ejemplo 2
 
 Ahora tenemos que:
 
@@ -396,9 +400,9 @@ ax[1].grid()
 fig.tight_layout()
 ```
 
-### Para solucionar en casa (facil):
+### Para solucionar en casa (fácil)
 
-Realizar el mismo trabajo si el controlador fuese un PI (proporcional-integral), es decir 
+Realizar el mismo trabajo si el controlador fuese un PI (proporcional-integral), es decir
 
 $$D(s) = k_p + \frac{k_i}{s}$$
 
@@ -447,7 +451,7 @@ Entonces el error en estado estacionario a una entrada perturbación que sea pol
 $$
 \begin{align}
 y_{ss} & = \lim_{s\rightarrow 0 } \left[ sT_w(s)\frac{1}{s^{k+1}}\right]\\
-& = \lim_{s\rightarrow 0} \left[ T_{o,w}(s)\frac{s^n}{s^{k}}\right] 
+& = \lim_{s\rightarrow 0} \left[ T_{o,w}(s)\frac{s^n}{s^{k}}\right]
 \end{align}
 $$
 
@@ -466,6 +470,7 @@ Motor simplificado a lazo cerrado con perturbaciones
 :::
 
 Analizar el tipo de sistema para las referencias $R(s)$ y para las perturbaciones $W(w)$ para el sistema de la figura anterior. Suponiendo que $A$ y $B$ son constantes y que:
+
 1. $Dc(s) = k_p$
 1. $Dc(s) = k_p + \dfrac{k_i}{s}$
 
@@ -513,7 +518,7 @@ Ahora empecemos con el **caso 2**.
 
 **Primero analizamos el sistema para los cambios en la referencia.**
 
-Tenemos 
+Tenemos
 
 $$G_0(s)= D_c(s)G(s) = \left(k_p + \dfrac{k_i}{s}\right) \dfrac{A}{s(\tau s + 1)} = \dfrac{sk_p + k_i}{s} \dfrac{A}{s(\tau s + 1)} = \dfrac{A(sk_p + k_i)}{s^2(\tau s + 1)}$$
 

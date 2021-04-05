@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -20,7 +20,7 @@ Las ecuaciones de Lotka-Volterra, también conocidas como ecuaciones predador-pr
 
 $$
 \begin{aligned}
-\frac{dx(t)}{dt} &= 
+\frac{dx(t)}{dt} &=
 \alpha  x(t)-\beta x(t)y(t)\\
 \frac{dy(t)}{dt} &= \left(\gamma -y(t) +\delta x(t)y(t)\right)
 \end{aligned}
@@ -41,7 +41,7 @@ $t$ representa el tiempo; y $\alpha$ , $\beta$, $\gamma$ y $\delta$ son parámet
 
 Usando las series de Taylor se obtiene una solución lineal a las ecuaciones:
 
-$$f(x,y)=A_{0}-A_{1}x-A_{2}y$$ 
+$$f(x,y)=A_{0}-A_{1}x-A_{2}y$$
 
 $$g(x,y)=B_{0}+B_{1}x-B_{2}y$$
 
@@ -50,6 +50,7 @@ Con estos coeficientes se puede estudiar los modelos de competición, enfermedad
 +++
 
 ## Presa
+
 $$\frac{dx}{dt}=\alpha x-\beta xy$$
 
 Se asume que las presas tienen suministro de comida ilimitado por tiempo definido, y se reproducen exponencialmente a menos que exista algún predador. Este crecimiento exponencial está representado en la ecuación por el término $\alpha x$. El término de la ecuación $\beta xy$ viene a representar el encuentro de las dos especies y su interacción. Si $x$ o $y$ son cero no existe interacción.
@@ -59,6 +60,7 @@ Se puede interpretar la ecuación como el cambio del número de presas viene dad
 +++
 
 ## Depredador
+
 $$\frac{dy}{dt}=\delta xy-\gamma y$$
 
 En esta ecuación, $\delta xy$ representa el crecimiento de los depredadores (fíjese en la similitud con la ecuación para las presas, pero en este caso para el crecimiento de los depredadores es necesario usar la razón a la que se consumen las presas, $x$. $\gamma y$ representa la muerte natural de los depredadores de forma exponencial; a más depredadores es necesario que el número de víctimas o presa aumente para mantener la población.
@@ -75,7 +77,7 @@ Se puede interpretar la ecuación como el crecimiento de los depredadores por la
 import numpy as np
 import scipy.integrate as integ
 import matplotlib.pyplot as plt
-# %matplotlib qt5 # descomentar par afiguras en ventanas emergentes interactivas
+# %matplotlib qt5 # descomentar para figuras en ventanas emergentes interactivas
 ```
 
 Primero definimos las constantes del sistema

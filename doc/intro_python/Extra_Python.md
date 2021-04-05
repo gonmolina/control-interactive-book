@@ -1,12 +1,12 @@
 ---
 jupytext:
   encoding: '# -*- coding: utf-8 -*-'
-  formats: py:percent,md:myst,ipynb
+  formats: md:myst,ipynb
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -20,18 +20,18 @@ la mayor parte de lo aprendido en este curso puede ser desarrollado y
 aplicado en cuadernos. Los cuadernos se dividen en celdas donde se puede
 poner código y luego correrlo haciendo **Mayúscula + Enter**.
 
-Aquí intenta ase intentará mostrarles algunos de los tipo de datos más comunes de 
-Python con el fin de comenzar a interiorizarnos tanto con el lenguaje como con los 
+Aquí intenta ase intentará mostrarles algunos de los tipo de datos más comunes de
+Python con el fin de comenzar a interiorizarnos tanto con el lenguaje como con los
 cuadernos de de Jupyter.
-
-
 
 +++
 
 ## Números
+
 Python cuenta con varios formatos o tipos de datos para representar números.
 
 ### Enteros
+
 Cuando una nueva variable numérica se define Python por defecto lo hace como
 entero. Por ejemplo:
 
@@ -41,6 +41,7 @@ type(num)
 ```
 
 ### Punto flotante
+
 En caso de necesitar números con decimales que no pueden ser representados
 mediante enteros, Python automáticamente los transforma en números punto
 flotantes, o `float`:
@@ -66,6 +67,7 @@ type(num)
 ```
 
 ### Números complejos
+
 Python tiene soporte nativo para números complejos usando la letra `j` de la
 siguiente manera:
 
@@ -291,7 +293,7 @@ for key in mi_diccionario:
           "y es ", mi_diccionario[key])
 ```
 
-Finalmente para un` array` de `numpy` me va a devolver cada elemento del
+Finalmente para un `array` de `numpy` me va a devolver cada elemento del
 array
 
 ```{code-cell} ipython3
@@ -305,8 +307,7 @@ for i in n:
 ## Funciones
 
 Las funciones en Python se definen a partir de la palabra calve `def`.
-Pueden tomar argumentos posicionales, y argumentos con nombres y con valores 
-por defecto. El siguiente es un ejemplo.
+Pueden tomar argumentos posicionales, y argumentos con nombres y con valores por defecto. El siguiente es un ejemplo.
 
 ```{code-cell} ipython3
 def cambio_de_escala(x, m=1, h=0):

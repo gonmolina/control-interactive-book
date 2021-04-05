@@ -40,7 +40,8 @@ Ya que la **respuesta de un sistema a un impulso está dada por su función de t
 
 +++
 
-### Ejemplo
+### Ejemplo de la respuesta temporal de sistema LTI
+
 Supongamos la siguiente función de transferencia:
 
 $$H(s) = \frac{2s+1}{s^2+3s+2}$$
@@ -76,6 +77,7 @@ ctrl.pzmap(H);
 ```
 
 ### Ejemplo: respuesta impulsiva de un sistema LTI
+
 Tomando la función de transferencia del ejemplo anterior:
 
 $$H(s) = \frac{2s+1}{s^2+3s+2}=\frac{2s+1}{(s+1)(s+2)}$$
@@ -87,13 +89,16 @@ $$H(s) = \frac{-1}{s+1} +\frac{3}{s+2}$$
 Utilizando la **tabla de transformadas de Laplace**, obtenemos la **respuesta natural** del sistema:
 
 $$
-h(t) = \left\{ \begin{array}{rl}
- -e^{-t}+3e^{-2t},&t\ge 0\\
-  0,  & t<0
-       \end{array} \right.
+h(t) =
+  \left\
+    {\begin{array}{rl}
+      -e^{-t}+3e^{-2t},&t\ge 0\\
+      0,  & t<0
+    \end{array}
+  \right.
 $$
 
-Graficamos $h(t)$ obtenido a partir de aplicar la antitransformada de Laplace (usando tablas) de la respuesta impulsiva del sistema. 
+Graficamos $h(t)$ obtenido a partir de aplicar la antitransformada de Laplace (usando tablas) de la respuesta impulsiva del sistema.
 
 $$\mathcal{L}^{-1}\{Y(s)\} =\mathcal{L}^{-1}\{ H(s)\cdot U(s) \}= \mathcal{L}^{-1}\{H(s)\cdot 1\}=\mathcal{L}^{-1}\{ H(s)\}=h(t)$$
 
@@ -159,6 +164,7 @@ ax.set_ylabel("Amplitud");
 ```
 
 ### Ejemplo: Respuesta al escalón unitario
+
 Siguiendo con la misma función de transferencia, ahora veremos la respuesta a una señal de entrada del tipo escalón unitario $U(s)=\frac{1}{s}$, por lo que la señal de salida $Y(s)$:
 
 $$Y(s)= H(s)U(s) = \frac{2s+1}{s^2+3s+2}\frac{1}{s} \Longrightarrow \frac{2s+1}{s(s+1)(s+2)}$$
@@ -208,7 +214,7 @@ $$H(s) = \dfrac{K}{\tau .s +1}$$
 
 Si queremos la respuesta al escalón, entonces hacemos:
 
-$$Y(s) = \dfrac{K}{\tau .s +1}\cdot U(s )= \frac{K}{\tau .s +1}\cdot \frac{1}{s}$$ 
+$$Y(s) = \dfrac{K}{\tau .s +1}\cdot U(s )= \frac{K}{\tau .s +1}\cdot \frac{1}{s}$$
 
 Aplicando fracciones simples, podemos obtener:
 
@@ -594,7 +600,7 @@ $$G(s) = \frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}=\frac{1}{\frac{s^2}{\
 
 Comparando las dos últimas ecuaciones, encontramos la relación entre los parámetros:
 
-$$\sigma = \zeta\omega_n$$      
+$$\sigma = \zeta\omega_n$$
 
 y
 
@@ -646,6 +652,7 @@ ax.set_title(r' Respuesta de un sistema de segundo orden para distintos valores 
 +++ {"tags": ["hide-input"]}
 
 ## Especificaciones en el dominio temporal
+
 Las especificaciones para el diseño de un sistema de control frecuentemente involucran ciertos requerimientos asociados a la respuesta temporal del sistema. Los requerimientos para una respuesta a un escalón los expresamos en términos de valores estándar ilustrados en la figura siguiente:
 
 :::{figure-md}
@@ -701,13 +708,12 @@ Análogamente al 2%:
 
 $$e^{-\zeta\omega_nt_s}=0.02$$
 
-de donde se obtiene que: 
+de donde se obtiene que:
 
 $$t_s = \frac{4}{\sigma} =\frac{4}{\zeta\omega_n} \qquad \text{(considerando la banda +/- 2%)}$$
 
 +++
 
-     
 Este tipo de especificaciones nos darán inecuaciones que limitarán los parámetros $\omega_n$, $\zeta$, y $\sigma$; que a su vez limitarán la ubicación de los polos en el plano s, como mostramos en la figura siguiente.
 
 :::{figure-md}
@@ -721,9 +727,10 @@ Limitación de ubicación de los polos en el plano $s$ respecto a las especifica
 ## Reglas a considerar para el diseño de un sistema de control
 
 1. Para un sistema de segundo orden con ceros no finitos, los parámetros transitorios los aproximamos por:
+
 $$t_r\approx \frac{1.8}{\omega_n}$$
 
-$$t_s\approx \frac{4.6}{\zeta\omega_n}\qquad \text{al 1%}$$ 
+$$t_s\approx \frac{4.6}{\zeta\omega_n}\qquad \text{al 1%}$$
 
 1. Un cero adicional en el semiplano izquierdo aumentará el sobrepico si está en un factor 4 de la parte real de los polos complejos.
 1. Un cero adicional en el semiplano derecho bajará el sobrepico (y puede que la respuesta a un escalón parta en dirección contraria).

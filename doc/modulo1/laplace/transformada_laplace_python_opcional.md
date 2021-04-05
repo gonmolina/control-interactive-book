@@ -5,22 +5,20 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
 
-+++ {"lang": "es"}
-
 # Transformada de Laplace
 
 +++ {"lang": "es"}
 
-## Definición:
+## Definición
 
-Es una función matemática que utilizaremos para transformar señales en el dominio temporal a un dominio de frecuencia generalizada, que llamaremos dominio transformado de *Laplace*. 
+Es una función matemática que utilizaremos para transformar señales en el dominio temporal a un dominio de frecuencia generalizada, que llamaremos dominio transformado de *Laplace*.
 
 La transformada de Laplace se define como
 
@@ -31,23 +29,31 @@ donde $s$ es una variable compleja $s = \sigma + j\omega$.
 +++ {"slideshow": {"slide_type": "slide"}}
 
 ## Antitransformada de Laplace
+
 Se puede demostrar que teniendo la función transformada $F(s)$, se puede recuperar la función en el dominio temporal $f(t)$ aplicando la antitransformada de Laplace:
 
 $$f(t)=\mathcal{L}^{-1}\{F(s)\} =\frac{1}{2\pi j} \int_{\sigma-j\omega}^{\sigma+j\omega} F(s) e^{st} ds .$$
 
 +++
 
+:::{figure-md} tabla-transformadas
+
 <img style="display:block; margin-left: auto; margin-right: auto;" src="bg2.png" width="600px" alt="Tabla de transformadas de Laplace">
 
-+++ {"slideshow": {"slide_type": "slide"}}
+Tabla de transformas de Laplace
 
-## Propiedades de la Transformada de Laplace.
+:::
+
++++
+
+## Propiedades de la Transformada de Laplace
+
 - **Linealidad**: $\mathcal{L}\{kf(t)\} = k F(s)$; $\mathcal{L}\{f_1(t)+f_2(t)\} = F_1(s)+F_2(s)$
 - **Corrimiento en frecuencia**: $\mathcal{L}\{e^{-at}f(t)\}=F(s+a)$
 - **Corrimiento en el tiempo**: $\mathcal{L}\{f(t-T)\}=e^{-sT}F(s)$
 - **Escaleo Temporal**: $\mathcal{L}\{f(at)\}=\dfrac{1}{a}e^{-sT}F\left(\dfrac{s}{a}\right)$
 
-+++ {"slideshow": {"slide_type": "subslide"}}
++++
 
 - **Derivada**: $\mathcal{L}\left\{\dfrac{df(t)}{dt}\right\}=sF(s)-f(0)$
 - **Derivada segunda**: $\mathcal{L} \left\{ \dfrac{d^2f(t)}{dt^2} \right\}=s^2F(s)-sf(0)-f'(0);$
@@ -60,7 +66,7 @@ El **teorema del valor final** lo estaremos usando en las próximas clases para 
 
 +++
 
-## Cálculo de la transformada de Laplace mediante SymPy.
+## Cálculo de la transformada de Laplace mediante SymPy
 
 Durante el transcurso de este curso utilizaremos las tablas para las obtener la transformada y antitransformada de Laplace. Sin embargo, aquí se presenta como material adicional para quien le interese, la forma de obtener estas funciones mediante el uso de `SymPy`
 
@@ -200,11 +206,11 @@ Fs = [L(f) for f in functions]
 Fs
 ```
 
-Podemos ver que la última no la escribio exactamente de la misma manera, pero que es lo misma función transformada de Laplace que figura en la table.
+Podemos ver que la última no la escribo exactamente de la misma manera, pero que es lo misma función transformada de Laplace que figura en la table.
 
 +++ {"lang": "es"}
 
-## Inversas más complicadas.
+## Inversas más complicadas
 
 ¿Por qué la tabla no presenta funciones más complicadas? Debido a que las funciones racionales de orden superior se pueden escribir como sumas de funciones más simples mediante la aplicación de la expansión de fracciones parciales.
 

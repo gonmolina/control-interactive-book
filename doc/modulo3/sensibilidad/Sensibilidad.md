@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -14,7 +14,7 @@ kernelspec:
 
 # Sensibilidad
 
-**Definición** 
+## Definición de sensibilidad
 
 Según Bode,la sensibilidad de la función de transferencia $T$ con respecto al parámetro $C$ la definimos como la variación relativa de la función $T$ (causada por la variación de $C$) , dividida la variación relativa de $C$:
 
@@ -37,27 +37,27 @@ Lazo abierto versus lazo cerrado
 
 +++
 
-En el caso de lazo abierto tenemos: 
+En el caso de lazo abierto tenemos:
 
-$$ Y_1(s) = G(s)B (s)R(s),$$ 
+$$ Y_1(s) = G(s)B (s)R(s),$$
 
 y por lo tanto un cambio en $B$ o en $G$, afecta proporcionalmente a la salida.
 
 En el caso de lazo cerrado:
 
-$$ Y_2( s ) = \dfrac{G(s)D(s)}{1+G(s)D(s)}R(s)$$ 
+$$ Y_2( s ) = \dfrac{G(s)D(s)}{1+G(s)D(s)}R(s)$$
 
 y por lo tanto un cambio en $D$ o en $G$, serán atenuados si $\left|DG\right|$ se hace mucho mayor que la unidad.
 
 +++
 
-## Ejemplo
+## Ejemplo de cálculo de la sensibilidad
 
 Supongamos tener el mismo sistema de control de velocidad del ejemplo anterior, del cual suponemos que la constante $K_0$ del motor tiene un error en $\delta K_0$. Entonces tenemos:
 
 +++
 
-### Lazo abierto:
+### Sensibilidad a lazo abierto
 
 La velocidad a la salida será:
 
@@ -65,13 +65,13 @@ $$\omega = (K_0+\delta K_0)\frac{1}{K_0}\omega_d = \left(1+\dfrac{\delta K_0}{K_
 
 Por lo tanto el error sería $\delta \omega = \dfrac{\delta K_0}{K_0}\omega_d$
 
-En términos porcentuales: $\dfrac{\delta \omega}{\omega_d} = \dfrac{\delta K_0}{K_0}$ 
+En términos porcentuales: $\dfrac{\delta \omega}{\omega_d} = \dfrac{\delta K_0}{K_0}$
 
 Lo que indica que un error del $10\%$ en el valor de $k_0$ se traduce en un error del $10\%$ en el error de la velocidad $\omega$.
 
 +++
 
-### Lazo cerrado:
+### Sensibilidad a lazo cerrado
 
 La velocidad a la salida será:
 
@@ -99,6 +99,6 @@ Aplicando la segunda definición de sensibilidad, obtendremos el mismo resultado
 
 +++
 
-**Conclusión:**
+## Conclusión
 
 Con el ejemplo podemos decir que el error en la cantidad controlada con realimentación es sustancialmente menos sensible a las variaciones de parámetros del sistema que en un controlador de lazo abierto (y por lo tanto no se requiere un conocimiento preciso de las características del sistema, con el objeto de lograr un control preciso).

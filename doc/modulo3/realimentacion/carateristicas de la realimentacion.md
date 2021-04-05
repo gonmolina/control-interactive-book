@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -16,7 +16,7 @@ kernelspec:
 
 +++
 
-##  Concepto
+## Concepto
 
 El control **realimentado** o a **lazo cerrado** tiene la característica de que medimos la salida y luego la comparamos con un valor deseado. El error resultante lo utilizamos para corregir la salida del sistema.
 
@@ -59,7 +59,7 @@ Realicemos una comparación de colocar un controlador a lazo abierto y otro a la
 
 +++
 
-#### Lazo abierto
+#### Análisis del lazo abierto para seguimiento a referencias
 
 La ganancia de nuestro controlador ($K_{co}$), será tal que $V_a = K_{co}\omega_d$. Realizando pruebas, podemos determinar que $K_{co}$ es $1/K_0$; de este modo, para el estado estacionario sin carga ($T_l = 0$), la salida será:
 
@@ -67,7 +67,7 @@ $$\omega = K_0 V_a = \frac{K_{co} \omega_d}{ K_0} = \omega_d$$
 
 +++
 
-#### Lazo cerrado
+#### Análisis del lazo cerrado para seguimiento a referencias
 
 Para lazo cerrado tenemos que $V_a = K_{cc}(\omega_d - \omega)$, donde $K_{cc}$ es la ganancia del nuevo controlador a lazo cerrado. Utilizando la primera ecuación, obtenemos:
 
@@ -93,7 +93,7 @@ En debajo mostramos los diagramas de bloques de sistemas a lazo abierto y cerrad
 
 +++
 
-#### Lazo abierto
+#### Análisis del lazo abierto frente a perturbaciones
 
 La salida y1 debido a una perturbación w, será:
 
@@ -103,7 +103,7 @@ De la misma podemos deducir que el diseñador no puede influir con su compensado
 
 +++
 
-#### Lazo cerrado
+#### Análisis del lazo cerrado frente a perturbaciones
 
 La salida $y_2$ debido a una perturbación $\Omega$, será:
 
@@ -119,7 +119,7 @@ Cabe observar aquí que para los sistemas realimentados debemos escoger un muy b
 
 +++
 
-### Ruido
+### Análisis frente al ruido
 
 Analicemos como influye en la salida $y_2$ un ruido $v$ en el sensor. La salida será:
 
@@ -137,7 +137,7 @@ Observemos ahora cómo influye una carga perturbadora $T_l$ sobre la velocidad e
 
 +++
 
-#### Lazo abierto
+#### Ejemplo: Análisis de perturbación a lazo abierto
 
 En estado estacionario tenemos:
 
@@ -155,7 +155,7 @@ Por lo tanto, el error de velocidad es proporcional a la carga perturbadora (y e
 
 +++
 
-#### Lazo cerrado
+#### Ejemplo: Análisis de la perturbación a lazo cerrado
 
 La velocidad en estado estacionario, para lazo cerrado, es:
 

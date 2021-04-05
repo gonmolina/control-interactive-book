@@ -1,11 +1,11 @@
 ---
 jupytext:
-  formats: ipynb,py:percent,md:myst
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -31,7 +31,6 @@ Matplotlib es una excelente biblioteca de gráficos 2D y 3D para generar figuras
 Una de las características clave de matplotlib que me gustaría enfatizar, y que creo que hace que matplotlib sea muy adecuado para generar figuras para publicaciones científicas, es que todos los aspectos de la figura pueden controlarse mediante programación. Esto es importante para la reproducir resultados y es conveniente cuando se necesita regenerar la figura con datos actualizados o cambiar su apariencia.
 
 Se puede encontrar una gran cantidad de información al respecto en la página web de [Matplotlib](http://matplotlib.org).
-
 
 Para comenzar a utilizar Matplotlib en un programa de Python, incluya los símbolos del módulo `pyplot` (de manera sencilla):
 
@@ -94,7 +93,7 @@ En su lugar, recomiendo aprender y usar la API de trazado orientado a objetos de
 
 La idea principal de la programación orientada a objetos es tener objetos en los que se puedan aplicar funciones y acciones, y ningún estado de objeto o programa debe ser global (como la API similar a MATLAB). La ventaja real de este enfoque se hace evidente cuando se crea más de una figura, o cuando una figura contiene más de un argumento secundario.
 
-Para utilizar la API orientada a objetos, comenzamos como en el ejemplo anterior, pero en lugar de crear una nueva instancia de figura global, almacenamos una referencia a la instancia de figura recién creada en la variable `fig`, y a partir de ella creamos una instancia de ejes o `axes` usando el método` add_axes` en la instancia de la clase `Figure`,  `fig`:
+Para utilizar la API orientada a objetos, comenzamos como en el ejemplo anterior, pero en lugar de crear una nueva instancia de figura global, almacenamos una referencia a la instancia de figura recién creada en la variable `fig`, y a partir de ella creamos una instancia de ejes o `axes` usando el método `add_axes` en la instancia de la clase `Figure`,  `fig`:
 
 ```{code-cell} ipython3
 fig = plt.figure()
@@ -212,16 +211,15 @@ fig.savefig("filename.png", dpi=200)
 
 ### Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?
 
+Matplotlib puede generar resultados de alta calidad en varios formatos, incluidos PNG, JPG, EPS, SVG, PGF y PDF. Para artículos científicos, recomiendo usar PDF siempre que sea posible. (Los documentos LaTeX compilados con `pdflatex` pueden incluir archivos PDF usando el comando `includegraphics`). En algunos casos, PGF también puede ser una buena alternativa.
 
-Matplotlib puede generar resultados de alta calidad en varios formatos, incluidos PNG, JPG, EPS, SVG, PGF y PDF. Para artículos científicos, recomiendo usar PDF siempre que sea posible. (Los documentos LaTeX compilados con `pdflatex` pueden incluir archivos PDF usando el comando` includegraphics`). En algunos casos, PGF también puede ser una buena alternativa.
++++
 
-+++ {"lang": "es"}
-
-### Leyendas, etiquetas y títulos.
+### Leyendas, etiquetas y títulos
 
 Ahora que hemos cubierto los conceptos básicos de cómo crear un lienzo de figura y agregar instancias de ejes al lienzo, veamos cómo decorar una figura con títulos, etiquetas de ejes y leyendas.
 
-+++ {"lang": "es"}
++++
 
 #### Títulos de las figuras
 
@@ -233,30 +231,26 @@ ax.set_title("title");
 
 +++ {"lang": "es"}
 
-#### Etiquetas de eje
+#### Nombres de eje
 
-De manera similar, con los métodos `set _xlabel` y` set_ ylabel`, podemos establecer las etiquetas de los ejes X e Y:
+De manera similar, con los métodos `set_xlabel` y `set_ylabel`, podemos establecer los nombres o etiquetas de los ejes X e Y:
 
 ```{code-cell} ipython3
 ax.set_xlabel("x")
 ax.set_ylabel("y");
 ```
 
-+++ {"lang": "es"}
-
 #### Leyendas
 
-Las leyendas para las curvas en una figura se pueden agregar de dos maneras. Un método es usar el método `legend` del objeto de eje y pasar una lista / tupla de textos de leyenda para las curvas definidas previamente:
+Las leyendas para las curvas en una figura se pueden agregar de dos maneras. Un método es usar el método `legend` del objeto de eje y pasar una lista/tupla de textos de leyenda para las curvas definidas previamente:
 
 ```{code-cell} ipython3
 ax.legend(["curva1", "curva2", "curva3"]);
 ```
 
-+++ {"lang": "es"}
-
 El método descrito anteriormente sigue la API de MATLAB. Es algo propenso a errores y no es flexible si se agregan o eliminan curvas de la figura (lo que resulta en una curva mal etiquetada).
 
-Un método mejor es usar como argumento la palabra clave `label = "label text"` cuando se agregan sub-figuras u otros objetos a la figura, y luego usar el método `legend` sin argumentos para agregar la leyenda a la figura:
+Un método mejor es usar como argumento la palabra clave `label="label text"` cuando se agregan sub-figuras u otros objetos a la figura, y luego usar el método `legend` sin argumentos para agregar la leyenda a la figura:
 
 ```{code-cell} ipython3
 ax.plot(x, x**2, label="curva1")
@@ -264,11 +258,11 @@ ax.plot(x, x**3, label="curva2")
 ax.legend();
 ```
 
-+++ {"lang": "es"}
-
 La ventaja de este método es que si se agregan o eliminan curvas de la figura, la leyenda se actualiza automáticamente en consecuencia.
 
-La función `legend` toma un argumento de palabra clave opcional `loc` que se puede usar para especificar dónde se dibujará la leyenda en la figura. Los valores permitidos de `loc` son códigos numéricos para los distintos lugares donde se puede dibujar la leyenda. Consulte http://matplotlib.org/users/legend_guide.html#legend-location para obtener más información. Algunos de los valores más comunes de `loc` son:
+La función `legend` toma un argumento de palabra clave opcional `loc` que se puede usar para especificar dónde se dibujará la leyenda en la figura. Los valores permitidos de `loc` son códigos numéricos para los distintos lugares donde se puede dibujar la leyenda. Consulte [la documentación de Matplotlib](http://matplotlib.org/users/legend_guide.html#legend-location) para obtener más información.
+
+Algunos de los valores más comunes de `loc` son:
 
 ```{code-cell} ipython3
 ax.legend(loc=0) # matplotlib decide la ubicación óptima
@@ -370,7 +364,7 @@ ax.plot(x, x**3, 'g--') # green dashed line
 
 +++ {"lang": "es"}
 
-También podemos definir los colores por sus nombres o códigos hexadecimales RGB y, opcionalmente, proporcionar un valor alfa utilizando los argumentos de las palabras clave `color` y` alpha`:
+También podemos definir los colores por sus nombres o códigos hexadecimales RGB y, opcionalmente, proporcionar un valor alfa utilizando los argumentos de las palabras clave `color` y `alpha`:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
@@ -384,7 +378,7 @@ ax.plot(x, x+3, color="#15cc55");        # # código hexadecimal RGB para un col
 
 +++ {"lang": "es"}
 
-Para cambiar el ancho de línea, podemos usar el argumento de la palabra clave `linewidth` o` lw`. El estilo de línea se puede seleccionar usando los argumentos de la palabra clave `linestyle` o` ls`:
+Para cambiar el ancho de línea, podemos usar el argumento de la palabra clave `linewidth` o `lw`. El estilo de línea se puede seleccionar usando los argumentos de la palabra clave `linestyle` o `ls`:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(12,6))
@@ -392,10 +386,10 @@ fig, ax = plt.subplots(figsize=(12,6))
 ax.plot(x, x+1, color="blue", lw=0.25) # lw=linewidth
 ax.plot(x, x+2, color="blue", lw=0.50)
 ax.plot(x, x+3, color="blue", lw=1.00)
-ax.plot(x, x+4, color="blue", linewidth=2.00)
+ax.plot(x, x+4, color="blue", lw=2.00)
 
 # posibles opciones de tipos de linea ‘-‘, ‘--’, ‘-.’, ‘:’, ‘steps’
-ax.plot(x, x+5, color="red", lw=2, linestyle='-')
+ax.plot(x, x+5, color="red", lw=2, ls='-')
 ax.plot(x, x+6, color="red", lw=2, ls='-.')
 ax.plot(x, x+7, color="red", lw=2, ls=':')
 
@@ -429,7 +423,7 @@ La apariencia de los ejes es un aspecto importante de una figura que a menudo ne
 
 +++
 
-Lo primero que podríamos querer configurar es el rango de los ejes. Podemos hacerlo utilizando los métodos `set _ylim` y `set_ xlim` en el objeto de eje, o `axis('tight')` para obtener rangos de ejes "ajustados" de manera automática:
+Lo primero que podríamos querer configurar es el rango de los ejes. Podemos hacerlo utilizando los métodos `set_ylim` y `set_xlim` en el objeto de eje, o `axis('tight')` para obtener rangos de ejes "ajustados" de manera automática:
 
 ```{code-cell} ipython3
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))
@@ -451,7 +445,7 @@ axes[2].set_title("Rango de los ejes personalizados");
 
 +++
 
-También es posible establecer una escala logarítmica para uno o ambos ejes. De hecho, esta funcionalidad es solo una aplicación de un sistema de transformación más general en Matplotlib. Cada una de las escalas de los ejes se establece por separado utilizando los métodos `set _xscale` y` set_ yscale` que aceptan un parámetro (con el valor "log" en este caso):
+También es posible establecer una escala logarítmica para uno o ambos ejes. De hecho, esta funcionalidad es solo una aplicación de un sistema de transformación más general en Matplotlib. Cada una de las escalas de los ejes se establece por separado utilizando los métodos `set _xscale` y `set_yscale` que aceptan un parámetro (con el valor "log" en este caso):
 
 ```{code-cell} ipython3
 fig, axes = plt.subplots(1, 2, figsize=(10,4))
@@ -464,11 +458,11 @@ axes[1].set_yscale("log")
 axes[1].set_title("Logarithmic scale (y)");
 ```
 
-### Ubicación de las etiquetas y etiquetas personalizadas.
+### Ubicación de las etiquetas y etiquetas personalizadas
 
 +++
 
-Podemos determinar explícitamente dónde queremos que los tics del eje con `set _xticks` y` set_ yticks`, que toman una lista de valores para los lugares donde se colocarán los tics en el eje. También podemos usar los métodos `set_xticklabels` y` set_ yticklabels` para proporcionar una lista de etiquetas de texto personalizadas para cada ubicación de marca:
+Podemos determinar explícitamente dónde queremos que los tics del eje con `set_xticks` y `set_yticks`, que toman una lista de valores para los lugares donde se colocarán los tics en el eje. También podemos usar los métodos `set_xticklabels` y `set_yticklabels` para proporcionar una lista de etiquetas de texto personalizadas para cada ubicación de marca:
 
 ```{code-cell} ipython3
 fig, ax = plt.subplots(figsize=(10, 4))
@@ -483,9 +477,7 @@ ax.set_yticks(yticks)
 ax.set_yticklabels(["$%.1f$" % y for y in yticks], fontsize=18); # usa latex para formatear los tics
 ```
 
-+++ {"lang": "es"}
-
-Hay una serie de métodos más avanzados para controlar la colocación de marcas mayores y menores en las cifras de matplotlib, como la ubicación automática de acuerdo con diferentes políticas. Consulte http://matplotlib.org/api/ticker_api.html para obtener más información.
+Hay una serie de métodos más avanzados para controlar la colocación de marcas mayores y menores en las cifras de matplotlib, como la ubicación automática de acuerdo con diferentes políticas. Consulte la [documentación de matplotlib](http://matplotlib.org/api/ticker_api.html) para obtener más información.
 
 +++
 
@@ -557,7 +549,7 @@ ax.set_ylabel("y")
 fig.subplots_adjust(left=0.15, right=.9, bottom=0.1, top=0.9)
 ```
 
-### Grillas de los ejes
+### Grillas
 
 +++
 
@@ -599,7 +591,7 @@ ax.yaxis.tick_left() # ponemos solos los tics de la izquierda
 
 +++
 
-A veces es útil tener ejes x o y duales en una figura; por ejemplo, al trazar curvas con diferentes unidades juntas. Matplotlib admite esto con las funciones `twinx` y` twiny`:
+A veces es útil tener ejes x o y duales en una figura; por ejemplo, al trazar curvas con diferentes unidades juntas. Matplotlib admite esto con las funciones `twinx` y `twiny`:
 
 ```{code-cell} ipython3
 fig, ax1 = plt.subplots()
@@ -642,7 +634,7 @@ ax.plot(xx, xx**3);
 
 +++ {"lang": "es"}
 
-Además del método regular 'plot', hay una serie de otras funciones para generar diferentes tipos de gráficos. Consulte la galería de gráficos de matplotlib para obtener una lista completa de los tipos de gráficos disponibles: http://matplotlib.org/gallery.html. Algunos de los más útiles se muestran a continuación:
+Además del método regular 'plot', hay una serie de otras funciones para generar diferentes tipos de gráficos. Consulte la [galería de gráficos de matplotlib](http://matplotlib.org/gallery.html) para obtener una lista completa de los tipos de gráficos disponibles. Algunos de los más útiles se muestran a continuación:
 
 ```{code-cell} ipython3
 n = np.array([0,1,2,3,4,5])
@@ -702,8 +694,6 @@ ax.plot(xx, xx**2, xx, xx**3)
 ax.text(0.15, 0.2, r"$y=x^2$", fontsize=20, color="blue")
 ax.text(0.65, 0.1, r"$y=x^3$", fontsize=20, color="green");
 ```
-
-+++ {"lang": "es"}
 
 ### Figuras con múltiples sub-figuras e inserciones
 
@@ -781,7 +771,7 @@ inset_ax.set_xticks([-0.1,0,.1]);
 
 +++ {"lang": "es"}
 
-Los mapas de colores y las figuras de contorno son útiles para trazar funciones de dos variables. En la mayoría de estas funciones, utilizaremos un mapa de colores para codificar una dimensión de los datos. Hay una serie de mapas de color predefinidos. Es relativamente sencillo definir mapas de colores personalizados. Para obtener una lista de mapas de colores predefinidos, consulte: http://www.scipy.org/Cookbook/Matplotlib/Show_colormaps
+Los mapas de colores y las figuras de contorno son útiles para trazar funciones de dos variables. En la mayoría de estas funciones, utilizaremos un mapa de colores para codificar una dimensión de los datos. Hay una serie de mapas de color predefinidos. Es relativamente sencillo definir mapas de colores personalizados. Para obtener una lista de mapas de colores predefinidos, consulte [aquí](http://www.scipy.org/Cookbook/Matplotlib/Show_colormaps)
 
 ```{code-cell} ipython3
 alpha = 0.7
@@ -826,13 +816,12 @@ fig, ax = plt.subplots()
 cnt = ax.contour(Z, cmap=matplotlib.cm.RdBu, vmin=abs(Z).min(), vmax=abs(Z).max(), extent=[0, 1, 0, 1])
 ```
 
-
 ### Otras lecturas
 
 +++
 
-* http://www.matplotlib.org - The project web page for matplotlib.
-* https://github.com/matplotlib/matplotlib - The source code for matplotlib.
-* http://matplotlib.org/gallery.html - A large gallery with various types of plots matplotlib can create. Highly recommended! 
-* http://www.loria.fr/~rougier/teaching/matplotlib - A good matplotlib tutorial.
-* http://scipy-lectures.github.io/matplotlib/matplotlib.html - Another good matplotlib reference.
+* [The project web page for matplotlib](http://www.matplotlib.org).
+* [The source code for matplotlib](https://github.com/matplotlib/matplotlib).
+* [A large gallery with various types of plots matplotlib can create](http://matplotlib.org/gallery.html). Recomendada!
+* [A good matplotlib tutorial](http://www.loria.fr/~rougier/teaching/matplotlib ).
+* [Another good matplotlib reference](http://scipy-lectures.github.io/matplotlib/matplotlib.html).

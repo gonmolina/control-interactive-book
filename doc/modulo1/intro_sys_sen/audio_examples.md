@@ -12,6 +12,8 @@ kernelspec:
   name: python3
 ---
 
+# Sonido wav en los cuadernos
+
 ```{code-cell} ipython3
 :tags: [remove-input]
 
@@ -31,9 +33,9 @@ IPython.display.Audio(filename='sorohanro_-_solo-trumpet-06.wav')
 wav=wavfile.read('sorohanro_-_solo-trumpet-06.wav')
 s=np.array(wav[1])
 final_time = 3.5
-frecuency = wav[0]
+frequency = wav[0]
 num = round(final_time*wav[0])
-t=np.linspace(0., num/frecuency, num)
+t=np.linspace(0., num/frequency, num)
 ```
 
 ```{code-cell} ipython3

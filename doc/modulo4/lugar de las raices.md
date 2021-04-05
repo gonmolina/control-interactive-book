@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -46,16 +46,15 @@ Diagrama en bloques de los sistema $G_1(s)$ y $G_2(s)$
 
 +++
 
-Una solución práctica a este problema es evaluar el parámetro variable para distintos valores fijos y de esa forma calcular la ubicación en el plano s, de los polos y ceros, para deducir la respuesta temporar del sistema.
+Una solución práctica a este problema es evaluar el parámetro variable para distintos valores fijos y de esa forma calcular la ubicación en el plano s, de los polos y ceros, para deducir la respuesta temporal del sistema.
 
-Y si lo anterior se pudiera hacer para todos los valores de $\ell \in \mathbb{R}$!. Bueno aquí, es donde entra Walter R. Evans y el "Método de Evans", que permite resolver en forma **gráfica** las funciones del tipo $1+\ell~F(s)=0$ donde $F(s)$ es una función de transferencia de la forma $F(s)= \frac{N(s)}{D(s)}$ y $\ell \in \mathbb{R}$, notar que de lo anterior es posible expresar lo de la forma $D(s)+\ell~N(s)=0$. A estos gráficos o diagramas, en control, les llamamos Lugar de las raíces o en ingles Rootlocus.
+Y si lo anterior se pudiera hacer para todos los valores de $\ell \in \mathbb{R}$!. Bueno aquí, es donde entra Walter R. Evans y el "Método de Evans", que permite resolver en forma **gráfica** las funciones del tipo $1+\ell~F(s)=0$ donde $F(s)$ es una función de transferencia de la forma $F(s)= \frac{N(s)}{D(s)}$ y $\ell \in \mathbb{R}$, notar que de lo anterior es posible expresar lo de la forma $D(s)+\ell~N(s)=0$. A estos gráficos o diagramas, en control, les llamamos Lugar de las raíces o en ingles Root Locus.
 
 Este resultado lo usaremos para responder básicamente dos preguntas: ¿Cómo puedo elegir el parámetro $\ell$ para que la respuesta dinámica del sistema cumpla con los requerimientos de performance necesarios para el sistema a controlar? y ¿Qué efecto tiene sobre la dinámica de un sistema, la variación de un parámetro $\ell$ de su función de transferencia?
 
 +++
 
-Para comenzaremos a responder estas preguntas, analizaremos el siguiente esquema "genérico" de control a lazo cerrado del sistema de la figura siguiente, donde $k D(s)$ es el controlador del sistema con ganancia $k$, como parámetro variable, en principio comenzaremos con $k>0$, pero si bien, en la mayoría de los problemas que veremos $k$ es positivo,no hay resctricciones con respecto a al valor de $k$.
-
+Para comenzaremos a responder estas preguntas, analizaremos el siguiente esquema "genérico" de control a lazo cerrado del sistema de la figura siguiente, donde $k D(s)$ es el controlador del sistema con ganancia $k$, como parámetro variable, en principio comenzaremos con $k>0$, pero si bien, en la mayoría de los problemas que veremos $k$ es positivo,no hay restricciones con respecto a al valor de $k$.
 
 :::{figure-md}
 
@@ -79,7 +78,7 @@ La función de transferencia a lazo cerrado es:
 
 $$T(s)=\frac{Y(s)}{R(s)}=\frac{k D(s) G(s)}{1+k D(s) G(s)}$$
 
-donde, 
+donde,
 
 $$ G(s) = \frac{N_G(s)}{D_G(s)}=\frac{\prod_{i=1}^{m_G}(s+z_i)}{\prod_{j=1}^{n_G}(s+p_j)}$$ y $$ D(s) = \frac{N_D(s)}{D_D(s)}=\frac{\prod_{i=1}^{m_D}(s+z_i)}{\prod_{j=1}^{n_D}(s+p_j)}$$
 
@@ -100,7 +99,7 @@ $$
 
 +++
 
-## Ejemplo: 
+## Ejemplo de lugar de las raíces
 
 Consideremos $G(s)= \frac{1}{s+10}$ y $D(s)= k \frac{(s+20)}{s}$ donde $k$ es el parámetro variable, para este problema nos interesa determinar los polos y ceros del sistema a lazo cerrado y compararlos con los de la funciones a lazo abierto, por lo que consideraremos que $k=2$
 
@@ -146,9 +145,9 @@ Veremos la representación vectorial de números complejos, para lo que partirem
 Vector $\overrightarrow{s}= \sigma + j \omega$
 :::
 
-donde, 
+donde,
 
-$$|M|=\sqrt{\sigma^2+\omega^2}$$ 
+$$|M|=\sqrt{\sigma^2+\omega^2}$$
 
 $$ \theta= \arctan{\frac{\omega}{\sigma} }$$
 
@@ -167,7 +166,7 @@ en general, podemos decir que si que si tenemos la función de transferencia $F(
 
 $$F(s) = \frac{\prod_{i=1}^{m}(s+z_i)}{\prod_{j=1}^{n}(s+p_j)}$$
 
-podemos halla el módulo de $F(s)$ haciendo, 
+podemos halla el módulo de $F(s)$ haciendo,
 
 $$|F(s)|=\frac{\prod \text{mod. ceros}}{\prod \text{mod. polos}}= \frac{\prod_{i=1}^{m}|s+z_i|}{\prod_{j=1}^{n}|s+p_j|}$$
 
@@ -177,11 +176,11 @@ $$ \angle{F(s)}= \sum{ang. ceros}-\sum{ang. polos}= \sum_{i=1}^{m}{\angle{(s+z_i
 
 +++
 
-## Ejemplo:
+## Ejemplo punto de prueba
 
-sumpongamos un punto de prueba fijo en el plano-s $s_0=-1+j$ y la función de transferencia,
+Supongamos un punto de prueba fijo en el plano-s $s_0=-1+j$ y la función de transferencia,
 
-$$F(s)=\frac{1}{s(s+d)}$$ 
+$$F(s)=\frac{1}{s(s+d)}$$
 
 Calcularemos el módulo y el argumento de $F(s_0)$
 
@@ -200,7 +199,7 @@ Módulo y argumento de $F(s_0)$
 
 +++
 
-## Ejemplo: Trazado del lugar de las raíces 
+## Ejemplo: Trazado del lugar de las raíces
 
 En el siguiente ejemplo mostraremos la ubicación de los polos de $G(s)$ para distintos valores de la variable $k$, consideraremos $k>0$, cuando se cierra el lazo con realimentación unitaria, como se muestra en la siguiente figura:
 
@@ -215,7 +214,7 @@ entonces calculamos la función de transferencia a lazo cerrado $T(s)$:
 
 $$T(s)=\frac{k}{s^2+10s+k}$$
 
-los polos de $T(s)$ son la raíces de la ecuación caracteristica del sistema
+los polos de $T(s)$ son la raíces de la ecuación característica del sistema
 
 $$
 \begin{matrix}
@@ -223,7 +222,7 @@ $$
 \end{matrix}
 $$
 
-para esto haremos una tabla y calcularemos las raices de la ecuación caracteristica para distintos valosre de $k$ de la forma $s_{1,2}=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$:
+para esto haremos una tabla y calcularemos las raíces de la ecuación característica para distintos valores de $k$ de la forma $s_{1,2}=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$:
 
 | k          |    polo 1    |   polo 2   |
 |:----------:|:------------:|:----------:|
@@ -232,7 +231,6 @@ para esto haremos una tabla y calcularemos las raices de la ecuación caracteris
 | $25$       |   $-5$       |   $-5$     |
 | $\vdots$   | $\vdots$     | $\vdots$   |
 | $>25$      | $-5 + j x$   |  $ -5-jx$  |
-
 
 :::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig9.png" width="500" alt="fig9.png">
@@ -244,9 +242,7 @@ Lugar de las raíces de $G(s)$
 
 ## Propiedades de el Lugar de las Raíces
 
-+++
-
-El lugar geométrico de las raíces, es el lugar geométrico de valores de $s$ para el cual la ecuación característica $1 + kD(s)G(s) = 0$, ya que el parámetro $k \in \mathbb{R}$ varía desde $0 \longrightarrow \infty$. 
+El lugar geométrico de las raíces, es el lugar geométrico de valores de $s$ para el cual la ecuación característica $1 + kD(s)G(s) = 0$, ya que el parámetro $k \in \mathbb{R}$ varía desde $0 \longrightarrow \infty$.
 
 $$T(s)=\frac{k D(s) G(s)}{1+k D(s) G(s)}$$
 
@@ -265,7 +261,7 @@ $$
 \end{array}\right.
 $$
 
-Teniendo en cuanta que la función compleja la podemos discriminar en su magnitud y fase, y para $k>=0$, podemos arrivar a la siguientes definiciones:
+Teniendo en cuanta que la función compleja la podemos discriminar en su magnitud y fase, y para $k>=0$, podemos arribar a la siguientes definiciones:
 
 +++
 
@@ -293,7 +289,7 @@ Este criterio nos permite determnar el $k$, una vez escogido una ubicación dete
 
 +++
 
-#### **Ejemplo:** cálculo de k con la condición de módulo 
+#### Ejemplo de cálculo de k con la condición de módulo
 
 si $p_1 = p_2 = -5$ un punto del plano s que cumple con la condición de fase para la función de transferencia $G(s)=\frac{1}{s(s+10)}$
 
@@ -342,7 +338,7 @@ ang=np.angle(G(-1+2j))*180/np.pi
 print(ang)
 ```
 
-#### **Ejemplo:** cálculo de la condición de magnitud
+#### Ejemplo cálculo de la condición de magnitud
 
 Supongamos tener la transferencia siguiente:
 
@@ -357,7 +353,6 @@ Elegimos un punto de prueba en $-0.667 \pm 2j$, que pertenece al lugar geométri
 
 $G(s)$ en un punto del plano-$s$ genérico $s_0$
 :::
-
 
 Entonces determinamos la ganancia $K$ para llegar a ese punto como:
 

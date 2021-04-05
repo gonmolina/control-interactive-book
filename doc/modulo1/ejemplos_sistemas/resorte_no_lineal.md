@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -36,11 +36,11 @@ Podemos escribir las ecuaciones de estado, suponiendo los estados son $\dot x = 
 
 $$
   \left\{
-	       \begin{array}{ll}
-		 \dot x_1(t) =     & -\dfrac{b}{m} x_1(t) - \dfrac{K}{m} x_2^3(t) +\dfrac{F(t)}{m} + g\\
-		 \dot x_2(t) =  & x_1(t)
-	       \end{array}
-	     \right.
+    \begin{array}{ll}
+      \dot x_1(t) =  & -\dfrac{b}{m} x_1(t) - \dfrac{K} {m} x_2^3(t) +\dfrac{F(t)}{m} + g\\
+      \dot x_2(t) =  & x_1(t)
+    \end{array}
+  \right.
 $$
 
 +++

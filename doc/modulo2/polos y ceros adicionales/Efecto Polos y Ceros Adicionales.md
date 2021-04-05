@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -13,6 +13,7 @@ kernelspec:
 ---
 
 # Efecto de los polos adicionales y de los ceros
+
 Hasta ahora hemos estudiado el comportamiento de los sistemas de segundo orden. Ahora estudiaremos como afectan a la respuesta temporal agregar un cero o un polo.
 
 Estudiemos el siguiente caso, tenemos una función de transferencia de la siguiente forma:
@@ -45,9 +46,7 @@ Observemos que el cero lo agregamos a un factor $\alpha$ con respecto a la parte
 
 +++
 
-### Efecto Cero adicional
-
-+++
+## Efecto Cero adicional
 
 :::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="fig6.png" width="400" alt="respuesta">
@@ -85,9 +84,10 @@ Notamos que el primer término es la función de transferencia original (sin el 
 
 Respuesta del sistema original, su derivada y la suma de ambas
 :::
+
 +++
 
-Para el caso de un cero en el semiplano derecho, debemos considerar $\alpha < 0$, y sigue valiendo el mismo análisis. La próxima figura, mostramos la evolución de la respuesta a un escalón del sistema original, su derivada cambiada de signo y la respuesta del sistema con un cero en el semiplano derecho (un cero de no mínima fase). De esta figura observamos que la 
+Para el caso de un cero en el semiplano derecho, debemos considerar $\alpha < 0$, y sigue valiendo el mismo análisis. La próxima figura, mostramos la evolución de la respuesta a un escalón del sistema original, su derivada cambiada de signo y la respuesta del sistema con un cero en el semiplano derecho (un cero de no mínima fase). De esta figura observamos que la
 respuesta al escalón puede comenzar en sentido contrario a la referencia y luego se corrige.
 
 :::{figure-md}
@@ -95,7 +95,6 @@ respuesta al escalón puede comenzar en sentido contrario a la referencia y lueg
 
 Respuesta a un escalón del sistema original, su derivada cambiada de signo y la suma de ambas.
 :::
-
 
 +++
 

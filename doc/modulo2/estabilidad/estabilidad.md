@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -18,31 +18,31 @@ El concepto de estabilidad está relacionado con la respuesta a un estímulo apr
 
 +++
 
-## Estabilidad con entrada y salida acotada (BIBO ESTABILIDAD):
+## Estabilidad con entrada y salida acotada (BIBO ESTABILIDAD)
 
-### Definición:
+### Definición de BIBO estabilidad
 
 Se dice que un sistema tiene estabilidad de entrada y salida acotada si toda  entrada acotada da lugar a una salida acotada.
 
 +++
 
-## Primeras nociones de BIBO estabilidad para sistemas lineales e invarientes en el tiempo
+## Primeras nociones de BIBO estabilidad para sistemas lineales e invariantes en el tiempo
 
-Estabildad y localización de los polos con la función transferencia de la forma:
+Estabilidad y localización de los polos con la función transferencia de la forma:
 
 $$H(s) = K\frac{s^m +b_{m-1}s^{m-1}+\cdots+b_0}{s^n +a_{n-1}s^{n-1}+\cdots+a_0}=\frac{N(s)}{D(s)}$$
 
 Buscamos condiciones sobre la localización de los polos de $H(s)$ en el plano complejo que aseguren la BIBO estabilidad del sistema.
 
-* Si imponemos la condición de BIBO estabilidad debe ser: $m\leq n$ función transferencia propia ya que si no fuera el caso, efectuando el cociente de polinomios $\frac{N(s)}{D(s)}$, tedríamos:
+* Si imponemos la condición de BIBO estabilidad debe ser: $m\leq n$ función transferencia propia ya que si no fuera el caso, efectuando el cociente de polinomios $\frac{N(s)}{D(s)}$, tendríamos:
 
 $$H(s)=c_{m-n}s^{m-n}+\cdots+c_1s+c_0+\frac{\tilde{N}(s)}{D(s)}$$
 
-por lo que si le aplicamos un escalón por ejemplo 
+por lo que si le aplicamos un escalón por ejemplo
 
 $$U(s)=\frac{1}{s}$$
 
-la correspodiente respuesta tendrá un término $c_1$, que corresponde a $c_1 \delta(t)$ en el dominio temporal que no es acotada.
+la correspondiente respuesta tendrá un término $c_1$, que corresponde a $c_1 \delta(t)$ en el dominio temporal que no es acotada.
 
 +++
 
@@ -58,7 +58,7 @@ Expandiendo por fracciones simples se obtiene:
 
 $$Y(s)= \frac{K_0}{s} + \sum_{l=1}^{n} \frac{K_l}{s-p_l}$$
 
-donde 
+donde
 
 $$K_0 = \lim_{s\rightarrow 0} sY(s)$$
 
@@ -73,11 +73,12 @@ $$ y(t) =  K_0 + \sum_{l=1}^{n} K_l e^{p_lt}, \quad t\geq 0$$
 +++
 
 Vemos que para que la salida permanezca acotada los polos $p_l$ deberán ser negativos.
-* Si consideramos ahroa la posibilidad de tener polos complejos, los mismos deberán aparecer como *pares polos complejos conjugados*, por lo que la respuesta a un escalón unitario será de la forma:
+
+* Si consideramos ahora la posibilidad de tener polos complejos, los mismos deberán aparecer como *pares polos complejos conjugados*, por lo que la respuesta a un escalón unitario será de la forma:
 
 $$ y(t) =  K_0 + \sum_{l=1}^{r} K_l e^{p_lt} + \sum_{l=1}^q,K_{1l}e^{\sigma_lt}\cos\omega_lt + K_{2l}e^{\sigma_lt}\sin\omega_lt \quad t\geq 0$$
 
-Donde hemos supuesto que hay "r" polos realies simples y q pares de polos comlejos conjugados $()\sigma_l+j\omega_l$.
+Donde hemos supuesto que hay "r" polos reales simples y q pares de polos complejos conjugados $()\sigma_l+j\omega_l$.
 
 En este caso vemos que la condición que la salida sea permanezca acotada debe ser:
 
@@ -88,8 +89,9 @@ En este caso vemos que la condición que la salida sea permanezca acotada debe s
 
 +++
 
-### Conclusión:
-**Una condición necesaria y suficiente para la BIBO estabilidad es que los polos esten ubicados en el semiplano izquierdo abierto (polos con parte real negativa)**
+### Conclusión
+
+Una condición necesaria y suficiente para la BIBO estabilidad es que los polos esten ubicados en el semiplano izquierdo abierto (polos con parte real negativa)
 
 :::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="bibo_plano_s.png" width="450" alt="cond. estabilidad">
@@ -97,6 +99,7 @@ En este caso vemos que la condición que la salida sea permanezca acotada debe s
 Zona de estabilidad de en el plano $s$
 
 :::
+
 +++
 
 ## Formalizando matemáticamente BIBO estabildad (opcional CEATEN)
@@ -129,7 +132,8 @@ y por lo tanto la salida es no acotada. O sea que si la integral es no acotada, 
 
 +++
 
-### Conclusión:
+### Condición para BIBO estabilidad
+
 El sistema con respuesta al impulso $h(t)$ es estable con entrada y salida acotada si, y solo si, la integral
 
 $$\int_{-\infty}^{\infty}\left|h(\tau)\right|d\tau$$
@@ -139,11 +143,12 @@ es acotada.
 +++
 
 ### Corolario
+
 Un sistema LTI es BIBO estable si y solo si su función transferencia tiene todos los polos del lazo izquierdo del plano $s$, sin incluir el eje.
 
 +++
 
-### Ejemplo:
+### Ejemplo de aplicación de las condiciones de BIBO estabilidad
 
 :::{figure-md}
 <img style="display:block; margin-left: auto; margin-right: auto;" src="circRC.png" width="200" alt="Circuito RC Serie">
@@ -165,7 +170,7 @@ Notar que la función de transferencia de este sistema tiene un polo en el orige
 
 Si un sistema invariante en el tiempo tiene cualquier polo en el eje imaginario o en el semiplano derecho, la respuesta no será acotada y para cualquier entrada acotada.
 
-Si todos los polos están dentro del semiplano izquierdo, entonces la respuesta será estable con entrada y salida cotadas. Por lo tanto, para sistemas invariantes en el tiempo (estacionarios), podemos utilizar la ubicación de los polos de la función de transferencia del sistema para verificar su estabilidad.
+Si todos los polos están dentro del semiplano izquierdo, entonces la respuesta será estable con entrada y salida acotadas. Por lo tanto, para sistemas invariantes en el tiempo (estacionarios), podemos utilizar la ubicación de los polos de la función de transferencia del sistema para verificar su estabilidad.
 
 ```{code-cell} ipython3
 

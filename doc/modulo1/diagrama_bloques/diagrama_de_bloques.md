@@ -161,7 +161,7 @@ sol[Y]/U
 
 ### Otras transformaciones útiles en el algebra de diagramas de bloque
 
-:::{figure-md} transformaciones-utiles
+:::{figure-md} transformaciones-bloques
 
 <img style="display:block; margin-left: auto; margin-right: auto;" alt="transformaciones útiles" src="fig6.png">
 

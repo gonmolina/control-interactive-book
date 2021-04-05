@@ -1,18 +1,17 @@
 ---
 jupytext:
   encoding: '# -*- coding: utf-8 -*-'
-  formats: py:percent,md:myst,ipynb
+  formats: md:myst,ipynb
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
-
 
 # Introducción a SymPy
 
@@ -22,16 +21,15 @@ kernelspec:
 import sympy as sp
 ```
 
-+++ {"lang": "es"}
-
 Para imprimir las fórmulas por pantalla y obtener una visualización tipográfica agradable, además es necesario ejecutar:
 
 ```{code-cell} ipython3
 sp.init_printing()
 ```
-_Tenga en cuenta que esto cambia algo en función de la versión de sympy_
 
-+++ {"lang": "es"}
+Tenga en cuenta que esto puede cambiar según cual sea de la versión de sympy
+
++++
 
 Luego, ya para comenzar con la operatorio simbólica, necesitamos crear un símbolo.
 
@@ -84,8 +82,6 @@ Por supuesto, también podemos factorizar polinomios:
 ```{code-cell} ipython3
 (x**2 + 2*x + 1).factor()
 ```
-
-+++ 
 
 ## Cálculo
 
@@ -157,8 +153,9 @@ number
 
 Para convertir las representaciones exactas de arriba en representaciones
 aproximadas de [punto flotante](https://en.wikipedia.org/wiki/Floating_point), use uno de estos métodos:
-- `sympy.N` funciona con expresiones complicadas que también contienen variables. 
-- `float` devolverá un número de tipo `float` de Python normal y es útil cuando se interactúa 
+
+- `sympy.N` funciona con expresiones complicadas que también contienen variables.
+- `float` devolverá un número de tipo `float` de Python normal y es útil cuando se interactúa
 con programas que no son de `SymPy`.
 
 ```{code-cell} ipython3
@@ -168,8 +165,6 @@ sp.N(number*x)
 ```{code-cell} ipython3
 float(number)
 ```
-
-+++
 
 ## Resolver ecuaciones
 
