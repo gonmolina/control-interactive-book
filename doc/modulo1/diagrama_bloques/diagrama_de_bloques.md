@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -17,19 +17,32 @@ kernelspec:
 +++
 
 ## Diagrama de bloques: concepto
-Una forma esquemática de representar los sistemas de control es a través de los diagramas de bloques. En dicho diagrama identificamos los principales componentes como bloques, omitiendo detalles y mostrando la dirección principal de la información y la relación de causalidad entre componente y otro. 
+
+Una forma esquemática de representar los sistemas de control es a través de los diagramas de bloques. En dicho diagrama identificamos los principales componentes como bloques, omitiendo detalles y mostrando la dirección principal de la información y la relación de causalidad entre componente y otro.
+
 En la siguiente figura podemos ver el diagrama de bloques genérico del sistema de control realimentado.
 
-<img style="display:block; margin-left: auto; margin-right: auto;" src="fig1.png" width="600" alt="sistema de control general">
+:::{figure-md} diagrama-general
 
-Decimos que este sistema está realimetando, por que podemos ver que usamos la salida, que para este caso en particular es la medición de temperatura, para calcular y/o modificar la entrada al sistema. En este diagrama de bloques el resultado del sensor de salida se compara, mediante una resta con el sensor de la referencia.
+<img style="display:block; margin-left: auto; margin-right: auto;" src="fig1.png" alt="sistema de control general">
+
+Diagrama de control general de sistema controlado
+:::
+
+Decimos que este sistema está realimentado, por que podemos ver que usamos la salida, que para este caso en particular es la medición de temperatura, para calcular y/o modificar la entrada al sistema. En este diagrama de bloques el resultado del sensor de salida se compara, mediante una resta con el sensor de la referencia.
 
 +++
 
-### Ejemplo:
-En la siguiente figura mostramos como ejemplo de diagrama de bloques el sistema de control de una caldera controlado por un termotasto.
+### Ejemplo de sistema de control representado por diagrama de bloques
 
-<img style="display:block; margin-left: auto; margin-right: auto;" src="fig2.png" width="700" alt="sistema de control general">
+En la siguiente figura mostramos como ejemplo de diagrama de bloques el sistema de control de una caldera controlado por un termostato.
+
+:::{figure-md} diagrama-termostato
+
+<img style="display:block; margin-left: auto; margin-right: auto;" src="fig2.png" alt="sistema de control general">
+
+Diagrama de control de temperatura
+:::
 
 +++
 
@@ -37,11 +50,12 @@ En la siguiente figura mostramos como ejemplo de diagrama de bloques el sistema 
 
 Los diagramas de bloques, no solo pueden ser conceptuales, sino que también pueden ser usados para representar matemáticamente los sistemas.
 
-En un diagrama de bloques cada bloque del diagrama representa matemáticamente una parte del sistema, y las lineas son las señales de entrada y de salida de cada una de las partes del sistema. Así el sistema es subdidividido en subsistemas más pequeños y faciles de resolver.
+En un diagrama de bloques cada bloque del diagrama representa matemáticamente una parte del sistema, y las lineas son las señales de entrada y de salida de cada una de las partes del sistema. Así el sistema es dividido en subsistemas más pequeños y fáciles de resolver.
 
 +++
 
 ## Reducción de los diagramas de bloques usando algebra de bloques
+
 Podemos encontrar diversos sistemas de control, representados con diagramas de bloques complejos. Dichos diagramas los podemos reducir a un simple bloque empleando las reglas del algebra de bloques.
 
 A continuación demostraremos estas reglas mediante operaciones algebraicas y mediante el uso de Python.
@@ -56,8 +70,12 @@ sp.init_printing(use_latex=True)
 
 ### Bloques en serie
 
+:::{figure-md} bloques-serie
 
-<img style="display:block; margin-left: auto; margin-right: auto;" src="fig3.gif" width="350" alt="Bloques en serie">
+<img style="display:block; margin-left: auto; margin-right: auto;" src="fig3.png" width="350" alt="Bloques en serie">
+
+Bloques en serie
+:::
 
 $$ G(s) = \frac{Y(s)}{U(s)} = \frac{G2(s).X(s)}{U(s)} = \frac{G2(s).(G1(s).U(s))}{U(s)} = {G1(s).G2(s)} $$
 
@@ -75,7 +93,13 @@ sol[Y]/U
 
 ### Bloques en paralelo
 
-<img style="display:block; margin-left: auto; margin-right: auto;" src="fig4.gif" width="350" alt="Bloques en serie">
+:::{figure-md} bloques-paralelo
+
+<img style="display:block; margin-left: auto; margin-right: auto;" src="fig4.png" alt="Bloques en serie">
+
+Bloques en paralelo
+
+:::
 
 $$ G = \frac{Y(s)}{U(s)} = \frac{X1(s)+X2(s)}{U(s)} = \frac{G1(s).U(s)+G2(s).U(s)}{U(s)} = \frac{(G1(s)+G2(s)).U(s)}{U(s)} = G1(s) + G2(s) $$
 
@@ -94,12 +118,22 @@ sol[Y]/U
 ```
 
 ### Sistema realimentado
+
 $$X1(s)  = U(s) - X2(s) = U(s) - Y(s).G2(s) $$
+
 $$Y(s) = X1(s).G1(s) = \left(U(s) - Y(s).G2(s)\right).G1(s) = U(s).G1(s) - Y(s).G2(s).G1(s)$$
+
 $$Y.(1+G1(s).G2(s)) = U(s).G1(s)$$
+
 $$G = \frac{Y(s)}{U(s)} =\frac{G1(s)}{(1+G1(s).G2(s))}$$
 
-<img  style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig5.gif" width="350">
+:::{figure-md} bloques-realimentados
+
+<img  style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig5.png">
+
+Bloques realimentados
+
+:::
 
 ```{code-cell} ipython3
 # opcionaL
@@ -125,18 +159,31 @@ sol = sp.solve(eqs, unknowns)
 sol[Y]/U
 ```
 
-### Otras transformaciones útiles en el algebra de diagramas de bloque 
-<img style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig6.gif" width="700">
+### Otras transformaciones útiles en el algebra de diagramas de bloque
+
+:::{figure-md} transformaciones-utiles
+
+<img style="display:block; margin-left: auto; margin-right: auto;" alt="transformaciones útiles" src="fig6.png">
+
+Transformaciones útiles
+
+::::
 
 +++
 
-### Ejemplo:
+### Ejemplo de diagrama de bloques
 
 +++
 
 Tenemos el diagrama de bloques de la figura, el cual queremos reducir.
 
-<img style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig7.gif" width="600">
+:::{figure-md}
+
+<img style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig7.png" >
+
+Ejemplo de simplificación de diagrama de bloques
+
+:::
 
 +++
 
@@ -146,11 +193,23 @@ Tenemos el diagrama de bloques de la figura, el cual queremos reducir.
 
 En las siguientes dos figuras mostramos dos reducciones sucesivas al diagrama del ejemplo.
 
-<img style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig8.gif" >
+:::{figure-md} primer-paso
+
+<img style="display:block; margin-left: auto; margin-right: auto;" alt="ejemplo para simplificar" src="fig8.png" >
+
+Primer paso de simplificación
+
+:::
 
 +++
 
-<img style="display:block; margin-left: auto; margin-right: auto;" alt="que es esto" src="fig9.gif" >
+:::{figure-md} segundo-paso
+
+<img style="display:block; margin-left: auto; margin-right: auto;" alt="ejemplo para simplificar" src="fig9.png" >
+
+Segundo paso de simplificación
+
+:::
 
 +++
 
@@ -165,7 +224,7 @@ $$ G(s)=\dfrac{G_1G_2G_5+G_1G_6}{1-G_1G_3+G_1G_2G_4} $$
 
 +++
 
-Definimos un simbolo de sympy por cada una de las señales y bloques que se encuentran en el sistema. Esto se hace de la siguiente manera
+Definimos un símbolo de sympy por cada una de las señales y bloques que se encuentran en el sistema. Esto se hace de la siguiente manera
 
 ```{code-cell} ipython3
 (R, G1s, G2s, G3s, G4s, G5s, G6s, 
@@ -173,13 +232,13 @@ S1s, S2s, G1, G2, G3, G4, G5, G6, Y) = sp.symbols('R, G1s, G2s, G3s, G4s, G5s,'
                                                  'G6s, S1s, S2s, G1, G2,G3, G4, G5, G6, Y')
 ```
 
-Se definen las incognitas del diagrama de bloques. Lo que se conoce del sistema son los bloques y las señales de entrada. Por lo tanto, lo que se desconoce, y se quiere averigual, son las señales que no son entradas. Es decir:
+Se definen las incógnitas del diagrama de bloques. Lo que se conoce del sistema son los bloques y las señales de entrada. Por lo tanto, lo que se desconoce, y se quiere averiguar, son las señales que no son entradas. Es decir:
 
 ```{code-cell} ipython3
 unknowns =  G1s, G2s, G3s, G4s, G5s, G6s, S1s, S2s, Y
 ```
 
-Finalemente tenemos que escribir las ecuaciones que vemos en el diagrama de bloques. Cada bloque define la señal de salida como producto de su transferencia por su entrada y cada sumador define su salida como suma o resta de sus entradas. Para el diagrama anterior se formulan las siguientes ecuaciones:
+Finalmente tenemos que escribir las ecuaciones que vemos en el diagrama de bloques. Cada bloque define la señal de salida como producto de su transferencia por su entrada y cada sumador define su salida como suma o resta de sus entradas. Para el diagrama anterior se formulan las siguientes ecuaciones:
 
 ```{code-cell} ipython3
 :tags: [output_scroll]
@@ -213,11 +272,11 @@ G=sol[Y]/R
 G.factor()
 ```
 
-También podemos obetner la transferencia entre dos señales cualesquiera del diagrama enterior. Por ejemplo podemos obtener la transferencia entre $Y$ y $S2s$.
+También podemos obtener la transferencia entre dos señales cualesquiera del diagrama anterior. Por ejemplo podemos obtener la transferencia entre $Y$ y $S2s$.
 
 +++
 
-Si queremos tener la función transferencia en $s$, debemos sustituir cada bloque por sus transferencia, (pongo valores culaquiera como funciones transferencias $G_1 \ldots G_6$:
+Si queremos tener la función transferencia en $s$, debemos sustituir cada bloque por sus transferencia, (pongo valores cualquiera como funciones transferencias $G_1 \ldots G_6$:
 
 ```{code-cell} ipython3
 s=sp.symbols('s')
