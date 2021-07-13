@@ -1,18 +1,14 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-- file: intro
-
-- part: Introducción a Python
+format: jb-book
+root: intro
+parts:
+- caption: "Introducci\xF3n a Python"
   chapters:
   - file: doc/guia_de_instalacion
-  - file: doc/intro_python/Introducción a los notebooks de Jupyter
+  - file: "doc/intro_python/Introducci\xF3n a los notebooks de Jupyter"
   - file: doc/intro_python/Extra_Python
   - file: doc/intro_python/Intro-Matplotlib
   - file: doc/intro_python/intro_sympy
-  # faltaría poner algo del módulo de control
-
-- part: Señales, sistemas y modelos
+- caption: "Se\xF1ales, sistemas y modelos"
   chapters:
   - file: doc/modulo1/intro_sys_sen/intro_sis_y_sen
   - file: doc/modulo1/laplace/transformada_laplace_python_opcional
@@ -20,46 +16,40 @@
   - file: doc/modulo1/diagrama_bloques/diagrama_de_bloques
   - file: doc/modulo1/espacio_estado/espacio_de_estados
     sections:
-      - file: doc/modulo1/espacio_estado/modelado_ss
+    - file: doc/modulo1/espacio_estado/modelado_ss
   - file: doc/modulo1/linealizacion/linealizacion
   - file: doc/modulo1/ejemplos_sistemas/ejemplos_sistemas
     sections:
-      - file: doc/modulo1/ejemplos_sistemas/resorte_no_lineal
-      - file: doc/modulo1/ejemplos_sistemas/CineticaPuntual
-      - file: doc/modulo1/ejemplos_sistemas/Nonlinear CSTR
-      - file: doc/modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador
-
-- part: Análisis de la respuesta temporal
+    - file: doc/modulo1/ejemplos_sistemas/resorte_no_lineal
+    - file: doc/modulo1/ejemplos_sistemas/CineticaPuntual
+    - file: doc/modulo1/ejemplos_sistemas/Nonlinear CSTR
+    - file: doc/modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador
+- caption: "An\xE1lisis de la respuesta temporal"
   chapters:
   - file: doc/modulo2/estabilidad/estabilidad
   - file: doc/modulo2/respuesta temporal/Respuesta Temporal
   - file: doc/modulo2/polos y ceros adicionales/Efecto Polos y Ceros Adicionales
-
-- part: Análisis de estado estacionario
+- caption: "An\xE1lisis de estado estacionario"
   chapters:
   - file: doc/modulo3/realimentacion/carateristicas de la realimentacion
   - file: doc/modulo3/sensibilidad/Sensibilidad
   - file: doc/modulo3/errores/Errores
-
-- part: Lugar de las raíces
+- caption: "Lugar de las ra\xEDces"
   chapters:
   - file: doc/modulo4/lugar de las raices
   - file: doc/modulo4/Pasos para el trazado
   - file: doc/modulo4/Lugar de la raices con Python
-
-- part: Respuesta en frecuencia 
+- caption: Respuesta en frecuencia
   chapters:
   - file: doc/modulo_frec/respuesta_frecuencial
   - file: doc/modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia
-
-- part: Diseño de compensadores
+- caption: "Dise\xF1o de compensadores"
   chapters:
   - file: doc/modulo5/compensadores
   - file: doc/modulo5/problema_levitador
   - file: doc/modulo5/tipo1_lead
   - file: doc/modulo5/lead_lag_design
-
-- part: Control Moderno
+- caption: Control Moderno
   chapters:
   - file: doc/modulo_ve/ctrb_obsv
   - file: doc/modulo_ve/estimadores
@@ -69,5 +59,3 @@
   - file: doc/modulo_ve/ejemplo_A_ve_motor_cc
   - file: doc/modulo_ve/ejemplo_B_ve_atitud_satelite
   - file: doc/modulo_ve/ejemplo_C_ve_pendulo_invertido
-
-
