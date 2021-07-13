@@ -1,0 +1,821 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modelado en espacio de estados &#8212; Diseño Control</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Linealización de sistemas no-lineales" href="../linealizacion/linealizacion.html" />
+    <link rel="prev" title="Representación de sistemas dinámicos en espacio de estados" href="espacio_de_estados.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Diseño Control</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+   Material de la materia Elementos de Control
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../guia_de_instalacion.html">
+   Guía de instalación de las herramientas computacionales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html#transformacion-a-la-forma-canonica-de-controlabilidad">
+   Transformación a la forma canónica de controlabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html#transformacion-a-la-forma-canonica-de-observabilidad">
+   Transformación a la forma canónica de observabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html#ubicacion-optima-de-los-autovalores-del-estimador">
+   Ubicación óptima de los autovalores del estimador
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/doc/modulo1/espacio_estado/modelado_ss.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/doc/modulo1/espacio_estado/modelado_ss.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/control-interactive-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/control-interactive-book/issues/new?title=Issue%20on%20page%20%2Fdoc/modulo1/espacio_estado/modelado_ss.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+                    title="Modo de pantalla completa"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/control-interactive-book/master?urlpath=tree/book/doc/modulo1/espacio_estado/modelado_ss.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contenido
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-de-sistema-electromecanico-motor-electrico">
+   Ejemplo de sistema electromecánico: motor eléctrico
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#desarrollo-de-las-ecuaciones">
+     Desarrollo de las ecuaciones
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulacion">
+     Simulación
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="modelado-en-espacio-de-estados">
+<h1>Modelado en espacio de estados<a class="headerlink" href="#modelado-en-espacio-de-estados" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Es la representación de ecuaciones de estado de orden N en N ecuaciones diferenciales de primer orden.</p>
+<p>El orden de las ecuaciones diferenciales es igual al número de integradores del sistema y es igual al número de variables de estado.</p>
+<div class="math notranslate nohighlight">
+\[  
+a_n ~ y^n(t) + a_{n-1} ~ y^{n-1}(t) + ~ ... ~ + a_1 ~ \dot{y}(t) + a_0 ~ y(t) = u(t)
+\]</div>
+<p>Para podemos representar las ecuación diferencia ordinaria anterior en espacio de estados, lo que haremos es defir las variables de estado <span class="math notranslate nohighlight">\(x_1,x_2,x_3~ \cdots ~ x_n\)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+\begin{array}{c} x_1 = y\\ x_2 = \dot y\\ x_3 = \ddot y\\ \vdots\\ x_{n-1} = y^{n-2}\\ x_n = y^{n-1} \end{array} &amp; \left \{ \begin{array}{l} \dot{x_1} = x_2 = \dot y \\ \dot{x_2} = x_3 = \ddot y \\ \dot{x_3} = x_4 = y^{3}
+\\ \vdots
+\\ \dot x_{n-1} = x_n = y^{n-1}
+\\ \dot x_{n} = y_n = -\frac{a_{n-1}}{a_n} x_n - \cdots - \frac{a_{1}}{a_n} x_2 - \frac{a_{0}}{a_n} x_1 + \frac{1}{a_n} u \end{array}\right.
+\end{matrix}
+\end{split}\]</div>
+<p>En forma matricial se puede expresar como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\dot{\mathbf x}(t) &amp;=\mathbf f(\mathbf x, \mathbf u) =\mathbf A \mathbf x (t) +\mathbf B \mathbf u(t) \\
+\mathbf y(t) &amp;=\mathbf g(\mathbf x, \mathbf u) =\mathbf C \mathbf x(t) +\mathbf D\mathbf u(t) 
+\end{aligned}
+\end{split}\]</div>
+<p>desarrollando las matrices para el caso particular anterior de una entrada y una salida tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} \dot{x_1}\\\dot{x_2}\\ \vdots \\ \dot{x_n} \end{bmatrix} 
+= \underbrace{\begin{bmatrix}
+  0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+  0 &amp; 0 &amp; 1 &amp; \cdots &amp; 0 \\
+  \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp;  \vdots \\
+  -\frac{a_{0}}{a_n} &amp; - \frac{a_{1}}{a_n} &amp; -\frac{a_{2}}{a_n} &amp;\cdots &amp; -\frac{a_{n-1}}{a_n} 
+ \end{bmatrix}}_{=\mathbf A} \begin{bmatrix} {x_1}\\{x_2}\\ \vdots \\ {x_n} \end{bmatrix} 
+ + \underbrace{\begin{bmatrix} 0 \\0\\ \vdots \\ \frac{1}{a_n} \end{bmatrix}}_{=\mathbf B}~ u
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y= \underbrace{\begin{bmatrix}  1 &amp; 0 &amp; \cdots &amp; 0 \end{bmatrix}}_{ =\mathbf C} 
+   \begin{bmatrix} {x_1}\\{x_2}\\ \vdots \\ {x_n} \end{bmatrix} 
+ + \underbrace{\begin{bmatrix}0\end{bmatrix}}_{= D} ~u
+ \end{split}\]</div>
+<div class="section" id="ejemplo-de-sistema-electromecanico-motor-electrico">
+<h2>Ejemplo de sistema electromecánico: motor eléctrico<a class="headerlink" href="#ejemplo-de-sistema-electromecanico-motor-electrico" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="desarrollo-de-las-ecuaciones">
+<h3>Desarrollo de las ecuaciones<a class="headerlink" href="#desarrollo-de-las-ecuaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Del ejemplo anterior reescribimos las ecuaciones que describen la dinámica del motor eléctrico, de forma conveniente (en ambos casos la derivada de mayor orden a la izquierda del signo igual):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\left\{\begin{array}{c}
+\frac{di_a(t)}{dt} = \frac{1}{L_a} e_a(t) -\frac{ R_a}{L_a} i_a(t) -  \frac{K_b}{L_a} \frac{d\theta_m(t)}{dt}  \\
+\frac{d^2\theta_m(t)}{dt^2} =   \frac{K_t}{J_m} i_a(t) - \frac{D_m}{J_m}\frac{d\theta_m(t)}{dt} - \frac{1}{J_m} T_r(t)
+\end{array}\right.
+\end{split}\]</div>
+<p>propondremos como variables de estados (VE) a <span class="math notranslate nohighlight">\(i_a(t)\)</span>,<span class="math notranslate nohighlight">\(\frac{d\theta_m(t)}{dt}\)</span> y <span class="math notranslate nohighlight">\(\theta_m(t)\)</span> por lo que,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+u(t) = e_a(t) &amp;\mbox{y}&amp; w(t)= T_r(t)\\
+x_1 = i_a &amp;\Longrightarrow &amp; \dot{x_1}=\frac{di_a}{dt} \\
+x_2 = \frac{d\theta_m(t)}{dt} &amp;\Longrightarrow &amp; \dot{x_2}=\frac{d^2\theta_m}{dt^2}\\
+x_3 = \theta_m &amp;\Longrightarrow &amp; \dot{x_3}=\frac{d\theta_m}{dt} = x_2
+\end{matrix}
+\end{split}\]</div>
+<p>reemplazamos el cambio de variables:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left\{\begin{array}{c}
+\dot{x_1} = \frac{1}{L_a} u(t) -\frac{ R_a}{L_a} x_1(t) -  \frac{K_b}{L_a} x_2(t) \\
+\dot{x_2} = \frac{K_t}{J_m} x_1(t) - \frac{D_m}{J_m} x_2(t) - \frac{1}{J_m} w(t)\\
+\dot{x_3} =  x_2
+\end{array}\right.
+\end{split}\]</div>
+<p>Finalmente en forma matricial tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} \dot{x_1}\\\dot{x_2} \\ \dot{x_3} \end{bmatrix} 
+= 
+~
+\underbrace{\begin{bmatrix}
+-\frac{ R_a}{L_a} &amp;  -  \frac{K_b}{L_a} &amp; 0\\
+\frac{K_t}{J_m} &amp; - \frac{D_m}{J_m} &amp; 0\\
+0 &amp; 1 &amp; 0
+\end{bmatrix}}_{=~A}
+~ 
+\begin{bmatrix} {x_1}\\{x_2}\\ {x_3} \end{bmatrix} 
++ 
+\underbrace{\begin{bmatrix} \frac{1}{L_a}\\0 \\0\end{bmatrix} }_{=~B}
+u 
++
+~ \underbrace{\begin{bmatrix} 0\\- \frac{1}{J_m} \\0\end{bmatrix} }_{=~B_1}
+w\\
+y = ~ \underbrace{\begin{bmatrix} 0 &amp;  0 &amp; 1\end{bmatrix}}_{=~C} 
+\begin{bmatrix} {x_1}\\{x_2}\\ {x_3} \end{bmatrix} 
++
+~ \underbrace{\begin{bmatrix} 0 \end{bmatrix} }_{=~D}
+u
+\end{split}\]</div>
+</div>
+<div class="section" id="simulacion">
+<h3>Simulación<a class="headerlink" href="#simulacion" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos los parámetros del sistema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jm</span> <span class="o">=</span> <span class="mf">3.2284E-6</span>
+<span class="n">Dm</span> <span class="o">=</span> <span class="mf">3.5077E-6</span>
+<span class="n">Kb</span> <span class="o">=</span> <span class="mf">0.0274</span>
+<span class="n">Kt</span> <span class="o">=</span> <span class="mf">0.0274</span>
+<span class="n">Ra</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">La</span> <span class="o">=</span> <span class="mf">2.75E-6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con los parámetros del sistema definimos las matrices de estados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="n">Ra</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="o">-</span><span class="n">Kb</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">Kt</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="o">-</span><span class="n">Dm</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="n">La</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notar que cada matriz es una lista. Esta lista contiene listas que representan cada fila de la matriz.</p>
+<p>En caso de ser una matriz con una sola fila, la matriz de representa como una lista de float o int números en general.</p>
+<p>Ahora vamos a definir el sistema en espacio de estados usando el paquete de control e python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motor_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<span class="n">motor_ss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a evaluar la respuesta del sistema frente a un cambio escalón en la tension de alimentación. Para esto primero vamos a definir un vector <code class="docutils literal notranslate"><span class="pre">t</span></code> donde nos interesa obtener los valores de la salida. Esto lo haremos usando la función <code class="docutils literal notranslate"><span class="pre">linspace</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El función <code class="docutils literal notranslate"><span class="pre">step_response</span></code> del paquete de control de python nos devolverá dos vectores: uno con los tiempo donde calculó las salidas y otro con las salidas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">motor_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una vez que tenemos la salida (para este caso es una sola), podemos graficarla:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posición angular del motor&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora supongamos que deseamos medir velocidad angular del motor, es decir la variable de estado <span class="math notranslate nohighlight">\(x_2\)</span>, entonces podemos definir la matriz <span class="math notranslate nohighlight">\(C\)</span> de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf C = \begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+\end{bmatrix}\end{split}\]</div>
+<p>y graficamos simulamos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">motor_vel_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="n">motor_vel_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posición angular del motor&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En los casos anteriores, el sistema es SISO, es decir 1 entrada y 1 salida, supongamos ahora que deseamos medir todas las variables de estado <span class="math notranslate nohighlight">\(\theta_m(t)\)</span> (la posición angular), <span class="math notranslate nohighlight">\(\omega_m (t)= \frac{d\theta_m(t)}{dt}\)</span> (la velocidad angular) y <span class="math notranslate nohighlight">\(i_a(t)\)</span> (la corriente de armadura), para lo que definiremos nuevamente la matriz de medición <span class="math notranslate nohighlight">\(C\)</span> y graficaremos las variables de estado para una entrada del tipo escalón de <span class="math notranslate nohighlight">\(1 ~[Volt]\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">D</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">motor_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<span class="n">motor_ss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora podemos simular la respuesta al escalón</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="n">motor_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Corriente de armadura $i_a$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i_a[A]$&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Velocidad angular del motor $\omega_m (t)$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\omega$[rad/seg]&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y = x&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span> <span class="sa">r</span><span class="s2">&quot;Posición angular del motor $\theta_m(t)$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta_m(t)$&#39;</span><span class="p">);</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./doc/modulo1/espacio_estado"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="espacio_de_estados.html" title="previous page">Representación de sistemas dinámicos en espacio de estados</a>
+    <a class='right-next' id="next-link" href="../linealizacion/linealizacion.html" title="next page">Linealización de sistemas no-lineales</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Dr. Ing. Gonzalo Molina; Ing. Juan Pablo Pierini<br/>
+        
+            &copy; Derechos de autor 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
