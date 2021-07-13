@@ -21,11 +21,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r book/requirements.txt
     # Build the book
     - name: Build the book
       run: |
-        jupyter-book build .
+        jupyter-book build book
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.5.9
