@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Análisis de los sistemas en su forma de espacio de estados &#8212; Diseño Control</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -45,9 +42,9 @@
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/translations.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -61,14 +58,14 @@
     <link rel="search" title="Búsqueda" href="../../search.html" />
     <link rel="next" title="Diseño de estimadores" href="estimadores.html" />
     <link rel="prev" title="Ecuaciones útiles para el diseño del Lead por análisis en frecuencia" href="../modulo5/lead_lag_design.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -77,32 +74,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/sala_de_control.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Diseño Control</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño Control</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../intro.html">
    Material de la materia Elementos de Control
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Introducción a Python
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../guia_de_instalacion.html">
    Guía de instalación de las herramientas computacionales
@@ -129,12 +126,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Señales, sistemas y modelos
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
    Definiciones de Sistemas y Señales
@@ -155,30 +152,38 @@
    Diagramas de bloques
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
    Representación de sistemas dinámicos en espacio de estados
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
      Modelado en espacio de estados
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
    Linealización de sistemas no-lineales
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
    Ejemplos de modelos de sistemas
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
      Sistema masa resorte amortiguador
@@ -200,16 +205,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Análisis de la respuesta temporal
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
    Estabilidad
@@ -226,12 +229,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Análisis de estado estacionario
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
    Características de la realimentación
@@ -248,12 +251,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Lugar de las raíces
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
    Lugar de las raíces
@@ -270,12 +273,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Respuesta en frecuencia
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
    Respuesta Frecuencial de Sistemas lineales y SISO
@@ -287,12 +290,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Diseño de compensadores
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulo5/compensadores.html">
    Compensadores de adelanto y de retraso de fase
@@ -314,12 +317,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Control Moderno
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Análisis de los sistemas en su forma de espacio de estados
@@ -338,16 +341,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="transformacion_formas_canonicas.html">
    Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="transformacion_formas_canonicas.html#transformacion-a-la-forma-canonica-de-controlabilidad">
-   Transformación a la forma canónica de controlabilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="transformacion_formas_canonicas.html#transformacion-a-la-forma-canonica-de-observabilidad">
-   Transformación a la forma canónica de observabilidad
   </a>
  </li>
  <li class="toctree-l1">
@@ -370,13 +363,9 @@
    Diseño del sistema de control del pédulo invertido
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ejemplo_C_ve_pendulo_invertido.html#ubicacion-optima-de-los-autovalores-del-estimador">
-   Ubicación óptima de los autovalores del estimador
-  </a>
- </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -445,12 +434,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-                    title="Modo de pantalla completa"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -476,12 +465,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contenido
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ejemplo-de-conexion-de-sistemas">
    Ejemplo de conexión de sistemas
@@ -489,8 +477,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -519,7 +506,7 @@
 </div>
 </div>
 </div>
-<p>Antes de seguir, verificamos que los polos de <span class="math notranslate nohighlight">\(G\)</span> sean los autovalores de <span class="math notranslate nohighlight">\(Ac\)</span></p>
+<p>Antes de seguir, verificamos que los polos de <span class="math notranslate nohighlight">\(G\)</span> sean los autovalores de <span class="math notranslate nohighlight">\(\mathbf {Ac}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
@@ -595,7 +582,7 @@
 </div>
 </div>
 </div>
-<p>Por lo tanto podemos ver que la función transfewrencia de <span class="math notranslate nohighlight">\(sys\)</span> será la misma que la de <span class="math notranslate nohighlight">\(G\)</span>. Es decir, <span class="math notranslate nohighlight">\(sys\)</span> se comporta externamente igual que <span class="math notranslate nohighlight">\(G\)</span>. Verificamos</p>
+<p>Por lo tanto podemos ver que la función transferencia de <span class="math notranslate nohighlight">\(sys\)</span> será la misma que la de <span class="math notranslate nohighlight">\(G\)</span>. Es decir, <span class="math notranslate nohighlight">\(sys\)</span> se comporta externamente igual que <span class="math notranslate nohighlight">\(G\)</span>. Verificamos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_c</span><span class="p">)</span>
@@ -656,7 +643,7 @@
 </div>
 </div>
 </div>
-<p>El módulo de control de Python puede transformar una función transferencia a una forma de estados (no necesariameinte en alguna forma canónica). Esto se hace:</p>
+<p>El módulo de control de Python puede transformar una función transferencia a una forma de estados (no necesariamente en alguna forma canónica). Esto se hace:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -683,7 +670,7 @@
 </div>
 </div>
 </div>
-<p>Existe otra forma canónica de represetanción en espacio de estados que se la conoce como froma canónica modal. Esta la podemos obtener haciendo:</p>
+<p>Existe otra forma canónica de representación en espacio de estados que se la conoce como forma canónica modal. Esta la podemos obtener haciendo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
@@ -691,10 +678,10 @@
 </div>
 </div>
 </div>
-<p>Esta forma canónica lo que haces es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz <span class="math notranslate nohighlight">\(A\)</span>. Esto sucede por que hay casos que no se puede o no se dease aislarlos:</p>
+<p>Esta forma canónica lo que haces es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz <span class="math notranslate nohighlight">\(\mathbf A\)</span>. Esto sucede por que hay casos que no se puede o no se desea aislarlos:</p>
 <ul class="simple">
-<li><p>en caso de que se tengan autovales complejos conjugados, no se aislan para lograr tener una matriz <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(C\)</span> a coficiente reales.</p></li>
-<li><p>en caso de que sean multiples no se pueden aislar por que tienen el mismo autovector y no se pueden usar estos para la transformación. Para estos casos se utiliza la forma de Jordan (no se dará en este curso).</p></li>
+<li><p>en caso de que se tengan autovalores complejos conjugados, no se aíslan para lograr tener una matriz <span class="math notranslate nohighlight">\(\mathbf A\)</span>, <span class="math notranslate nohighlight">\(\mathbf B\)</span> y <span class="math notranslate nohighlight">\(\mathbf C\)</span> a coeficiente reales.</p></li>
+<li><p>en caso de que sean multiples no se pueden aislar por que tienen el mismo autovector y no se pueden usar estos para la transformación. Para estos casos se utiliza la forma de Jordan.</p></li>
 </ul>
 <p>Vamos a ver otro ejemplo:</p>
 <div class="cell docutils container">
@@ -706,7 +693,7 @@
 </div>
 </div>
 </div>
-<p>Vemos que esta función trnasferencia tiene los polos en -1, -2 y -3. Transformemosla a espacio de estados usando la función <code class="docutils literal notranslate"><span class="pre">ss</span></code>.</p>
+<p>Vemos que esta función transferencia tiene los polos en -1, -2 y -3. Transformemos a espacio de estados usando la función <code class="docutils literal notranslate"><span class="pre">ss</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span>
@@ -723,7 +710,7 @@
 </div>
 </div>
 </div>
-<p>Ahora veamoslo en la forma canónica de observabilidad</p>
+<p>Ahora lo podemos ver en la forma canónica de observabilidad</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
@@ -731,7 +718,7 @@
 </div>
 </div>
 </div>
-<p>Finalmente obtengamos la forma conónica modal:</p>
+<p>Finalmente obtengamos la forma canónica modal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
@@ -746,12 +733,14 @@
 </div>
 </div>
 </div>
-<p>Notar:</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
 <ul class="simple">
-<li><p>La función <code class="docutils literal notranslate"><span class="pre">canoincal_form</span></code> devuelve un sistema en la forma canónica solicitada y la amtriz de trnasformación necesaria para obtenerlo</p></li>
-<li><p>En la diagonal tenmos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
-<li><p>Fuera de la diagonal tenemos ceros o valores muy cercanos a ceros (debido a problemas numericos en el cálculo)</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">canonical_form</span></code> devuelve un sistema en la forma canónica solicitada y la matriz de transformación necesaria para obtenerlo</p></li>
+<li><p>En la diagonal tenemos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
+<li><p>Fuera de la diagonal tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)</p></li>
 </ul>
+</div>
 <p>Verificamos el resto de las matrices:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -774,7 +763,7 @@
 </div>
 </div>
 </div>
-<p>En esta forma canónica, la matriz <span class="math notranslate nohighlight">\(B\)</span> como la conexión de la entrada con el modo del sistema . Y de forma análoga a la mariz <span class="math notranslate nohighlight">\(C\)</span> como la conexión del modo con la salida del sistema.</p>
+<p>En esta forma canónica, la matriz <span class="math notranslate nohighlight">\(B\)</span> como la conexión de la entrada con el modo del sistema . Y de forma análoga a la matriz <span class="math notranslate nohighlight">\(C\)</span> como la conexión del modo con la salida del sistema.</p>
 <div class="section" id="ejemplo-de-conexion-de-sistemas">
 <h2>Ejemplo de conexión de sistemas<a class="headerlink" href="#ejemplo-de-conexion-de-sistemas" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="cell docutils container">
@@ -786,11 +775,11 @@
 </div>
 </div>
 <p>Podemos ver que G1 tiene un polo en -1 y G2 tiene un polo en -2 y un cero en -1.</p>
-<p>Ahora supogamos que queremos un nuevo sistema que:</p>
+<p>Ahora supongamos que queremos un nuevo sistema que:</p>
 <ul class="simple">
-<li><p>conecta la salida de G1 con la entrada de G2</p></li>
-<li><p>la salida es la salida de G2</p></li>
-<li><p>la entrada es la entrada de G1</p></li>
+<li><p>conecta la salida de <span class="math notranslate nohighlight">\(G1\)</span> con la entrada de <span class="math notranslate nohighlight">\(G2\)</span></p></li>
+<li><p>la salida es la salida de <span class="math notranslate nohighlight">\(G2\)</span></p></li>
+<li><p>la entrada es la entrada de <span class="math notranslate nohighlight">\(G1\)</span></p></li>
 </ul>
 <p>Para eso vamos a usar una función que se llama <code class="docutils literal notranslate"><span class="pre">connect</span></code>. Esta utiliza sistemas en espacio de estados, entonces hacemos:</p>
 <div class="cell docutils container">
@@ -801,7 +790,7 @@
 </div>
 </div>
 </div>
-<p>Y lueog relizamos las conexiones:</p>
+<p>Y luego realizamos las conexiones:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">])</span>
@@ -825,8 +814,8 @@
 </div>
 </div>
 </div>
-<p>Vemos que el sistema conserva los mismos polos y los mismos ceros que el original, lo cual era de esperarse, ya que su función transferencia sería G1*G2</p>
-<p>Obtngamos la forma canónica de controlabilidad del sistema</p>
+<p>Vemos que el sistema conserva los mismos polos y los mismos ceros que el original, lo cual era de esperarse, ya que su función transferencia sería <span class="math notranslate nohighlight">\(G1.G2\)</span></p>
+<p>Obtengamos la forma canónica de controlabilidad del sistema</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
@@ -834,9 +823,9 @@
 </div>
 </div>
 </div>
-<p>Podemos ver que las matrices A, B, C y D coinciden con lo visto en teoría.</p>
+<p>Podemos ver que las matrices <span class="math notranslate nohighlight">\( \mathbf A\)</span>, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, <span class="math notranslate nohighlight">\(\mathbf C\)</span> y <span class="math notranslate nohighlight">\(\mathbf D\)</span> coinciden con lo visto en teoría.</p>
 <p>Ahora obtengamos la forma canónica de observabilidad:</p>
-<div class="cell docutils container">
+<div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
 </pre></div>
@@ -844,8 +833,8 @@
 </div>
 </div>
 <p>Podemos ver que este sistema no puede ser escrito en su forma canónica de observabilidad. Esto sucede por que el sistema no es observable.</p>
-<p>La interptertación se da por que un sistema observable necesita tener evidencia de lo que sucede con cada modo a la salida. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene niguna evidencia del modo en -1 a la salida del mismo.</p>
-<p>Ahora hagamos la conexión al revez (primero G1 y luego G2):</p>
+<p>La interpretación se da por que un sistema observable necesita tener evidencia de lo que sucede con cada modo a la salida. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene ninguna evidencia del modo en -1 a la salida del mismo.</p>
+<p>Ahora hagamos la conexión al revés (primero <span class="math notranslate nohighlight">\(G1\)</span> y luego <span class="math notranslate nohighlight">\(G2\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">])</span>
@@ -862,17 +851,22 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<p>Y ahora la forma canónica controlable:</p>
+<div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Podemos ver que ahora no podemo obtener la forma canónica de obserbavilidad.</p>
-<p>La razón de esto es que no se puee exitar el modo -1, que ahora quedó tapado desde el lado de la entrada. Toda excitación que tenga «frecuencia generalizada -1» será tapada por el cero en -1. Por lo tanto este sistema no es controlable, ya que no puede exitar desde esa entrada el modo -1.</p>
-<p>Es importante destacar que ambos sistemas presentan la misma función tranferencia G1*G2, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilda son propiedades internas de un sistema, por lo que no pueden ser deciddidas a partir de modelos externos de un sistema como son las funciones transferencias.</p>
-<p>Estas dos mismas pripiedades pueden ser analizadas con la forma modal. Tomemos el sistema <span class="math notranslate nohighlight">\(sys_C\)</span> donde la entrada esta conectada a G1 y lasalida a G2:</p>
+<p>Podemos ver que ahora no podemos obtener la forma canónica de observabilidad.</p>
+<p>La razón de esto es que no se puede excitar el modo -1, que ahora quedó tapado desde el lado de la entrada. Toda excitación que tenga «frecuencia generalizada -1» será tapada por el cero en -1. Por lo tanto este sistema no es controlable, ya que no puede excitar desde esa entrada el modo -1.</p>
+<p>Es importante destacar que ambos sistemas presentan la misma función transferencia <span class="math notranslate nohighlight">\(G1.G2\)</span>, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilidad son propiedades internas de un sistema, por lo que no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.</p>
+<div class="admonition attention">
+<p class="admonition-title">Atención</p>
+<p>La <strong>controlabilidad</strong> y la <strong>observabilidad</strong>  no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.</p>
+</div>
+<p>Estas dos mismas propiedades pueden ser analizadas con la forma modal. Tomemos el sistema <span class="math notranslate nohighlight">\(sys_C\)</span> donde la entrada esta conectada a <span class="math notranslate nohighlight">\(G1\)</span> y la salida a <span class="math notranslate nohighlight">\(G2\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
@@ -880,8 +874,8 @@
 </div>
 </div>
 </div>
-<p>Podemos ver que la matriz B tiene todos los valores distintos de 0. Esto significa que todos los modos están conectados a la entrada, por lo que deducimos que el sistema es controlable.</p>
-<p>Pero podemos ver que C tiene un 0 en el primer elemento. Y que en la diagona de A el primer elemento es -1. Esto quiere decir que no hay niguna evidencia del modo -1 en la salida por que el sistema no es observable.</p>
+<p>Podemos ver que la matriz <span class="math notranslate nohighlight">\(\mathbf B\)</span> tiene todos los valores distintos de 0. Esto significa que todos los modos están conectados a la entrada, por lo que deducimos que el sistema es controlable.</p>
+<p>Pero podemos ver que <span class="math notranslate nohighlight">\(\mathbf C\)</span> tiene un 0 en el primer elemento. Y que en la diagonal de <span class="math notranslate nohighlight">\( \mathbf A\)</span> el primer elemento es -1. Esto quiere decir que no hay ninguna evidencia del modo -1 en la salida por que el sistema no es observable.</p>
 <p>Probemos ahora con la segunda conexión:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -890,7 +884,11 @@
 </div>
 </div>
 </div>
-<p>Podemos ver ahora que la matriz C no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenesmo un 0 en la primer fila de B, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.</p>
+<p>Podemos ver ahora que la matriz <span class="math notranslate nohighlight">\(\mathbf C\)</span> no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenemos un 0 en la primer fila de <span class="math notranslate nohighlight">\(\mathbf B\)</span>, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.</p>
+<div class="admonition attention">
+<p class="admonition-title">Atención</p>
+<p>La controlabilidad y la observabilidad pueden ser evaluadas con el sistema en su forma <strong>canónica modal</strong> analizando las relaciones  de la matrices <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> con la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+</div>
 </div>
 </div>
 
@@ -932,7 +930,7 @@
         
           Por Dr. Ing. Gonzalo Molina; Ing. Juan Pablo Pierini<br/>
         
-            &copy; Derechos de autor 2020.<br/>
+            &copy; Derechos de autor 2021.<br/>
       </p>
     </div>
   </footer>
@@ -941,11 +939,9 @@
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

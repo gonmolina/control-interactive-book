@@ -28,7 +28,7 @@ Dr = -Ka-Kb@Ltred
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m<ipython-input-14-2f2f6e4c599f>[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2420/928467669.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      3[0m [0;34m[0m[0m
 [1;32m      4[0m [0mAr[0m [0;34m=[0m [0mAbb[0m[0;34m-[0m[0mLtred[0m[0;34m@[0m[0mAab[0m[0;34m-[0m[0;34m([0m[0mBb[0m[0;34m-[0m[0mLtred[0m[0;34m@[0m[0mBa[0m[0;34m)[0m[0;34m@[0m[0mKb[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 5[0;31m [0mBr[0m [0;34m=[0m [0mAr[0m[0;34m@[0m[0mLtred[0m [0;34m+[0m [0mAba[0m [0;34m-[0m [0mLtred[0m[0;34m@[0m[0mAaa[0m [0;34m-[0m [0;34m([0m[0mBb[0m[0;34m-[0m[0mLtred[0m[0;34m@[0m[0mBa[0m[0;34m)[0m[0;34m@[0m[0mKa[0m[0;34m[0m[0;34m[0m[0m
