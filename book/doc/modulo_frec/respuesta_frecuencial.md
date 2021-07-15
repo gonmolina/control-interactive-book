@@ -158,7 +158,7 @@ escribiendo
 $$
 H(j\omega) =  |H(j\omega)| e^{j \phi(\omega)}
 $$
-con $$\phi (\omega)=\angle{H(j\omega)}$$
+con $\phi (\omega)=\angle{H(j\omega)}$
 
 por lo que:
 
@@ -473,6 +473,7 @@ el módulo es
 $$
 |G(j\omega)| = \dfrac{1}{\sqrt{\big(1-\dfrac{\omega^2}{\omega_n^2}\big)^2+4\xi^2\dfrac{\omega^2}{\omega_n^2}}} 
 $$
+
 $$
 \left.|G(j\omega)|\right|_{dB} = -10\log\left(\left(1-\dfrac{\omega^2}{\omega_n^2}\right)^2+4\xi^2\dfrac{\omega^2}{\omega_n^2}\right) 
 $$

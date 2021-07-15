@@ -103,11 +103,13 @@
         "vectores",
         "vectoresː",
         "wavfile",
+        "xkcd",
         "xlabel",
         "xlim",
         "ylabel",
         "ylim"
     ],
     "python.pythonPath": "/home/gonzalo/anaconda3/envs/dyc/bin/python",
+    "python.analysis.typeCheckingMode": "off",
     "myst.preview.enable": true
 }

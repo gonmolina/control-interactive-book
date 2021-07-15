@@ -26,17 +26,24 @@ donde $a(s)$ y $b(s)$ son polinomios en $s$ y no tienen factores en común. Para
 
 +++
 
-### **Polos** y **Ceros** de una función transferencia
+### Polos y Ceros de una función transferencia
+
+```{admonition} Polos
+:class: Important
 
 Denominamos **polos** de $G(s)$, a aquellos lugares del plano complejo $s$, en donde la función de transferencia $G(s)$ se hace infinita, o sea donde $a(s) = 0$ (las raíces del polinomio denominador $a(s)$).
+```
+```{admonition} Ceros
+:class: Important
 
 Denominan **ceros** de $G(s)$, a aquellos lugares del plano complejo $s$, en donde la función de transferencia $G(s)$ se hace cero, o sea donde $b(s)=0$ (las raíces del polinomio numerador $b(s)$).
-
-+++
-
-Los **polos y ceros describen completamente a $G(s)$**, excepto por un multiplicador constante (ganancia en estado estacionario). Esto significa que las funciones $G(s)$ las podemos representar directamente en el plano $s$.
+```
 
 Ya que la **respuesta de un sistema a un impulso está dada por su función de transferencia**, a dicha respuesta se la denomina **respuesta natural del sistema**. Podemos usar los polos y ceros para determinar la respuesta temporal y así identificar la forma de la respuestas temporales con las ubicaciones correspondientes de los polos y ceros de la función de transferencia.
+
+```{note}
+Los **polos y ceros describen completamente a $G(s)$ **, excepto por un multiplicador constante (ganancia en estado estacionario). Esto significa que las funciones $G(s)$ las podemos representar directamente en el plano $s$.
+```
 
 +++
 
@@ -62,7 +69,9 @@ print('Polos de la función H(s):', H.zero())
 print('Polos de la función H(s):', H.dcgain())
 ```
 
-**Nota:** también es posible usar las funciones anteriores (en lugar de los métodos del propio objeto) de la forma `ctrl.pole(H)`, `ctrl.zero(H)` y `ctrl.dcgain(H)`
+```{note}
+También es posible usar las funciones anteriores (en lugar de los métodos del propio objeto) de la forma `ctrl.pole(H)`, `ctrl.zero(H)` y `ctrl.dcgain(H)`
+```
 
 Otra forma de hallar los polo y ceros de un sistema es usando la función `roots()` de numpy, que permite calcular las raíces de un polinomio:
 
@@ -70,7 +79,7 @@ Otra forma de hallar los polo y ceros de un sistema es usando la función `roots
 np.roots(H.den[0][0])
 ```
 
-Las singularidade de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con círculos (o) para los ceros de la función, como lo muestra la función `pzmap` de la librería `control`
+Las singularidades de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con círculos (o) para los ceros de la función, como lo muestra la función `pzmap` de la librería `control`
 
 ```{code-cell} ipython3
 ctrl.pzmap(H);

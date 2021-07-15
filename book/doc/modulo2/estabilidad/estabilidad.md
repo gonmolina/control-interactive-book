@@ -174,4 +174,8 @@ Notar que la función de transferencia de este sistema tiene un polo en el orige
 
 Si un sistema invariante en el tiempo tiene cualquier polo en el eje imaginario o en el semiplano derecho, la respuesta no será acotada y para cualquier entrada acotada.
 
-Si todos los polos están dentro del semiplano izquierdo, entonces la respuesta será estable con entrada y salida acotadas. Por lo tanto, para sistemas invariantes en el tiempo (estacionarios), podemos utilizar la ubicación de los polos de la función de transferencia del sistema para verificar su estabilidad.
+```{admonition} Condición de estabilidad
+:class: important
+
+Si todos los polos están dentro del semiplano izquierdo sin incluir el eje imaginario, entonces la respuesta será estable con entrada y salida acotadas. Por lo tanto, para sistemas invariantes en el tiempo (estacionarios), podemos utilizar la ubicación de los polos de la función de transferencia del sistema para verificar su estabilidad.
+```

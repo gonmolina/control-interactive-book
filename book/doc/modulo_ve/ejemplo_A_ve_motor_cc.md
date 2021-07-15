@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -117,7 +117,6 @@ sys
 +++ {"id": "lL_pFIdWtUz2"}
 
 ## Ley de control y estimador completo
-
 
 ```{code-cell} ipython3
 ---
@@ -252,7 +251,6 @@ Los sistemas que necesitan se vuelven inestables cuando su valor ganancia se red
 
 Ahora pondremos los polos tal que $\omega_n=6$ rad/seg y $\zeta=0.707$
 
-
 ```{code-cell} ipython3
 ---
 colab:
@@ -296,8 +294,8 @@ Aab=sys.A[0:1,1:]
 Aba=sys.A[1:,0:1]
 Abb=sys.A[1:,1:]
 
-Ba = sys.B[0:1,0]
-Bb = sys.B[1:,0]
+Ba = sys.B[0:1,0:]
+Bb = sys.B[1:,0:]
 ```
 
 ```{code-cell} ipython3
@@ -358,8 +356,8 @@ executionInfo:
   user_tz: 180
 id: tNixGvOhkUb6
 ---
-Ka=K[0,0:1]
-Kb=K[0,1:]
+Ka=K[0:1,0:1]
+Kb=K[0:1,1:]
 
 Ar = Abb-Ltred@Aab-(Bb-Ltred@Ba)@Kb
 Br = Ar@Ltred + Aba - Ltred@Aaa - (Bb-Ltred@Ba)@Ka
@@ -480,7 +478,7 @@ plt.gcf().set_size_inches(8,6)
 
 +++ {"id": "-VJrPFw1otAC"}
 
-Agragamos referencia al controlador de orden reducido. 
+Agragamos referencia al controlador de orden reducido.
 
 ```{code-cell} ipython3
 ---
@@ -1132,7 +1130,7 @@ id: 3iImUh49uVgf
 outputId: 8da72d94-5f66-44d6-af35-e56f3a6ed380
 ---
 fig, ax = plt.subplots(figsize=(12,4))
-ax.plot(t,y[0,:],label="psys conectado con ref")
+ax.plot(t,y[0,:].T,label="psys conectado con ref")
 ax.set_title('Respuesta al escalón en la referencia')
 ax.set_xlabel("Tiempo")
 ax.set_ylabel("Salida")
@@ -1157,7 +1155,7 @@ id: 0Z2CTQWJuaKh
 outputId: 60ed8471-71f1-45e6-b17c-fe12f462224a
 ---
 fig, ax = plt.subplots(figsize=(12,4))
-ax.plot(t,y[1,:],label="psys conectado con ref")
+ax.plot(t,y[1,:].T,label="psys conectado con ref")
 ax.set_title('Respuesta al escalón en la referencia')
 ax.set_xlabel("Tiempo")
 ax.set_ylabel("Esfuerzo de control")
@@ -1249,7 +1247,6 @@ executionInfo:
 id: xTjVE_VV4Fyd
 outputId: 53c42b25-7d44-4edd-a92a-6bc09917ec85
 ---
-
 Ku = ctrl.place(Au,Bu, np.array([-1.42, -1.04+2.14j,-1.04-2.14j, -3])) 
 Ku
 ```
@@ -1378,7 +1375,7 @@ executionInfo:
 id: Hdl8n3i58IVH
 outputId: 14499339-d225-4f93-b3b8-82abaa9f5167
 ---
-Ce=-Ku[0,1:]
+Ce=-Ku[0:1,1:]
 Ce
 ```
 
@@ -1455,7 +1452,7 @@ outputId: f909c522-af22-4b3e-a58b-ab29e5ca0a03
 tags: [hide-input]
 ---
 fig, ax = plt.subplots(figsize=(12,4))
-ax.plot(t,y[0,:],label="psys conectado con ref")
+ax.plot(t,y[0,:].T,label="psys conectado con ref")
 ax.set_title('Respuesta al escalón en la referencia')
 ax.set_xlabel("Tiempo")
 ax.set_ylabel("Salida")
@@ -1500,9 +1497,13 @@ id: VroD8-gpCUGv
 outputId: 7c68b395-7c4e-4da5-afed-dbb32c8c87b9
 ---
 fig, ax = plt.subplots(figsize=(12,4))
-ax.plot(t,y[1,:],label="psys conectado con ref")
+ax.plot(t,y[1,:].T,label="psys conectado con ref")
 ax.set_title('Respuesta al escalón en la referencia')
 ax.set_xlabel("Tiempo")
 ax.set_ylabel("Esfuerzo de control")
 ax.grid()
+```
+
+```{code-cell} ipython3
+
 ```

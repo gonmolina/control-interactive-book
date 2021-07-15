@@ -77,11 +77,15 @@ y en el estado estacionario:
 
 $$\omega=\frac{K_0K_{cc}}{1+K_0K_c{c}}\omega_d$$
 
+
+```{admonition} Conclusión
+:class: Important
+
 Entonces, si se selecciona $K_{cc}$ de manera que $K_0K_{cc} >> 1$, tenemos que $\omega \approx \omega_d$.
 
-+++
-
 Como vemos del ejemplo en lazo abierto la salida es exactamente la referencia deseada $(\omega = \omega_d)$ y en lazo cerrado es aproximado $(\omega \approx \omega_d)$, pero debemos tener en cuenta que para el caso del sistema a lazo abierto necesitamos conocer exactamente el valor de $K_0$ para determinar la ganancia del controlador $K_{co}$, cosa que no es necesaria para el caso del sistema a lazo cerrado.
+
+```
 
 +++
 
@@ -165,11 +169,14 @@ El diseñador puede tomar un $K_{cc}$ de modo que $K_0K_{cc} >> 1$ y $K_0 K_{cc}
 
 +++
 
-## Conclusión
+
+```{admonition} Conclusión
+:class: Important
 
 Los errores del sistema son menos sensibles a las perturbaciones en los sistemas de lazo cerrado que en los sistemas a lazo abierto.
 
 Otra característica de los sistemas realimentados es que la velocidad de respuesta se puede mejorar con respecto a su sistema a lazo abierto (cuidado: sistemas con más polos afecta la estabilidad del sistema; menos amortiguados y hasta inestables).
+``` 
 
 ```{code-cell} ipython3
 
