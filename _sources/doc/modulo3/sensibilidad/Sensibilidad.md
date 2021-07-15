@@ -30,7 +30,7 @@ Mostramos un sistema a lazo abierto y lazo cerrado. Comparemos la sensibilidad p
 
 :::{figure-md}
 
-<img src="fig2_.gif" width=500px>
+<img src="fig2.gif" width=500px>
 
 Lazo abierto versus lazo cerrado
 :::
@@ -99,6 +99,8 @@ Aplicando la segunda definición de sensibilidad, obtendremos el mismo resultado
 
 +++
 
-**Conclusión:**
+```{admonition} Conclusión
+:class: important
 
-Con el ejemplo podemos decir que el error en la cantidad controlada con realimentación es sustancialmente menos sensible a las variaciones de parámetros del sistema que en un controlador de lazo abierto (y por lo tanto no se requiere un conocimiento preciso de las características del sistema, con el objeto de lograr un control preciso).
+El error en la salida controlada con realimentación es sustancialmente menos sensible a las variaciones de parámetros del sistema que en un controlador de lazo abierto. Por lo tanto no se requiere un conocimiento preciso de las características del sistema, para lograr un control preciso.
+```

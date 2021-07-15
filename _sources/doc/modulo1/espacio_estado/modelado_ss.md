@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -251,21 +251,25 @@ t,y=ctrl.step_response(24*motor_ss,T=t)
 
 fig, axes = plt.subplots(3, 1, figsize=(15, 15))
 
-axes[0].plot(t,y[0,:])
+axes[0].plot(t,y[0,:].T)
 axes[0].grid()
 axes[0].set_title(r"Corriente de armadura $i_a$")
 axes[0].set_ylabel(r'$i_a[A]$')
 
-axes[1].plot(t,y[1,:], 'g');
+axes[1].plot(t,y[1,:].T, 'g');
 axes[1].grid()
 axes[1].set_title(r"Velocidad angular del motor $\omega_m (t)$")
 axes[1].set_ylabel(r'$\omega$[rad/seg]')
 
-axes[2].plot(t,y[2,:], 'r', label="y = x")
+axes[2].plot(t,y[2,:].T, 'r', label="y = x")
 axes[2].grid()
 axes[2].set_title( r"Posición angular del motor $\theta_m(t)$")
 axes[2].set_xlabel('Tiempo[s]')
 axes[2].set_ylabel(r'$\theta_m(t)$');
 
 fig.tight_layout()
+```
+
+```{code-cell} ipython3
+
 ```

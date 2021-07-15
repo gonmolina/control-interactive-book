@@ -476,11 +476,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#notas-importantes">
-     Notas importantes:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#obtencion-de-la-funcion-transferencia-de-un-sistema">
      Obtención de la función transferencia de un sistema:
     </a>
@@ -488,11 +483,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-general">
      Ejemplo general:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importante">
-     Importante
     </a>
    </li>
   </ul>
@@ -549,8 +539,8 @@
 \[\frac{Y(s)}{U(s)}=H(s)\]</div>
 <p>donde <span class="math notranslate nohighlight">\(Y(s)\)</span> es la transformada de Laplace de la salida <span class="math notranslate nohighlight">\(y(t)\)</span> para una entrada arbitraria <span class="math notranslate nohighlight">\(u(t)\)</span>, cuya transformada de Laplace es <span class="math notranslate nohighlight">\(U(s)\)</span>.</p>
 <p>Notar que con esta definición, lo que se transforma al dominio de Laplace son las <strong>señales</strong> de entrada y salida. No es un sistema.</p>
-<div class="section" id="notas-importantes">
-<h3>Notas importantes:<a class="headerlink" href="#notas-importantes" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
 <ul class="simple">
 <li><p>Se puede demostrar <strong>que</strong> <span class="math notranslate nohighlight">\(H(s)\)</span> <strong>es la respuesta del sistema a una señal de entrada impulso unitario</strong> <span class="math notranslate nohighlight">\(\delta(t)\)</span>.</p></li>
 <li><p>Para sistemas Lineales Invariantes en el Tiempo (LTI), la relación <span class="math notranslate nohighlight">\(\dfrac{Y(s)}{U(s)}\)</span> se mantiene constante para todo <span class="math notranslate nohighlight">\(U(s)\)</span>.</p></li>
@@ -593,11 +583,11 @@
 <p>Despejando podemos obtener:</p>
 <div class="math notranslate nohighlight">
 \[H(s)=\frac{Y(s)}{U(s)}=\frac{b_ps^p+b_{p-1}s^{p-1}+\cdots+b_1s+b_0}{a_ns^n+a_{n-1}s^{n-1}+\cdots+a_1s+a_0}\]</div>
-</div>
-<div class="section" id="importante">
-<h3>Importante<a class="headerlink" href="#importante" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
 <p>En general los sistemas dinámicos en el dominio temporal se describen matemáticamente a partir de ecuaciones diferenciales.
 Es importante notar, que en el dominio transformado de Laplace estas ecuaciones diferenciales se transforman en ecuaciones algebraicas, resultando en un tratamiento matemático más sencillo.</p>
+</div>
 </div>
 </div>
 <div class="section" id="ejemplo-1-sistema-electromecanico-motor-electrico">
@@ -800,6 +790,10 @@ y(t)&amp;=x(t)
 </div>
 </div>
 <p>En los primeros segundos vemos una dinámica que produce rápidas oscilaciones, y se va que muy lentamente el sistema empieza a disminuir esas oscilaciones. En la figura de la izquierda vemos que esta oscilaciones tienden a 0, en un tiempo suficientemente grande. Estos sistemas que tienen dinámicas tan diferentes, por un lado la «lentas» como la que produce la extinción de las oscilaciones en un tiempo grande, y por otro lado las rápidas que se manifiestan en las oscilaciones se los conoce como <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">rígidos</span></code> o <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">stiff</span></code>.</p>
+<div class="admonition-sistemas-stiff admonition">
+<p class="admonition-title">Sistemas stiff</p>
+<p>Son aquellos sistemas que contienen dinámicas muy rápidas y muy lentas actuando a la vez.</p>
+</div>
 </div>
 </div>
 </div>

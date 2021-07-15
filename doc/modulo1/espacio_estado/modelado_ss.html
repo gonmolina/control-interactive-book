@@ -603,7 +603,7 @@ u
 <h3>Simulación<a class="headerlink" href="#simulacion" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -613,7 +613,7 @@ u
 <p>Definimos los parámetros del sistema</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jm</span> <span class="o">=</span> <span class="mf">3.2284E-6</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Jm</span> <span class="o">=</span> <span class="mf">3.2284E-6</span>
 <span class="n">Dm</span> <span class="o">=</span> <span class="mf">3.5077E-6</span>
 <span class="n">Kb</span> <span class="o">=</span> <span class="mf">0.0274</span>
 <span class="n">Kt</span> <span class="o">=</span> <span class="mf">0.0274</span>
@@ -626,7 +626,7 @@ u
 <p>Con los parámetros del sistema definimos las matrices de estados</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="n">Ra</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="o">-</span><span class="n">Kb</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">Kt</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="o">-</span><span class="n">Dm</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="n">Ra</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="o">-</span><span class="n">Kb</span><span class="o">/</span><span class="n">La</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">Kt</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="o">-</span><span class="n">Dm</span><span class="o">/</span><span class="n">Jm</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
 <span class="n">B</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="n">La</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]</span>
 <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">D</span> <span class="o">=</span> <span class="mi">0</span>
@@ -639,16 +639,29 @@ u
 <p>Ahora vamos a definir el sistema en espacio de estados usando el paquete de control e python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motor_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motor_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
 <span class="n">motor_ss</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrll|rll}
+-1.&amp;\hspace{-1em}45&amp;\hspace{-1em}\cdot10^{6}&amp;-9.&amp;\hspace{-1em}96&amp;\hspace{-1em}\cdot10^{3}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;3.&amp;\hspace{-1em}64&amp;\hspace{-1em}\cdot10^{5}\\
+8.&amp;\hspace{-1em}49&amp;\hspace{-1em}\cdot10^{3}&amp;-1.&amp;\hspace{-1em}09&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Vamos a evaluar la respuesta del sistema frente a un cambio escalón en la tension de alimentación. Para esto primero vamos a definir un vector <code class="docutils literal notranslate"><span class="pre">t</span></code> donde nos interesa obtener los valores de la salida. Esto lo haremos usando la función <code class="docutils literal notranslate"><span class="pre">linspace</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -656,7 +669,7 @@ u
 <p>El función <code class="docutils literal notranslate"><span class="pre">step_response</span></code> del paquete de control de python nos devolverá dos vectores: uno con los tiempo donde calculó las salidas y otro con las salidas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">motor_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">motor_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -664,7 +677,7 @@ u
 <p>Una vez que tenemos la salida (para este caso es una sola), podemos graficarla:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posición angular del motor&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
@@ -672,6 +685,9 @@ u
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/modelado_ss_21_0.png" src="../../../_images/modelado_ss_21_0.png" />
 </div>
 </div>
 <p>Ahora supongamos que deseamos medir velocidad angular del motor, es decir la variable de estado <span class="math notranslate nohighlight">\(x_2\)</span>, entonces podemos definir la matriz <span class="math notranslate nohighlight">\(C\)</span> de la siguiente manera:</p>
@@ -682,7 +698,7 @@ u
 <p>y graficamos simulamos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">motor_vel_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
 <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="n">motor_vel_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
@@ -692,7 +708,7 @@ u
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Posición angular del motor&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
@@ -701,22 +717,40 @@ u
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/modelado_ss_24_0.png" src="../../../_images/modelado_ss_24_0.png" />
+</div>
 </div>
 <p>En los casos anteriores, el sistema es SISO, es decir 1 entrada y 1 salida, supongamos ahora que deseamos medir todas las variables de estado <span class="math notranslate nohighlight">\(\theta_m(t)\)</span> (la posición angular), <span class="math notranslate nohighlight">\(\omega_m (t)= \frac{d\theta_m(t)}{dt}\)</span> (la velocidad angular) y <span class="math notranslate nohighlight">\(i_a(t)\)</span> (la corriente de armadura), para lo que definiremos nuevamente la matriz de medición <span class="math notranslate nohighlight">\(C\)</span> y graficaremos las variables de estado para una entrada del tipo escalón de <span class="math notranslate nohighlight">\(1 ~[Volt]\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
 <span class="n">D</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]</span>
 <span class="n">motor_ss</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
 <span class="n">motor_ss</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrll|rll}
+-1.&amp;\hspace{-1em}45&amp;\hspace{-1em}\cdot10^{6}&amp;-9.&amp;\hspace{-1em}96&amp;\hspace{-1em}\cdot10^{3}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;3.&amp;\hspace{-1em}64&amp;\hspace{-1em}\cdot10^{5}\\
+8.&amp;\hspace{-1em}49&amp;\hspace{-1em}\cdot10^{3}&amp;-1.&amp;\hspace{-1em}09&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <p>Ahora podemos simular la respuesta al escalón</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
 <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="n">motor_ss</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -724,19 +758,19 @@ u
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Corriente de armadura $i_a$&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$i_a[A]$&#39;</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Velocidad angular del motor $\omega_m (t)$&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\omega$[rad/seg]&#39;</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y = x&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y = x&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span> <span class="sa">r</span><span class="s2">&quot;Posición angular del motor $\theta_m(t)$&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">)</span>
@@ -745,6 +779,9 @@ u
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/modelado_ss_29_0.png" src="../../../_images/modelado_ss_29_0.png" />
 </div>
 </div>
 </div>

@@ -80,7 +80,11 @@ $$T(s)=\frac{Y(s)}{R(s)}=\frac{k D(s) G(s)}{1+k D(s) G(s)}$$
 
 donde,
 
-$$ G(s) = \frac{N_G(s)}{D_G(s)}=\frac{\prod_{i=1}^{m_G}(s+z_i)}{\prod_{j=1}^{n_G}(s+p_j)}$$ y $$ D(s) = \frac{N_D(s)}{D_D(s)}=\frac{\prod_{i=1}^{m_D}(s+z_i)}{\prod_{j=1}^{n_D}(s+p_j)}$$
+$$ G(s) = \frac{N_G(s)}{D_G(s)}=\frac{\prod_{i=1}^{m_G}(s+z_i)}{\prod_{j=1}^{n_G}(s+p_j)}$$ 
+
+y 
+
+$$ D(s) = \frac{N_D(s)}{D_D(s)}=\frac{\prod_{i=1}^{m_D}(s+z_i)}{\prod_{j=1}^{n_D}(s+p_j)}$$
 
 Los polos y ceros de $G(s)$ son la solución de $N_G(s)=0$ y $D_G(s)=0$ respectivamente, y los polos y ceros de $D(s)$ son la solución de $N_D(s)=0$ y $D_D(s)=0$.
 
@@ -88,7 +92,11 @@ La función de transferencia a lazo cerrado se puede representar de la siguiente
 
 $$T(s)=\frac{k N_D(s) N_G(s)}{D_D(s) D_G(s)+k N_D(s) N_G(s)}$$
 
-**Resultado importante:** de $T(s)$ se puede ver que los **ceros a lazo cerrado no se "mueven"**, es decir son siempre los mismos al cambiar el valor del parámetro $k$, pero los **polos** a lazo cerrado sí
+```{admonition} Resultado importante 
+:class: important
+
+En $T(s)$ se puede ver que los **ceros a lazo cerrado no se "mueven"**, es decir son siempre los mismos al cambiar el valor del parámetro $k$, pero los **polos** a lazo cerrado sí
+```
 
 $$
 \begin{matrix}
@@ -265,13 +273,16 @@ Teniendo en cuanta que la función compleja la podemos discriminar en su magnitu
 
 +++
 
-### Condición de fase
+```{admonition} Condición de fase
+:class: important
 
 El lugar geométrico de las raíces de $D(s)G(s)$ es el lugar geométrico de puntos en el plano-$s$ donde la fase de $D(s)G(s)$ es 180.
 
 Esto se lo conoce como la condición de fase, que significa matemáticamente:
 
 $$\angle G(s) = 180^o+\ell.360^o,\quad \text{con } \ell \text{ entero.}$$
+
+```
 
 +++
 
@@ -327,9 +338,21 @@ $$
 
 La fase de $ G $ para este punto de prueba vale $ -136.3^o $, y no $ 180^o $ por lo tanto este punto de prueba no pertenece al lugar geométrico de las raíces.
 
-```{note}
-Verificamos la fase en ese punto con Python.
-```
+````{note}
+
+Para verificar este punto con Python debemos evaluar la función transferencia en el punto de interés y el ángulo de valor resultante.
+
+  ```{code} python
+    s=ctrl.tf('s')
+    G=(s+1)/(s*((s+2)**2+4)*(s+4))
+    ang=np.angle(G(-1+2j))*180/np.pi
+    print(ang)
+  ```
+````
+
+
+
+Mostramos este código en acción y vemos el resultado:
 
 ```{code-cell} ipython3
 s=ctrl.tf('s')

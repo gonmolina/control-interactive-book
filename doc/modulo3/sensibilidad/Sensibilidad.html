@@ -509,7 +509,7 @@
 \[ S^T_C = \dfrac{C}{T}\dfrac{dT}{dC}\]</div>
 <p>Mostramos un sistema a lazo abierto y lazo cerrado. Comparemos la sensibilidad para estos dos casos:</p>
 <div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="doc/modulo3/sensibilidad/fig2_.gif"><img alt="doc/modulo3/sensibilidad/fig2_.gif" src="doc/modulo3/sensibilidad/fig2_.gif" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/fig21.gif"><img alt="../../../_images/fig21.gif" src="../../../_images/fig21.gif" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Figura 35 </span><span class="caption-text">Lazo abierto versus lazo cerrado</span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">¶</a></p>
 </div>
 <p>En el caso de lazo abierto tenemos:</p>
@@ -550,8 +550,10 @@
 \[\dfrac{\delta \omega^\prime}{\omega^{\prime}}=\dfrac{1}{1+K_0K_{cc}}\dfrac{\delta K_0}{K_0}\]</div>
 <p>Que equivale decir que un cambio en un <span class="math notranslate nohighlight">\(10\%\)</span> en el valor de <span class="math notranslate nohighlight">\(K_0\)</span>, solo afectará en <span class="math notranslate nohighlight">\(\dfrac{1}{1+K_0K_{cc}}\)</span>en <span class="math notranslate nohighlight">\(\omega^\prime &gt;&gt;\omega_d\)</span> y esto lo podemos hacer chico si <span class="math notranslate nohighlight">\(K_{cc} K_0 &gt;&gt; 1\)</span>.</p>
 <p>Aplicando la segunda definición de sensibilidad, obtendremos el mismo resultado.</p>
-<p><strong>Conclusión:</strong></p>
-<p>Con el ejemplo podemos decir que el error en la cantidad controlada con realimentación es sustancialmente menos sensible a las variaciones de parámetros del sistema que en un controlador de lazo abierto (y por lo tanto no se requiere un conocimiento preciso de las características del sistema, con el objeto de lograr un control preciso).</p>
+<div class="important admonition">
+<p class="admonition-title">Conclusión</p>
+<p>El error en la salida controlada con realimentación es sustancialmente menos sensible a las variaciones de parámetros del sistema que en un controlador de lazo abierto. Por lo tanto no se requiere un conocimiento preciso de las características del sistema, para lograr un control preciso.</p>
+</div>
 </div>
 </div>
 </div>

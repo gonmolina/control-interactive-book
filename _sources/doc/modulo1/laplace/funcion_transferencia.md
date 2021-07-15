@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -30,9 +30,10 @@ Notar que con esta definición, lo que se transforma al dominio de Laplace son l
 
 +++ {"slideshow": {"slide_type": "subslide"}}
 
-### Notas importantes:
+```{important}
 - Se puede demostrar **que** $H(s)$ **es la respuesta del sistema a una señal de entrada impulso unitario** $\delta(t)$.
 - Para sistemas Lineales Invariantes en el Tiempo (LTI), la relación $\dfrac{Y(s)}{U(s)}$ se mantiene constante para todo $U(s)$.
+```
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -80,10 +81,11 @@ $$H(s)=\frac{Y(s)}{U(s)}=\frac{b_ps^p+b_{p-1}s^{p-1}+\cdots+b_1s+b_0}{a_ns^n+a_{
 
 +++
 
-### Importante
+```{important}
 
 En general los sistemas dinámicos en el dominio temporal se describen matemáticamente a partir de ecuaciones diferenciales. 
 Es importante notar, que en el dominio transformado de Laplace estas ecuaciones diferenciales se transforman en ecuaciones algebraicas, resultando en un tratamiento matemático más sencillo.
+```
 
 +++
 
@@ -311,6 +313,6 @@ fig.tight_layout()
 
 En los primeros segundos vemos una dinámica que produce rápidas oscilaciones, y se va que muy lentamente el sistema empieza a disminuir esas oscilaciones. En la figura de la izquierda vemos que esta oscilaciones tienden a 0, en un tiempo suficientemente grande. Estos sistemas que tienen dinámicas tan diferentes, por un lado la "lentas" como la que produce la extinción de las oscilaciones en un tiempo grande, y por otro lado las rápidas que se manifiestan en las oscilaciones se los conoce como `sistemas rígidos` o `sistemas stiff`.
 
-```{code-cell} ipython3
-
+```{admonition} Sistemas stiff
+Son aquellos sistemas que contienen dinámicas muy rápidas y muy lentas actuando a la vez.
 ```

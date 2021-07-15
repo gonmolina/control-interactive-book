@@ -477,14 +477,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polos-y-ceros-de-una-funcion-transferencia">
-     <strong>
-      Polos
-     </strong>
-     y
-     <strong>
-      Ceros
-     </strong>
-     de una función transferencia
+     Polos y Ceros de una función transferencia
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -558,11 +551,20 @@
 <p>donde <span class="math notranslate nohighlight">\(a(s)\)</span> y <span class="math notranslate nohighlight">\(b(s)\)</span> son polinomios en <span class="math notranslate nohighlight">\(s\)</span> y no tienen factores en común. Para sistemas físicamente reales el orden del polinomio denominador <span class="math notranslate nohighlight">\(a(s)\)</span> siempre es mayor o igual al orden del numerador <span class="math notranslate nohighlight">\(b(s)\)</span>, por razones de causalidad.</p>
 <p><strong>Un sistema donde el orden del polinomio denominador de la función transferencia es menor que el del numerador, representa un sistema que depende de valores futuros de la entrada.</strong></p>
 <div class="section" id="polos-y-ceros-de-una-funcion-transferencia">
-<h3><strong>Polos</strong> y <strong>Ceros</strong> de una función transferencia<a class="headerlink" href="#polos-y-ceros-de-una-funcion-transferencia" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3>Polos y Ceros de una función transferencia<a class="headerlink" href="#polos-y-ceros-de-una-funcion-transferencia" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="important admonition">
+<p class="admonition-title">Polos</p>
 <p>Denominamos <strong>polos</strong> de <span class="math notranslate nohighlight">\(G(s)\)</span>, a aquellos lugares del plano complejo <span class="math notranslate nohighlight">\(s\)</span>, en donde la función de transferencia <span class="math notranslate nohighlight">\(G(s)\)</span> se hace infinita, o sea donde <span class="math notranslate nohighlight">\(a(s) = 0\)</span> (las raíces del polinomio denominador <span class="math notranslate nohighlight">\(a(s)\)</span>).</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Ceros</p>
 <p>Denominan <strong>ceros</strong> de <span class="math notranslate nohighlight">\(G(s)\)</span>, a aquellos lugares del plano complejo <span class="math notranslate nohighlight">\(s\)</span>, en donde la función de transferencia <span class="math notranslate nohighlight">\(G(s)\)</span> se hace cero, o sea donde <span class="math notranslate nohighlight">\(b(s)=0\)</span> (las raíces del polinomio numerador <span class="math notranslate nohighlight">\(b(s)\)</span>).</p>
-<p>Los <strong>polos y ceros describen completamente a <span class="math notranslate nohighlight">\(G(s)\)</span></strong>, excepto por un multiplicador constante (ganancia en estado estacionario). Esto significa que las funciones <span class="math notranslate nohighlight">\(G(s)\)</span> las podemos representar directamente en el plano <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</div>
 <p>Ya que la <strong>respuesta de un sistema a un impulso está dada por su función de transferencia</strong>, a dicha respuesta se la denomina <strong>respuesta natural del sistema</strong>. Podemos usar los polos y ceros para determinar la respuesta temporal y así identificar la forma de la respuestas temporales con las ubicaciones correspondientes de los polos y ceros de la función de transferencia.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los **polos y ceros describen completamente a <span class="math notranslate nohighlight">\(G(s)\)</span> **, excepto por un multiplicador constante (ganancia en estado estacionario). Esto significa que las funciones <span class="math notranslate nohighlight">\(G(s)\)</span> las podemos representar directamente en el plano <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</div>
 </div>
 <div class="section" id="ejemplo-de-la-respuesta-temporal-de-sistema-lti">
 <h3>Ejemplo de la respuesta temporal de sistema LTI<a class="headerlink" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti" title="Enlazar permanentemente con este título">¶</a></h3>
@@ -601,7 +603,10 @@ Polos de la función H(s): 0.5
 </div>
 </div>
 </div>
-<p><strong>Nota:</strong> también es posible usar las funciones anteriores (en lugar de los métodos del propio objeto) de la forma <code class="docutils literal notranslate"><span class="pre">ctrl.pole(H)</span></code>, <code class="docutils literal notranslate"><span class="pre">ctrl.zero(H)</span></code> y <code class="docutils literal notranslate"><span class="pre">ctrl.dcgain(H)</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>También es posible usar las funciones anteriores (en lugar de los métodos del propio objeto) de la forma <code class="docutils literal notranslate"><span class="pre">ctrl.pole(H)</span></code>, <code class="docutils literal notranslate"><span class="pre">ctrl.zero(H)</span></code> y <code class="docutils literal notranslate"><span class="pre">ctrl.dcgain(H)</span></code></p>
+</div>
 <p>Otra forma de hallar los polo y ceros de un sistema es usando la función <code class="docutils literal notranslate"><span class="pre">roots()</span></code> de numpy, que permite calcular las raíces de un polinomio:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,7 +620,7 @@ Polos de la función H(s): 0.5
 </div>
 </div>
 </div>
-<p>Las singularidade de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con círculos (o) para los ceros de la función, como lo muestra la función <code class="docutils literal notranslate"><span class="pre">pzmap</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">control</span></code></p>
+<p>Las singularidades de una Función de Transferencia los dibujaremos en el plano-s, con cruces (x) para los polos y con círculos (o) para los ceros de la función, como lo muestra la función <code class="docutils literal notranslate"><span class="pre">pzmap</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">control</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">pzmap</span><span class="p">(</span><span class="n">H</span><span class="p">);</span>
@@ -623,7 +628,7 @@ Polos de la función H(s): 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_9_0.png" src="../../../_images/Respuesta Temporal_9_0.png" />
+<img alt="../../../_images/Respuesta Temporal_8_0.png" src="../../../_images/Respuesta Temporal_8_0.png" />
 </div>
 </div>
 </div>
@@ -670,7 +675,7 @@ h(t) =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_12_0.png" src="../../../_images/Respuesta Temporal_12_0.png" />
+<img alt="../../../_images/Respuesta Temporal_11_0.png" src="../../../_images/Respuesta Temporal_11_0.png" />
 </div>
 </div>
 <p>Por lo dicho antes, como la función transferencia de un sistema es la transformada de Laplace de la respuesta al impulso, y la transformada del impulso es 1, podemos graficar esta función temporal, graficando la respuesta al impulso con el comando <code class="docutils literal notranslate"><span class="pre">impulse_response</span></code>:</p>
@@ -693,7 +698,7 @@ h(t) =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_15_0.png" src="../../../_images/Respuesta Temporal_15_0.png" />
+<img alt="../../../_images/Respuesta Temporal_14_0.png" src="../../../_images/Respuesta Temporal_14_0.png" />
 </div>
 </div>
 <p>Veremos otra forma de definir una Función de Transferencia a partir de la definición de la «función de transferencia elemental, s», luego es posible hacer operaciones algebraicas (sumas, restas, divisiones y productos) con esta función para definir la función de transferencia de un sistema dinámico cualquiera.</p>
@@ -724,7 +729,7 @@ h(t) =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_18_0.png" src="../../../_images/Respuesta Temporal_18_0.png" />
+<img alt="../../../_images/Respuesta Temporal_17_0.png" src="../../../_images/Respuesta Temporal_17_0.png" />
 </div>
 </div>
 </div>
@@ -767,7 +772,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_21_0.png" src="../../../_images/Respuesta Temporal_21_0.png" />
+<img alt="../../../_images/Respuesta Temporal_20_0.png" src="../../../_images/Respuesta Temporal_20_0.png" />
 </div>
 </div>
 </div>
@@ -824,7 +829,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_24_0.png" src="../../../_images/Respuesta Temporal_24_0.png" />
+<img alt="../../../_images/Respuesta Temporal_23_0.png" src="../../../_images/Respuesta Temporal_23_0.png" />
 </div>
 </div>
 <p>Vemos primero, que como los sistemas tienen el mismo valor de <span class="math notranslate nohighlight">\(K\)</span> entonces el valor final es el mismo para los tres sistemas.</p>
@@ -850,7 +855,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_26_0.png" src="../../../_images/Respuesta Temporal_26_0.png" />
+<img alt="../../../_images/Respuesta Temporal_25_0.png" src="../../../_images/Respuesta Temporal_25_0.png" />
 </div>
 </div>
 <p>Podemos ver que los tres sistemas cortan a la linea gris inferior que está en <span class="math notranslate nohighlight">\(\approx 0.63\)</span> en el valor de <span class="math notranslate nohighlight">\(\tau\)</span>. Por lo que podemos concluir que un sistema de primer orden llega al 63% de su valor final en <span class="math notranslate nohighlight">\(\tau\)</span> segundos.</p>
@@ -890,7 +895,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_30_0.png" src="../../../_images/Respuesta Temporal_30_0.png" />
+<img alt="../../../_images/Respuesta Temporal_29_0.png" src="../../../_images/Respuesta Temporal_29_0.png" />
 </div>
 </div>
 <p>Si se tiene un sistema de orden <span class="math notranslate nohighlight">\(n\)</span> con todas raíces reales se puede descomponer por fracciones simples y analizar las repuesta de los <span class="math notranslate nohighlight">\(n\)</span> polos por separados, y de estar forma analizar como se comporta el sistema.</p>
@@ -930,7 +935,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_36_0.png" src="../../../_images/Respuesta Temporal_36_0.png" />
+<img alt="../../../_images/Respuesta Temporal_35_0.png" src="../../../_images/Respuesta Temporal_35_0.png" />
 </div>
 </div>
 <p>Como vemos, la respuesta al impulso a un par de polos complejos conjugados es una sinusoide amortiguada por una exponencial. Tanto la exponencial, como la frecuencia de la sinusoide depende solo de los polos.</p>
@@ -1135,7 +1140,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_41_0.png" src="../../../_images/Respuesta Temporal_41_0.png" />
+<img alt="../../../_images/Respuesta Temporal_40_0.png" src="../../../_images/Respuesta Temporal_40_0.png" />
 </div>
 </div>
 <p>Los polos complejos conjugados los podemos definir en términos de sus partes real e imaginaria, tradicionalmente:</p>
@@ -1187,7 +1192,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Respuesta Temporal_47_0.png" src="../../../_images/Respuesta Temporal_47_0.png" />
+<img alt="../../../_images/Respuesta Temporal_46_0.png" src="../../../_images/Respuesta Temporal_46_0.png" />
 </div>
 </div>
 </div>

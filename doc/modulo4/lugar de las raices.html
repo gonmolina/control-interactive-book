@@ -501,11 +501,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#condicion-de-fase">
-     Condición de fase
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#condicion-de-magnitud-o-de-modulo">
      Condición de magnitud o de módulo
     </a>
@@ -584,12 +579,18 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \[T(s)=\frac{Y(s)}{R(s)}=\frac{k D(s) G(s)}{1+k D(s) G(s)}\]</div>
 <p>donde,</p>
 <div class="math notranslate nohighlight">
-\[ G(s) = \frac{N_G(s)}{D_G(s)}=\frac{\prod_{i=1}^{m_G}(s+z_i)}{\prod_{j=1}^{n_G}(s+p_j)}$$ y $$ D(s) = \frac{N_D(s)}{D_D(s)}=\frac{\prod_{i=1}^{m_D}(s+z_i)}{\prod_{j=1}^{n_D}(s+p_j)}\]</div>
+\[ G(s) = \frac{N_G(s)}{D_G(s)}=\frac{\prod_{i=1}^{m_G}(s+z_i)}{\prod_{j=1}^{n_G}(s+p_j)}\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[ D(s) = \frac{N_D(s)}{D_D(s)}=\frac{\prod_{i=1}^{m_D}(s+z_i)}{\prod_{j=1}^{n_D}(s+p_j)}\]</div>
 <p>Los polos y ceros de <span class="math notranslate nohighlight">\(G(s)\)</span> son la solución de <span class="math notranslate nohighlight">\(N_G(s)=0\)</span> y <span class="math notranslate nohighlight">\(D_G(s)=0\)</span> respectivamente, y los polos y ceros de <span class="math notranslate nohighlight">\(D(s)\)</span> son la solución de <span class="math notranslate nohighlight">\(N_D(s)=0\)</span> y <span class="math notranslate nohighlight">\(D_D(s)=0\)</span>.</p>
 <p>La función de transferencia a lazo cerrado se puede representar de la siguiente forma:</p>
 <div class="math notranslate nohighlight">
 \[T(s)=\frac{k N_D(s) N_G(s)}{D_D(s) D_G(s)+k N_D(s) N_G(s)}\]</div>
-<p><strong>Resultado importante:</strong> de <span class="math notranslate nohighlight">\(T(s)\)</span> se puede ver que los <strong>ceros a lazo cerrado no se «mueven»</strong>, es decir son siempre los mismos al cambiar el valor del parámetro <span class="math notranslate nohighlight">\(k\)</span>, pero los <strong>polos</strong> a lazo cerrado sí</p>
+<div class="important admonition">
+<p class="admonition-title">Resultado importante</p>
+<p>En <span class="math notranslate nohighlight">\(T(s)\)</span> se puede ver que los <strong>ceros a lazo cerrado no se «mueven»</strong>, es decir son siempre los mismos al cambiar el valor del parámetro <span class="math notranslate nohighlight">\(k\)</span>, pero los <strong>polos</strong> a lazo cerrado sí</p>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{matrix}
@@ -751,8 +752,8 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \end{array}\right.
 \end{split}\]</div>
 <p>Teniendo en cuanta que la función compleja la podemos discriminar en su magnitud y fase, y para <span class="math notranslate nohighlight">\(k&gt;=0\)</span>, podemos arribar a la siguientes definiciones:</p>
-<div class="section" id="condicion-de-fase">
-<h3>Condición de fase<a class="headerlink" href="#condicion-de-fase" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="important admonition">
+<p class="admonition-title">Condición de fase</p>
 <p>El lugar geométrico de las raíces de <span class="math notranslate nohighlight">\(D(s)G(s)\)</span> es el lugar geométrico de puntos en el plano-<span class="math notranslate nohighlight">\(s\)</span> donde la fase de <span class="math notranslate nohighlight">\(D(s)G(s)\)</span> es 180.</p>
 <p>Esto se lo conoce como la condición de fase, que significa matemáticamente:</p>
 <div class="math notranslate nohighlight">
@@ -796,8 +797,15 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 <p>La fase de <span class="math notranslate nohighlight">\( G \)</span> para este punto de prueba vale <span class="math notranslate nohighlight">\( -136.3^o \)</span>, y no <span class="math notranslate nohighlight">\( 180^o \)</span> por lo tanto este punto de prueba no pertenece al lugar geométrico de las raíces.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Verificamos la fase en ese punto con Python.</p>
+<p>Para verificar este punto con Python debemos evaluar la función transferencia en el punto de interés y el ángulo de valor resultante.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">s</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+  <span class="n">G</span><span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="p">((</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">4</span><span class="p">))</span>
+  <span class="n">ang</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">G</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="n">j</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<p>Mostramos este código en acción y vemos el resultado:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>

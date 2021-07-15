@@ -542,10 +542,14 @@ y los del estimador tres veces más rápidos.</p>
 <p>Como tenemos el sistema en forma de función transferencia lo llevamos a alguna forma en espacio de estados (la que sea por defecto de Python)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="mi">10</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">G</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{10}{s^3 + 10 s^2 + 16 s}\]</div>
 </div>
 </div>
 <div class="section" id="expresion-en-variables-de-estado">
@@ -553,17 +557,30 @@ y los del estimador tres veces más rápidos.</p>
 <p>De las formas canónicas disponibles, elegimos la forma canónica de observabilidad.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ctrl.canonical_form?
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ctrl.canonical_form<span class="o">?</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="s1">&#39;observable&#39;</span><span class="p">)</span>
 <span class="n">sys</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrll|rll}
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-16\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 </div>
@@ -571,7 +588,7 @@ y los del estimador tres veces más rápidos.</p>
 <h2>Ley de control y estimador completo<a class="headerlink" href="#ley-de-control-y-estimador-completo" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">])</span>
 <span class="n">pe</span> <span class="o">=</span> <span class="n">pc</span><span class="o">*</span><span class="mi">3</span>
 </pre></div>
 </div>
@@ -581,7 +598,7 @@ y los del estimador tres veces más rápidos.</p>
 <p><strong>Obtenemos la ley de control:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -589,7 +606,7 @@ y los del estimador tres veces más rápidos.</p>
 <p><strong>Obtenemos L del estimador:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -600,16 +617,27 @@ y los del estimador tres veces más rápidos.</p>
 <h3>Sistema controlador con estimador completo<a class="headerlink" href="#sistema-controlador-con-estimador-completo" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="nd">@K</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="nd">@K</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dc</span><span class="p">)</span>
 <span class="n">ctrl</span><span class="o">.</span><span class="n">isctime</span><span class="p">(</span><span class="n">Dc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.93739746+8.32368499j, -2.93739746-8.32368499j,
+        1.87479491+0.j        ])
 </pre></div>
 </div>
 </div>
@@ -628,8 +656,13 @@ y los del estimador tres veces más rápidos.</p>
 <p>Ahora pondremos los polos tal que <span class="math notranslate nohighlight">\(\omega_n=6\)</span> rad/seg y <span class="math notranslate nohighlight">\(\zeta=0.707\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pe_red</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mf">0.707</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="o">**</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pe_red</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mf">0.707</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="o">**</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">pe_red</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.242+4.24328128j, -4.242-4.24328128j])
 </pre></div>
 </div>
 </div>
@@ -637,28 +670,39 @@ y los del estimador tres veces más rápidos.</p>
 <p>Necesitamos las sub-matrices de A para calcular el estimadore reducido</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">Aab</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
 <span class="n">Aba</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">Abb</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">1</span><span class="p">:]</span>
 
-<span class="n">Ba</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">Bb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Ba</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:]</span>
+<span class="n">Bb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">0</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-10.]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ltred</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">Abb</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">Aab</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe_red</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ltred</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">Abb</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">Aab</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe_red</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Ltred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 8.484],
+       [36.   ]])
 </pre></div>
 </div>
 </div>
@@ -667,8 +711,8 @@ y los del estimador tres veces más rápidos.</p>
 <h3>Sistema controlador con estimador reducido<a class="headerlink" href="#sistema-controlador-con-estimador-reducido" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ka</span><span class="o">=</span><span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">Kb</span><span class="o">=</span><span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ka</span><span class="o">=</span><span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Kb</span><span class="o">=</span><span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
 
 <span class="n">Ar</span> <span class="o">=</span> <span class="n">Abb</span><span class="o">-</span><span class="n">Ltred</span><span class="nd">@Aab</span><span class="o">-</span><span class="p">(</span><span class="n">Bb</span><span class="o">-</span><span class="n">Ltred</span><span class="nd">@Ba</span><span class="p">)</span><span class="nd">@Kb</span>
 <span class="n">Br</span> <span class="o">=</span> <span class="n">Ar</span><span class="nd">@Ltred</span> <span class="o">+</span> <span class="n">Aba</span> <span class="o">-</span> <span class="n">Ltred</span><span class="nd">@Aaa</span> <span class="o">-</span> <span class="p">(</span><span class="n">Bb</span><span class="o">-</span><span class="n">Ltred</span><span class="nd">@Ba</span><span class="p">)</span><span class="nd">@Ka</span>
@@ -680,29 +724,55 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ar</span><span class="p">,</span><span class="n">Br</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">Dr</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ar</span><span class="p">,</span><span class="n">Br</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">Dr</span><span class="p">)</span>
 <span class="n">Dcr</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-8.&amp;\hspace{-1em}48&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;32.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}\\
+-93.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;264\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+-5.&amp;\hspace{-1em}76&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}65&amp;\hspace{-1em}\phantom{\cdot}&amp;20.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dcr</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dcr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{20.93 s^2 + 23.72 s - 28.94}{s^2 + 1.984 s + 38.47}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.992+6.12247793j, -0.992-6.12247793j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.73868705+0.j, -1.871798  +0.j])
 </pre></div>
 </div>
 </div>
@@ -710,35 +780,44 @@ y los del estimador tres veces más rápidos.</p>
 <p>Si bien este diseño mejoró al anterior ya que el controlador resultante es estable, este presenta un problema potencialmente menos danino. El problema es que es un controlador de no mínima fase, ya que tiene un 0 en el lado derecho del plano <span class="math notranslate nohighlight">\(s\)</span>, limitando la velocidad del sistema controlado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=-</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dcr</span><span class="p">)</span><span class="o">*</span><span class="n">G</span><span class="o">/</span><span class="n">ctrl</span><span class="o">.</span><span class="n">db2mag</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=-</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dcr</span><span class="p">)</span><span class="o">*</span><span class="n">G</span><span class="o">/</span><span class="n">ctrl</span><span class="o">.</span><span class="n">db2mag</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">ctrl</span><span class="o">.</span><span class="n">bode</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dB</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">omega_num</span><span class="o">=</span><span class="mi">2000</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_35_0.png" src="../../_images/ejemplo_A_ve_motor_cc_35_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ctrl</span><span class="o">.</span><span class="n">bode</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">dB</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_36_0.png" src="../../_images/ejemplo_A_ve_motor_cc_36_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">nyquist</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">nyquist</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_38_0.png" src="../../_images/ejemplo_A_ve_motor_cc_38_0.png" />
 </div>
 </div>
 <p>Agragamos referencia al controlador de orden reducido.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
     <span class="n">aux1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">)),</span>
                    <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">D</span><span class="p">))))</span>
     <span class="n">n</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -756,28 +835,51 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span><span class="p">,</span> <span class="n">Nu</span> <span class="o">=</span> <span class="n">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span><span class="p">,</span> <span class="n">Nu</span> <span class="o">=</span> <span class="n">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
 <span class="n">Nbar</span> <span class="o">=</span> <span class="n">calculate_Nbar</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Nu</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 <span class="n">Nbar</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.8038904]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="n">Nbar</span> <span class="c1"># Lo vemos mañana como se saca</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="n">Nbar</span> <span class="c1"># Lo vemos mañana como se saca</span>
 <span class="n">M</span><span class="o">=</span><span class="p">(</span><span class="n">Bb</span><span class="o">-</span><span class="n">Ltred</span><span class="nd">@Ba</span><span class="p">)</span><span class="o">*</span><span class="n">N</span>
 <span class="n">M</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.      ],
+       [8.038904]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr_ref</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ar</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">Br</span><span class="p">,</span><span class="n">M</span><span class="p">)),</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">Dr</span><span class="p">,</span><span class="n">N</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcr_ref</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ar</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">Br</span><span class="p">,</span><span class="n">M</span><span class="p">)),</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">Dr</span><span class="p">,</span><span class="n">N</span><span class="p">)))</span>
 <span class="n">Dcr_ref</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rllrll}
+-8.&amp;\hspace{-1em}48&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;32.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-93.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;264\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;8.&amp;\hspace{-1em}04&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+-5.&amp;\hspace{-1em}76&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}65&amp;\hspace{-1em}\phantom{\cdot}&amp;20.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}804&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 </div>
@@ -788,11 +890,11 @@ y los del estimador tres veces más rápidos.</p>
 <p>Para usar SRL vamos a tomat que <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{C_1}\)</span> y que <span class="math notranslate nohighlight">\(\mathbf{B} = \mathbf{B_1}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
     <span class="n">num</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">den</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">den</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">nume</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">))]</span>
-    <span class="n">dene</span> <span class="o">=</span> <span class="p">[</span><span class="n">den</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">den</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">den</span><span class="p">))]</span>
+    <span class="n">nume</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">%</span><span class="k">2</span>+1-i)) for i in range(0, len(num))]
+    <span class="n">dene</span> <span class="o">=</span> <span class="p">[</span><span class="n">den</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">den</span><span class="p">)</span><span class="o">%</span><span class="k">2</span>+1-i)) for i in range(0, len(den))]
     <span class="k">return</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">nume</span><span class="p">,</span><span class="n">dene</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -800,26 +902,43 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Gm</span><span class="o">=</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gm</span><span class="o">=</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 <span class="n">Gm</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{10}{-s^3 + 10 s^2 - 16 s}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">Gm</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">Gm</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_49_0.png" src="../../_images/ejemplo_A_ve_motor_cc_49_0.png" />
 </div>
 </div>
 <p>Con <span class="math notranslate nohighlight">\(K=26\)</span> obtenemos los polos con una frecuenca de corte de 2.5 rad/seg.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">kvect</span><span class="o">=</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span><span class="n">Plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">kvect</span><span class="o">=</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span><span class="n">Plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">real</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">pc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/rlocus.py:121: FutureWarning: &#39;Plot&#39; keyword is deprecated in root_locus; use &#39;plot&#39;
+  warnings.warn(&quot;&#39;Plot&#39; keyword is deprecated in root_locus; &quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.04131959+0.j        , -2.00120126-1.52846879j,
+       -2.00120126+1.52846879j])
 </pre></div>
 </div>
 </div>
@@ -827,24 +946,36 @@ y los del estimador tres veces más rápidos.</p>
 <p>Y con K=1350 tenemos los polos del estimador.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pe</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">kvect</span><span class="o">=</span><span class="p">[</span><span class="mi">1350</span><span class="p">],</span><span class="n">Plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pe</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">kvect</span><span class="o">=</span><span class="p">[</span><span class="mi">1350</span><span class="p">],</span><span class="n">Plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">pe</span> <span class="o">=</span> <span class="n">pe</span><span class="p">[</span><span class="n">pe</span><span class="o">.</span><span class="n">real</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">pe</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polos de la ley de control: &quot;</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polos del estimador: &quot;</span><span class="p">,</span><span class="n">pe</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-9.16842047+0.j        , -4.00280684-4.90432763j,
+       -4.00280684+4.90432763j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polos de la ley de control: &quot;</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Polos del estimador: &quot;</span><span class="p">,</span><span class="n">pe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Polos de la ley de control:  [-8.04131959+0.j         -2.00120126-1.52846879j -2.00120126+1.52846879j]
+Polos del estimador:  [-9.16842047+0.j         -4.00280684-4.90432763j -4.00280684+4.90432763j]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">,</span><span class="n">pc</span><span class="p">)</span>
 <span class="n">L</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -852,46 +983,71 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="nd">@K</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="nd">@K</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">K</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">Dcsrl</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{-93.59 s^2 - 982 s - 1873}{s^3 + 19.22 s^2 + 150.7 s + 632.6}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-10.64805029+0.j        ,  -4.28485298+6.40706271j,
+        -4.28485298-6.40706271j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dcsrl</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.34091949e+17+0.j, -7.98559378e+00+0.j, -2.50686229e+00+0.j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">bode</span><span class="p">((</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">,</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcr</span><span class="p">,</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcsrl</span><span class="p">),</span><span class="n">omega_limits</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span><span class="mf">1e2</span><span class="p">),</span><span class="n">dB</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">bode</span><span class="p">((</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">,</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcr</span><span class="p">,</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcsrl</span><span class="p">),</span><span class="n">omega_limits</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span><span class="mf">1e2</span><span class="p">),</span><span class="n">dB</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_59_0.png" src="../../_images/ejemplo_A_ve_motor_cc_59_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcr</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcsrl</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.6817283208673983, 13.183302483780011, 1.3027826533898883, 2.608292172554138)
+(1.3198762960800288, -35.20865106169387, 2.078898635880349, 4.058211662618313)
+(3.7818445925935946, 60.09561708471924, 5.49748749557276, 1.7117848527162414)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dc</span><span class="p">)</span>
 <span class="n">T2</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcr</span><span class="p">)</span>
 <span class="n">T3</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">*</span><span class="n">Dcsrl</span><span class="p">)</span>
 </pre></div>
@@ -900,9 +1056,18 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Los polos de T1 son: </span><span class="si">{</span><span class="n">T1</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Los polos de T1 son: </span><span class="si">{</span><span class="n">T1</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Los polos de T2 son: </span><span class="si">{</span><span class="n">T2</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Los polos de T3 son: </span><span class="si">{</span><span class="n">T3</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Los polos de T1 son: [-3.12+6.42j -3.12-6.42j -1.04+2.14j -1.04-2.14j -1.42+0.j   -4.26+0.j  ]
+Los polos de T2 son: [-4.242+4.24328128j -4.242-4.24328128j -1.04 +2.14j
+ -1.04 -2.14j       -1.42 +0.j        ]
+Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.00280684+4.90432763j
+ -4.00280684-4.90432763j -2.00120126+1.52846879j -2.00120126-1.52846879j]
 </pre></div>
 </div>
 </div>
@@ -911,7 +1076,7 @@ y los del estimador tres veces más rápidos.</p>
 <h3>Respuesta al escalón del sistema «controlado» (a partir de una salida distinta de 0)<a class="headerlink" href="#respuesta-al-escalon-del-sistema-controlado-a-partir-de-una-salida-distinta-de-0" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">t2</span><span class="p">,</span><span class="n">y2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">t3</span><span class="p">,</span><span class="n">y3</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">T3</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 </pre></div>
@@ -920,7 +1085,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;T1&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;T2&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;T3&quot;</span><span class="p">)</span>
@@ -932,6 +1097,9 @@ y los del estimador tres veces más rápidos.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_65_0.png" src="../../_images/ejemplo_A_ve_motor_cc_65_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -941,34 +1109,84 @@ y los del estimador tres veces más rápidos.</p>
 <p>Par aun mayor control de como están ubicados los eatados, las entradas y la salidas es conveniente usar la función <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> y <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ctrl.connect?
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ctrl.connect<span class="o">?</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dc</span><span class="p">),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dc</span><span class="p">),</span>
                                <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sys_conectado_1</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrllrllrllrll|rll}
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-16\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;464\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-57.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-10.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+61.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-77.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+217\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;247\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-57.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;46.&amp;\hspace{-1em}4&amp;\hspace{-1em}\phantom{\cdot}&amp;-5.&amp;\hspace{-1em}76&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}65&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dcr</span><span class="p">),[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dcr</span><span class="p">),[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sys_conectado_2</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrllrllrll|rll}
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-16\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+209\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-57.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+32.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-8.&amp;\hspace{-1em}48&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+264\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-93.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;6.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+20.&amp;\hspace{-1em}9&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-5.&amp;\hspace{-1em}76&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}65&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_3</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">Dcsrl</span><span class="p">),</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_conectado_3</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">Dcsrl</span><span class="p">),</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sys_conectado_3</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrllrllrllrll|rll}
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-16\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;2.&amp;\hspace{-1em}59&amp;\hspace{-1em}\phantom{\cdot}&amp;-2.&amp;\hspace{-1em}09&amp;\hspace{-1em}\phantom{\cdot}&amp;-2.&amp;\hspace{-1em}04&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+7.&amp;\hspace{-1em}17&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-17.&amp;\hspace{-1em}2&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+97.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-113\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+367\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-365\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-2.&amp;\hspace{-1em}09&amp;\hspace{-1em}\phantom{\cdot}&amp;-2.&amp;\hspace{-1em}04&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}259&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}209&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}204&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>La manera en que <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code> trabaja es:</p>
@@ -988,7 +1206,7 @@ y los del estimador tres veces más rápidos.</p>
 <p>Vamos a realizar nuevamente las simulaciones con los sistemas definidos mediante el connect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys_conectado_1</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys_conectado_1</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">t2</span><span class="p">,</span><span class="n">y2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys_conectado_2</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">t3</span><span class="p">,</span><span class="n">y3</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys_conectado_3</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 </pre></div>
@@ -997,7 +1215,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 1&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="n">y2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 2&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span><span class="n">y3</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 3&quot;</span><span class="p">)</span>
@@ -1009,11 +1227,14 @@ y los del estimador tres veces más rápidos.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_76_0.png" src="../../_images/ejemplo_A_ve_motor_cc_76_0.png" />
+</div>
 </div>
 <p>Podemos también mirar el esfuerzo de control, ya que es salida de la planta.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 1&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="n">y2</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 2&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span><span class="n">y3</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sys conectado 3&quot;</span><span class="p">)</span>
@@ -1025,34 +1246,49 @@ y los del estimador tres veces más rápidos.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_78_0.png" src="../../_images/ejemplo_A_ve_motor_cc_78_0.png" />
+</div>
 </div>
 <p>Este ejemplo muestra claramente como la elección de los polos usando cirterios de optimización como son los de lugar simétrico de las ráices nos da un control mucho mejor, tanto en tiempo de respuesta como en el esfuerzo de control.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">psys_controlado_con_ref</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dcr_ref</span><span class="p">),</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psys_controlado_con_ref</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dcr_ref</span><span class="p">),</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">psys_controlado_con_ref</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">dcgain</span><span class="p">(</span><span class="n">psys_controlado_con_ref</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.242+4.24328128j, -4.242-4.24328128j, -1.04 +2.14j      ,
+       -1.04 -2.14j      , -1.42 +0.j        ])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">psys_controlado_con_ref</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">dcgain</span><span class="p">(</span><span class="n">psys_controlado_con_ref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.],
+       [0.]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">psys_controlado_con_ref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón en la referencia&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Salida&quot;</span><span class="p">)</span>
@@ -1060,17 +1296,23 @@ y los del estimador tres veces más rápidos.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_83_0.png" src="../../_images/ejemplo_A_ve_motor_cc_83_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón en la referencia&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Esfuerzo de control&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_84_0.png" src="../../_images/ejemplo_A_ve_motor_cc_84_0.png" />
 </div>
 </div>
 </div>
@@ -1078,116 +1320,218 @@ y los del estimador tres veces más rápidos.</p>
 <h2>Control integral y estimador de orden completo<a class="headerlink" href="#control-integral-y-estimador-de-orden-completo" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">))</span>
 <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0., -10.,   1.,   0.],
+       [  0., -16.,   0.,   1.],
+       [  0.,  -0.,   0.,   0.]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Au</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">)),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Au</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">)),</span>
               <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">))))</span>
 <span class="n">Au</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.,   1.,   0.,   0.],
+       [  0., -10.,   1.,   0.],
+       [  0., -16.,   0.,   1.],
+       [  0.,  -0.,   0.,   0.]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">))</span>
 <span class="n">Bu</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.],
+       [ 0.],
+       [ 0.],
+       [10.]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ku</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">Au</span><span class="p">,</span><span class="n">Bu</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]))</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ku</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">Au</span><span class="p">,</span><span class="n">Bu</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]))</span> 
 <span class="n">Ku</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  2.4116712, -29.1264696,   3.81148  ,  -0.35     ]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ki</span><span class="o">=</span><span class="n">Ku</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ki</span><span class="o">=</span><span class="n">Ku</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">Ki</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integrador</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],[[</span><span class="n">Ki</span><span class="p">,</span><span class="o">-</span><span class="n">Ki</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">integrador</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4116711999999754
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">###  Estimado  mas ley de control</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrador</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],[[</span><span class="n">Ki</span><span class="p">,</span><span class="o">-</span><span class="n">Ki</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">integrador</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rll|rllrll}
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;2.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}&amp;-2.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###  Estimado  mas ley de control</span>
 
 <span class="n">L</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">])</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">L</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.5     ],
+       [ 61.5332  ],
+       [217.050408]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ae</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ae</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">-</span><span class="n">L</span><span class="nd">@sys</span><span class="o">.</span><span class="n">C</span>
 <span class="n">Ae</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Be</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">))</span>
-<span class="n">Be</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -10.5     ,    1.      ,    0.      ],
+       [ -77.5332  ,    0.      ,    1.      ],
+       [-217.050408,    0.      ,    0.      ]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ce</span><span class="o">=-</span><span class="n">Ku</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Be</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Be</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.5     ,   0.      ],
+       [ 61.5332  ,   0.      ],
+       [217.050408,  10.      ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ce</span><span class="o">=-</span><span class="n">Ku</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
 <span class="n">Ce</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[29.1264696, -3.81148  ,  0.35     ]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">De</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">De</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">estim</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ae</span><span class="p">,</span><span class="n">Be</span><span class="p">,</span><span class="n">Ce</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">estim</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrll|rllrll}
+-10.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-77.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;61.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-217\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;217\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+29.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;-3.&amp;\hspace{-1em}81&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}35&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">planta_controlada</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">estim</span><span class="p">,</span> <span class="n">integrador</span><span class="p">),</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planta_controlada</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">estim</span><span class="p">,</span> <span class="n">integrador</span><span class="p">),</span> 
                                  <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">planta_controlada</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrllrllrllrllrll|rll}
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-16\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;291\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-38.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;3.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-10.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+61.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-77.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+217\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;74.&amp;\hspace{-1em}2&amp;\hspace{-1em}\phantom{\cdot}&amp;-38.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;3.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-2.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;2.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;29.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;-3.&amp;\hspace{-1em}81&amp;\hspace{-1em}\phantom{\cdot}&amp;0.&amp;\hspace{-1em}35&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">planta_controlada</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">planta_controlada</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón en la referencia&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Salida&quot;</span><span class="p">)</span>
@@ -1195,24 +1539,36 @@ y los del estimador tres veces más rápidos.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_99_0.png" src="../../_images/ejemplo_A_ve_motor_cc_99_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">planta_controlada</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planta_controlada</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3.12+6.42j, -3.12-6.42j, -1.04+2.14j, -1.04-2.14j, -4.26+0.j  ,
+       -3.  +0.j  , -1.42+0.j  ])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;psys conectado con ref&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón en la referencia&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Esfuerzo de control&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ejemplo_A_ve_motor_cc_101_0.png" src="../../_images/ejemplo_A_ve_motor_cc_101_0.png" />
 </div>
 </div>
 </div>

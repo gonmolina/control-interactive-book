@@ -541,11 +541,6 @@
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusión
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -596,8 +591,11 @@
 <p>y en el estado estacionario:</p>
 <div class="math notranslate nohighlight">
 \[\omega=\frac{K_0K_{cc}}{1+K_0K_c{c}}\omega_d\]</div>
+<div class="important admonition">
+<p class="admonition-title">Conclusión</p>
 <p>Entonces, si se selecciona <span class="math notranslate nohighlight">\(K_{cc}\)</span> de manera que <span class="math notranslate nohighlight">\(K_0K_{cc} &gt;&gt; 1\)</span>, tenemos que <span class="math notranslate nohighlight">\(\omega \approx \omega_d\)</span>.</p>
 <p>Como vemos del ejemplo en lazo abierto la salida es exactamente la referencia deseada <span class="math notranslate nohighlight">\((\omega = \omega_d)\)</span> y en lazo cerrado es aproximado <span class="math notranslate nohighlight">\((\omega \approx \omega_d)\)</span>, pero debemos tener en cuenta que para el caso del sistema a lazo abierto necesitamos conocer exactamente el valor de <span class="math notranslate nohighlight">\(K_0\)</span> para determinar la ganancia del controlador <span class="math notranslate nohighlight">\(K_{co}\)</span>, cosa que no es necesaria para el caso del sistema a lazo cerrado.</p>
+</div>
 </div>
 </div>
 <div class="section" id="perturbaciones">
@@ -650,13 +648,13 @@
 <div class="math notranslate nohighlight">
 \[\Omega = \dfrac{K_0K_{cc}}{1+K_0K_{cc}}\Omega_d+\dfrac{K_0K_{l}}{1+K_0K_{cc}}T_l\]</div>
 <p>El diseñador puede tomar un <span class="math notranslate nohighlight">\(K_{cc}\)</span> de modo que <span class="math notranslate nohighlight">\(K_0K_{cc} &gt;&gt; 1\)</span> y <span class="math notranslate nohighlight">\(K_0 K_{cc} &gt;&gt; K_0 K_l\)</span>, no resultará en un error significativo con o sin torsión de carga perturbadora.</p>
-</div>
-</div>
-</div>
-<div class="section" id="conclusion">
-<h2>Conclusión<a class="headerlink" href="#conclusion" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Conclusión</p>
 <p>Los errores del sistema son menos sensibles a las perturbaciones en los sistemas de lazo cerrado que en los sistemas a lazo abierto.</p>
 <p>Otra característica de los sistemas realimentados es que la velocidad de respuesta se puede mejorar con respecto a su sistema a lazo abierto (cuidado: sistemas con más polos afecta la estabilidad del sistema; menos amortiguados y hasta inestables).</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 
