@@ -14,9 +14,9 @@ kernelspec:
 
 # Formas canónicas de un espacio de estados
 
-Para un sistema dado, existen un númeor infinito de posbiles modelos en espacios de estados que nos darán las mismas salidas para las mismas entradas. Por lo tanto es deseable tener ciertas formas estandarizadas de estrutras de espacioes de estados. Llamaremos a estas, las **formas canónicas**. 
+Para un sistema dado, existen un número infinito de posibles modelos en espacios de estados que nos darán las mismas salidas para las mismas entradas. Por lo tanto es deseable tener ciertas formas estandarizadas de estructuras de espacios de estados. Llamaremos a estas, las **formas canónicas**. 
 
-Dado un sistema en su forma de función transferencia, es posible obtener cada una de sus formas canónicas es espacios de estados. Considerar el siguiente sistema linial definido por sus ecuacuibes diferenciales:
+Dado un sistema en su forma de función transferencia, es posible obtener cada una de sus formas canónicas es espacios de estados. Considerar el siguiente sistema lineal definido por sus ecuaciones diferenciales:
 
 +++
 
@@ -48,7 +48,7 @@ $$
 
 ## Forma canónica de controlabilidad
 
-Para obtener la forma **canónica contorlable** debemos escribir las matrices del sistema en espacio de estado ${A_c, B_c, C_c, D_c}$, de la siguiente manera:
+Para obtener la forma **canónica controlable** debemos escribir las matrices del sistema en espacio de estado ${A_c, B_c, C_c, D_c}$, de la siguiente manera:
 
 +++
 
@@ -85,7 +85,7 @@ $$
 
 +++
 
-Obtener la representanción de estados en la forma **canonica de controlabildad**.
+Obtener la representación de estados en la forma **canónica de controlabilidad**.
 
 Por inspección vemos que, $n = 2$ (el exponente más grande del denominador en $s$), por lo tanto  $a_1 = 3,~ a_2 = 2,~ b_0 = 0,~ b_1 = 1$ y $b_2 = 3$. Por lo tanto tenemos que:
 
@@ -118,7 +118,7 @@ $$
 
 +++
 
-Suponiendo que $A_c, B_c, C_c, D_c$ son las matrices de un sistema en su forma canónica de controlabildad, el sistema en su forma **canónica de observable** tendrá la siguiente forma:
+Suponiendo que $A_c, B_c, C_c, D_c$ son las matrices de un sistema en su forma canónica de controlabilidad, el sistema en su forma **canónica de observable** tendrá la siguiente forma:
 
 $$ A_o = A_c^T \quad B_o =B_c^T \quad C_o = B_C^T \quad D_o=D_c $$
 
