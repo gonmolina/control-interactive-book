@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.0
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -277,10 +277,6 @@ ax[1].semilogx(angx, angy, '--', alpha=0.7)
 ax[1].set_xlim([0.012, 100])
 ax[1].plot([0.97, 1.03], [0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red");
 ```
-
-+++ {"tags": ["remove-input", "raises-exception"]}
-
-
 
 +++ {"tags": ["remove-input"]}
 

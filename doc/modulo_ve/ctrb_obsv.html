@@ -582,7 +582,7 @@
 </div>
 </div>
 </div>
-<p>Por lo tanto podemos ver que la función transferencia de <span class="math notranslate nohighlight">\(sys\)</span> será la misma que la de <span class="math notranslate nohighlight">\(G\)</span>. Es decir, <span class="math notranslate nohighlight">\(sys\)</span> se comporta externamente igual que <span class="math notranslate nohighlight">\(G\)</span>. Verificamos</p>
+<p>Por lo tanto podemos ver que la función transferencia de <span class="math notranslate nohighlight">\(sys\)</span> será la misma que la de <span class="math notranslate nohighlight">\(G\)</span>. Es decir, <span class="math notranslate nohighlight">\(sys\)</span> se comporta <strong>externamente</strong> igual que <span class="math notranslate nohighlight">\(G\)</span>. Verificamos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_c</span><span class="p">)</span>
@@ -678,7 +678,7 @@
 </div>
 </div>
 </div>
-<p>Esta forma canónica lo que haces es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz <span class="math notranslate nohighlight">\(\mathbf A\)</span>. Esto sucede por que hay casos que no se puede o no se desea aislarlos:</p>
+<p>Esta forma canónica lo que hace es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz <span class="math notranslate nohighlight">\(\mathbf A\)</span>. Esto sucede por que hay casos que no se puede o no se desea aislarlos:</p>
 <ul class="simple">
 <li><p>en caso de que se tengan autovalores complejos conjugados, no se aíslan para lograr tener una matriz <span class="math notranslate nohighlight">\(\mathbf A\)</span>, <span class="math notranslate nohighlight">\(\mathbf B\)</span> y <span class="math notranslate nohighlight">\(\mathbf C\)</span> a coeficiente reales.</p></li>
 <li><p>en caso de que sean multiples no se pueden aislar por que tienen el mismo autovector y no se pueden usar estos para la transformación. Para estos casos se utiliza la forma de Jordan.</p></li>
@@ -737,8 +737,8 @@
 <p class="admonition-title">Nota</p>
 <ul class="simple">
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">canonical_form</span></code> devuelve un sistema en la forma canónica solicitada y la matriz de transformación necesaria para obtenerlo</p></li>
-<li><p>En la diagonal tenemos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
-<li><p>Fuera de la diagonal tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)</p></li>
+<li><p>en la diagonal de <span class="math notranslate nohighlight">\(\mathbf A\)</span> tenemos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
+<li><p>fuera de la diagonal <span class="math notranslate nohighlight">\(\mathbf A\)</span> tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)</p></li>
 </ul>
 </div>
 <p>Verificamos el resto de las matrices:</p>
@@ -832,8 +832,11 @@
 </div>
 </div>
 </div>
-<p>Podemos ver que este sistema no puede ser escrito en su forma canónica de observabilidad. Esto sucede por que el sistema no es observable.</p>
-<p>La interpretación se da por que un sistema observable necesita tener evidencia de lo que sucede con cada modo a la salida. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene ninguna evidencia del modo en -1 a la salida del mismo.</p>
+<p>Podemos ver que este sistema no puede ser escrito en su forma canónica de observabilidad. Esto sucede por que el sistema no es observable</p>
+<div class="hint admonition">
+<p class="admonition-title">Interpretación</p>
+<p>Un sistema observable necesita tener evidencia de lo que sucede con cada modo en al menos una salida del sistema. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene ninguna evidencia del modo en -1 a la salida del mismo.</p>
+</div>
 <p>Ahora hagamos la conexión al revés (primero <span class="math notranslate nohighlight">\(G1\)</span> y luego <span class="math notranslate nohighlight">\(G2\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -860,8 +863,11 @@
 </div>
 </div>
 <p>Podemos ver que ahora no podemos obtener la forma canónica de observabilidad.</p>
+<div class="hint admonition">
+<p class="admonition-title">Interpretación</p>
 <p>La razón de esto es que no se puede excitar el modo -1, que ahora quedó tapado desde el lado de la entrada. Toda excitación que tenga «frecuencia generalizada -1» será tapada por el cero en -1. Por lo tanto este sistema no es controlable, ya que no puede excitar desde esa entrada el modo -1.</p>
-<p>Es importante destacar que ambos sistemas presentan la misma función transferencia <span class="math notranslate nohighlight">\(G1.G2\)</span>, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilidad son propiedades internas de un sistema, por lo que no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.</p>
+</div>
+<p>Es importante destacar que ambos sistemas presentan la misma función transferencia <span class="math notranslate nohighlight">\(G1.G2\)</span>, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilidad son propiedades internas de un sistema.</p>
 <div class="admonition attention">
 <p class="admonition-title">Atención</p>
 <p>La <strong>controlabilidad</strong> y la <strong>observabilidad</strong>  no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.</p>
@@ -885,8 +891,8 @@
 </div>
 </div>
 <p>Podemos ver ahora que la matriz <span class="math notranslate nohighlight">\(\mathbf C\)</span> no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenemos un 0 en la primer fila de <span class="math notranslate nohighlight">\(\mathbf B\)</span>, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.</p>
-<div class="admonition attention">
-<p class="admonition-title">Atención</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
 <p>La controlabilidad y la observabilidad pueden ser evaluadas con el sistema en su forma <strong>canónica modal</strong> analizando las relaciones  de la matrices <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> con la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </div>
 </div>

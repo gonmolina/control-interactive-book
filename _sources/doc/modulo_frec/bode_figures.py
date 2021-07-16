@@ -7,7 +7,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.10.2
+#       jupytext_version: 1.10.3
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -18,6 +18,7 @@
 import control as ctrl
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.ticker import ScalarFormatter
 # %matplotlib inline
 
 # %% [markdown]
@@ -195,16 +196,17 @@ mag, ph, w = ctrl.bode(G, omega_limits=(0.01, 1000), omega_num=2001,
 # Grafico de asintotas y bode "a mano"
 
 # %%
+
 fig, ax = plt.subplots(figsize=(12, 6))
-ax.semilogx(asin1_x, asin1_y, '--', alpha=0.4, label='Asíntotas polo -10')
-ax.semilogx(asin2_x, asin2_y, '--', alpha=0.4, label='Asíntotas polo -50')
-ax.semilogx(asin3_x, asin3_y, '--', alpha=0.4, label='Asíntota polo 0')
-ax.semilogx(asin4_x, asin4_y, '--', alpha=0.4, label='Asíntotas cero  -0.5')
+ax.semilogx(asin1_x, asin1_y, '--', alpha=0.4, label='Asintotas polo -10')
+ax.semilogx(asin2_x, asin2_y, '--', alpha=0.4, label='Asintotas polo -50')
+ax.semilogx(asin3_x, asin3_y, '--', alpha=0.4, label='Asintota polo 0')
+ax.semilogx(asin4_x, asin4_y, '--', alpha=0.4, label='Asintotas cero  -0.5')
 ax.set_xlim([0.01, 800])
 
 with plt.xkcd():
     ax.semilogx(asin_final_x, asin_final_y, 'b--', alpha=0.8,
-                label='Composición asíntotas')
+                label='Composición asintotas')
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     ax.xaxis.set_ticks_position('bottom')
@@ -236,8 +238,11 @@ with plt.xkcd():
     ax.set_xlim([0.01, 800])
     ax.set_yticks([-180, -135, -90, -45, 0])
 
+
 ax.plot([0.011, 10, 50], [0, 0, 0], lw=0, marker='x', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red") 
 ax.plot([0.5], [0], lw=0, marker='o', markersize=11, markerfacecolor='white', markeredgewidth=2, markeredgecolor="red")
 fig.savefig('asintotico_fase.png')
+
+# %%
 
 # %%

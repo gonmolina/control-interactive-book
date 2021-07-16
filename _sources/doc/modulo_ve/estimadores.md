@@ -16,7 +16,7 @@ kernelspec:
 
 # Diseño de estimadores
 
-Hasta ahora aprendimos a obetner la ley de control suponiendo conocido el vetor de estados. En general en control no se mido de forma completa todos lo estados del sistema. Por lo tanto será necesario contruir un sistema que nos permita __estimar__ los estados de la planta que quremos controlar a partir de lsa varaibles que conocemos. En general las variables que conocemos son las _salidas_ (mediciones) y las _entradas_ que son las variables que no da nuestro controlador y que serán entradas de los acutadores de la planta.
+Hasta ahora aprendimos a obtener la ley de control suponiendo conocido el vector de estados. En general en control no se mido de forma completa todos lo estados del sistema. Por lo tanto será necesario construir un sistema que nos permita __estimar__ los estados de la planta que queremos controlar a partir de lsa variables que conocemos. En general las variables que conocemos son las _salidas_ (mediciones) y las _entradas_ que son las variables que no da nuestro controlador y que serán entradas de los actuadores de la planta.
 
 
 +++ {"id": "YSG8ObATiDMV"}
@@ -25,44 +25,47 @@ Hasta ahora aprendimos a obetner la ley de control suponiendo conocido el vetor 
 
 Con el modelo de la planta, suponiendo que es fiel a la realidad, uno podría pensar en darle las mismas entradas que tiene la planta y de obtener los estados del modelo directamente. Sin embargo esto choca con dos problemas:
 * se debe conocer las condiciones iniciales en todo momento, sino el sistema tardará lo que corresponda para  según sus modos para obtener una estimación correcta.
-* cualuier error en el modelado pueda hacer diverger las estiaciones respecto al vaor de los estados reales sin ningún control de las mismas.
+* cualquier error en el modelado pueda hacer divergir las estimaciones respecto al valor de los estados reales sin ningún control de las mismas.
 
 +++ {"id": "cT4SikTwiDMX"}
 
-Por estos problemas, es que se hace lo que mejor hacemos en control, __REALIMENTAR__.
+Por estos problemas, es que se hace lo que mejor hacemos en control, **REALIMENTAR**.
 
 +++ {"id": "_6qBicU_iDMZ"}
 
 La idea es utilizar lo que sabemos de la salida tanto del modelo como de la planta para obtener una estimación de los estados. 
 
-Llamando $\mathbf {\hat x}$ a la estimación de $\mathbf x$ lo que se propone es un estimador que siga la siguiente escuciones:
+Llamando $\mathbf {\hat x}$ a la estimación de $\mathbf x$ lo que se propone es un estimador que siga la siguiente ecuaciones:
 
 $$\dot{ \hat{ \mathbf{x}}}=\mathbf A\hat{\mathbf{x}}+\mathbf B u+\mathbf L(y-\mathbf C \hat{\mathbf{x}})$$
 
 +++ {"id": "OBIu1_mfiDMa"}
 
 Definimos entonces error de estimación como:
+
 $$\tilde{\mathbf x} = \mathbf x -  \mathbf {\hat {\mathbf x}}$$
 
 Por lo tanto la dinámica del error de estimación resulta:
+
 $$\dot {\tilde {\mathbf{ x}}} = (\mathbf A - \mathbf{LC})\tilde {\mathbf x}$$
 
 +++ {"id": "U9dR4qO3iDMb"}
 
-La ecuación caraterística del error de estimación entonces e:
+La ecuación característica del error de estimación entonces e:
+
 $$\det\left[s\mathbf I -(\mathbf{A-LC}\right)]=0$$
 
 +++ {"id": "0hmPx2AOiDMd"}
 
-Esta ecuación no esta dicendo que podemos elegir un $\mathbf L$ de forma tal que la dinámica del error sea la que querramos.
+Esta ecuación no esta diciendo que podemos elegir un $\mathbf L$ de forma tal que la dinámica del error sea la que queramos.
 
 Si se compara con la de la ley de control:
 
 $$\det\left[s\mathbf I -(\mathbf{A-BK}\right)]=0$$
 
-podemos ver ciertas simiitudes o semejanzas.
+podemos ver ciertas similitudes o semejanzas.
 
-Por ejemplo, si transponemos la ecuación caraterística del observador resulta:
+Por ejemplo, si transponemos la ecuación característica del observador resulta:
 
 $$\det\left[s\mathbf I -(\mathbf{A'-C'L'}\right)]=0$$
 
@@ -76,15 +79,21 @@ L=(acker(A.T,C.T)).T
 
 ```
 
-Siguiendo con el análisis análogo al de la ley de control, se puede decir que:
+```{important}
+De forma análoga a la ley de control, podemos decir que solo podremos tener una única $L$ que no permite ubicar los polos de la dinámica del error de estimación si y solo si el sistema es observable
+```
 
-**solo podremos tener una única L que no permite ubicar los polos de la dinámica del error de estimación si y solo si el sistema es observable**
+```{hint}
 
-Y el sistema es observable si y solo si el rango de la matriz de obserbavilidad $\mathcal O$ es igual al orden $n$ del sistema.
+Y el sistema es observable si y solo si el rango de la matriz de observabilidad $\mathcal O$ es igual al orden $n$ del sistema.
 
-+++ {"id": "GJHXQldviDMf"}
+```
+
+```{hint}
 
 A esto se lo conoce como **dualidad** entre los problemas de control y estimación.
+
+```
 
 +++ {"id": "VWKPR_BUiDMg"}
 
@@ -93,9 +102,10 @@ A esto se lo conoce como **dualidad** entre los problemas de control y estimaci�
 +++ {"id": "T0b-HP_0iDMh"}
 
 La idea de este estimador es reducir el orden del mismo.
-Para esto lo que se busca es no estimar las varaibles que se conocen de antemano, es decir las mediciones.
+Para esto lo que se busca es no estimar las variables que se conocen de antemano, es decir las mediciones.
 
 Escribamos el sistema como:
+
 $$\begin{bmatrix}
 \dot {x_a} \\
 \dot{\mathbf{ x}_b}\end{bmatrix}=
@@ -103,16 +113,19 @@ $$\begin{bmatrix}
 \mathbf A_{ba} & \mathbf{A}_{bb}\end{bmatrix}\begin{bmatrix}
 x_a \\
 \mathbf x_b\end{bmatrix}$$
+
 $$y=[1 \quad\mathbf 0]\begin{bmatrix} x_a \\ \mathbf{x}_b\end{bmatrix}$$
 
 +++ {"id": "3KmAGcHqiDMi"}
 
 La dinámica de las variables no medidas está dada por:
+
 $$\mathbf {\dot x}_b = \mathbf {A}_{bb}\mathbf{x}_b + \underbrace{\mathbf{A}_{ba} x_a + \mathbf B_bu}_{\text{entradas conocidas}}$$
 
 +++ {"id": "UdzkPKv4iDMj"}
 
 La ecuación de salida y de las variables de estado conocidas la podemos expresar como:
+
 $$\underbrace{\dot y - A_{aa}y - B_au}_{\text{mediciones conocidas}} =\mathbf A_{ab}\mathbf{x}_b$$
 
 +++ {"id": "1ZBKu9asiDMk"}
@@ -133,7 +146,7 @@ y &\leftarrow&\dot y - A_{aa}y-\mathbf B_{a}u\\
 
 +++ {"id": "noiHPiuOiDMl"}
 
-Sustituyendo en las ecuaciones del estimador completo, podemos obtener que las variables estiamadas del estimador reducido tienen la siguiente dinámica:
+Sustituyendo en las ecuaciones del estimador completo, podemos obtener que las variables estimadas del estimador reducido tienen la siguiente dinámica:
 
 $$\mathbf {\dot {\hat x}}_b = \mathbf {A}_{bb}\mathbf{\hat{x}}_b + \underbrace{\mathbf{A}_{ba} y + \mathbf B_bu}_{\text{entradas}} + \mathbf L ( \underbrace{\dot y -A_{aa}y-B_a u}_{\text{mediciones}}-\mathbf A_{ab}\mathbf{\hat{x}_b})$$
 
@@ -143,7 +156,7 @@ Entonces definimos el error de estimación como:
 
 $$\mathbf{\tilde{x}_b}=\mathbf x_b-\mathbf{\hat{x}}_b$$
 
-y obtenmos la siguiente dinámica del error:
+y obtenemos la siguiente dinámica del error:
 
 +++ {"id": "ym7WJGLrGbJ6"}
 
@@ -167,27 +180,29 @@ Finalmente:
 
 $$\mathbf{\dot{\tilde{x}}}_b=(\mathbf A_{bb} -\mathbf L \mathbf A_{ab})\mathbf{\tilde{x}}_b$$
 
-y la ecuación caraterística resulta:
+y la ecuación característica resulta:
 
 $$\det\left[s\mathbf I -(\mathbf{A}_{bb}-\mathbf {LA}_{ab}\right)]=0$$
 
 +++ {"id": "MNUU1YgliDMn"}
 
-El problema que tiene el estimador es que depende de la derivada de $y$: uno mide $y$ y a partir de esta varible resuelve $\dot y$, lo cual implica amplificar cualquier ruido presente en la medición:
+El problema que tiene el estimador es que depende de la derivada de $y$: uno mide $y$ y a partir de esta variable resuelve $\dot y$, lo cual implica amplificar cualquier ruido presente en la medición:
 
 $$\mathbf {\dot {\hat x}}_b = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a) +\mathbf L \dot y $$
 
-Para poder obetner una ecuación del estimador sin la reivada de medición, lo que se puede hacer es redefinir la variable de esado como:
+Para poder obtener una ecuación del estimador sin la derivada de la medición, lo que se puede hacer es redefinir la variable de estado como:
 
 $$\mathbf x_c \overset{\Delta}{=}\mathbf{\hat{x}_b}-\mathbf Ly$$
 
 Entonces la dinámica del este estimador resulta:
+
 $$\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u $$
 
 
 +++ {"id": "qCYQwLAZiDMn"}
 
 Para dejarlo todo en función de $\mathbf{x}_c$:
+
 $$\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})(\mathbf{x}_c+\mathbf Ly) + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u $$
 
 +++ {"id": "c8LUE5d7iDMo"}
@@ -198,7 +213,7 @@ $$\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{
 
 ## Retomamos el ejemplo de péndulo
 
-Obtener el estimador completo para el péndulo. Ubicar los polos del error del estiamdor en $10\omega_0$. Es decir 5 veces más rápido que los que ubicamos los polos de la ley de control.
+Obtener el estimador completo para el péndulo. Ubicar los polos del error del estimador en $10\omega_0$. Es decir 5 veces más rápido que los que ubicamos los polos de la ley de control.
 
 ```{code-cell} ipython3
 :id: EMtRWJIdiDMr
@@ -221,7 +236,7 @@ sys=ctrl.ss(A,B,C,D)
 
 +++ {"id": "iIbgk2pqGbKG"}
 
-### Cálculo del obsrevador completo
+### Cálculo del observador completo
 
 ```{code-cell} ipython3
 :id: RVnOImHHiDMx

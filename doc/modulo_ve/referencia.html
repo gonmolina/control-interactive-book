@@ -493,17 +493,21 @@
                 
   <div class="section" id="insercion-de-referencias">
 <h1>Inserción de referencias<a class="headerlink" href="#insercion-de-referencias" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Para introducir el seguimeinto de referencias, siguiendo la idea de control clásico uno podría hacer <span class="math notranslate nohighlight">\(u=-\mathbf K \mathbf x + r\)</span>, siendo <span class="math notranslate nohighlight">\(r\)</span> la referencia. Sin embargo esto en generla llevaría a tener errores de estados estacionarios muy grandes.</p>
+<p>Para introducir el seguimiento de referencias, siguiendo la idea de control clásico uno podría hacer <span class="math notranslate nohighlight">\(u=-\mathbf K \mathbf x + r\)</span>, siendo <span class="math notranslate nohighlight">\(r\)</span> la referencia. Sin embargo esto en general llevaría a tener errores de estados estacionarios muy grandes.</p>
 <p>La forma correcta sería tratar de calcular los estados y la entrada en estado estacionario(<span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>). Si entramos con el valor de estado estacionario de <span class="math notranslate nohighlight">\(u\)</span> y hacemos que para <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span> la realimentación sea 0, entonces nos aseguramos que el sistema tendrá error nulo. Matemáticamente esto lo podemos lograr haciendo que:</p>
 <div class="math notranslate nohighlight">
 \[u=u_{ss}-\mathbf K(\mathbf x - \mathbf{x_ss})\]</div>
-<p>Para resolver cuanto vales <span class="math notranslate nohighlight">\(u_ss\)</span> y <span class="math notranslate nohighlight">\(\mathbf{x_ss}\)</span> debemos expresar las ecuaciones de estado con las condicones de estado estacionario, es decir:</p>
-<p>\begin{eqnarray}
-0&amp;=&amp;\mathbf{Ax_{ss}}+\mathbf{B}u_{ss} \
+<p>Para resolver cuanto vales <span class="math notranslate nohighlight">\(u_ss\)</span> y <span class="math notranslate nohighlight">\(\mathbf{x_ss}\)</span> debemos expresar las ecuaciones de estado con las condiciones de estado estacionario, es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+0&amp;=&amp;\mathbf{Ax_{ss}}+\mathbf{B}u_{ss} \\
 yss&amp;=&amp;\mathbf{Cx_{ss}}+\mathbf{D}u_{ss}
-\end{eqnarray}</p>
-<p>Entonces se quiere resolver los valores para los cuales <span class="math notranslate nohighlight">\(y_{ss }=r_{ss}\)</span> para cualquier <span class="math notranslate nohighlight">\(y_ss\)</span>. Para hacer esto hacemos que <span class="math notranslate nohighlight">\(\mathbf{x_{ss}}=\mathbf{N_x}r_{ss}\)</span> y <span class="math notranslate nohighlight">\(u_{ss}=N_ur_{ss}\)</span>. Haciendo esto tenemos el siguiente sistema de ecuaciones:
-$<span class="math notranslate nohighlight">\(
+\end{eqnarray}
+\end{split}\]</div>
+<p>Entonces se quiere resolver los valores para los cuales <span class="math notranslate nohighlight">\(y_{ss }=r_{ss}\)</span> para cualquier <span class="math notranslate nohighlight">\(y_ss\)</span>. Para hacer esto hacemos que <span class="math notranslate nohighlight">\(\mathbf{x_{ss}}=\mathbf{N_x}r_{ss}\)</span> y <span class="math notranslate nohighlight">\(u_{ss}=N_ur_{ss}\)</span>. Haciendo esto tenemos el siguiente sistema de ecuaciones:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{bmatrix}
 \mathbf A &amp; \mathbf B\\
 \mathbf C &amp; D
@@ -512,7 +516,7 @@ $<span class="math notranslate nohighlight">\(
 N_u\\ \end{bmatrix} =\begin{bmatrix}
 \mathbf 0\\
 1\end{bmatrix}
-\)</span>$</p>
+\end{split}\]</div>
 <p>De esta manera</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
@@ -528,13 +532,16 @@ N_u\\ \end{bmatrix} =
 <p>Con estos valores, entonces podemos introducir la referencia (de forma «no robusta») haciendo:</p>
 <div class="math notranslate nohighlight">
 \[u=N_ur-\mathbf {K}(\mathbf{x} - \mathbf{N_x}r)\]</div>
-<p>Sabiendo cuanto vale la ley de control, es decri <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, podemos simplificar la exrepsión anterior de la siguiente manera:</p>
+<p>Sabiendo cuanto vale la ley de control, es decir <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, podemos simplificar la expresión anterior de la siguiente manera:</p>
 <div class="math notranslate nohighlight">
 \[u=-\mathbf{Kx}+\bar Nr\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\bar N = N_u+\mathbf{KN_x}\)</span></p>
-<p>Definimos funciones que hacen los cálculos anteriores:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<p>Para poder ver el esfuerzo de control en la salida del sistema que agreguemos tenemos que  expresar las ecuaciones de estado en función de las entradas (ahora la entrada es <span class="math notranslate nohighlight">\(r\)</span>) y los estados (siguen siendo <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>). Entonces la ecuación de salida que tengo que agregar es</p>
+<div class="math notranslate nohighlight">
+\[u=-\mathbf{K x}+\bar Nr\]</div>
+<div class="hint admonition">
+<p class="admonition-title">Funciones para el cálculo del seguimiento a referencia</p>
+<p>Con esta función podemos calcular las matrices para el seguimiento a referencia:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
     <span class="n">aux1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">)),</span>
                    <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">D</span><span class="p">))))</span>
@@ -546,23 +553,16 @@ N_u\\ \end{bmatrix} =
     <span class="k">return</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Nu</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<p>Para simplificar la implementación podemos usar solo esta ganancia:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_Nbar</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Nu</span><span class="p">,</span><span class="n">K</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Nu</span><span class="o">+</span><span class="n">K</span><span class="nd">@Nx</span>
 </pre></div>
 </div>
 </div>
-</div>
-<p>Para poder ver el esfuerzo de control en la salida del sistema que agreguemos tenemos que  expresar lasde ecuaciones de estado en función de las entradas (ahora la entrada es <span class="math notranslate nohighlight">\(r\)</span>) y los estados (siguen siendo <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>). Entonces la ecuación de salida que tengo que agregar es</p>
-<div class="math notranslate nohighlight">
-\[u=-\mathbf{K x}+\bar Nr\]</div>
 <div class="section" id="eleccion-de-la-ubicacion-de-los-polos-a-lazo-cerrado">
 <h2>Elección de la ubicación de los polos a lazo cerrado<a class="headerlink" href="#eleccion-de-la-ubicacion-de-los-polos-a-lazo-cerrado" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Una forma de seleccionar la ubicación de los polos es hacer lo mismo que se hacía en control clásico, es decir buscar que el sistema sea parecido a un segundo orden dominante.</p>
-<p>Esto es perfectamante factible en control moderno. Sin embargo, tiene la desventaja que no sabemos para nada que sucederá con el esfuerzo de control <span class="math notranslate nohighlight">\(u\)</span>. Ubicando los polos de esta manera podemos obtener esfuerzos de control imposibles de realizar por nuestros actuadores, o que lleven a consumos de energías demasiado altos para nuestro sistema.</p>
+<p>Esto es perfectamente factible en control moderno. Sin embargo, tiene la desventaja que no sabemos para nada que sucederá con el esfuerzo de control <span class="math notranslate nohighlight">\(u\)</span>. Ubicando los polos de esta manera podemos obtener esfuerzos de control imposibles de realizar por nuestros actuadores, o que lleven a consumos de energías demasiado altos para nuestro sistema.</p>
 <p>Por esto, lo más recomendable es usar técnicas de control óptimo para seleccionar los polos del sistema a lazo cerrado.</p>
 </div>
 <div class="section" id="lugar-simetrico-de-las-raices">

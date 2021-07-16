@@ -12,26 +12,28 @@ kernelspec:
   name: python3
 ---
 
-+++ {"id": "VgLW5QMDkNw6"}
++++ 
 
 # Inserción de referencias
 
-+++ {"id": "-jFwrZgmkNw7"}
-
-Para introducir el seguimeinto de referencias, siguiendo la idea de control clásico uno podría hacer $u=-\mathbf K \mathbf x + r$, siendo $r$ la referencia. Sin embargo esto en generla llevaría a tener errores de estados estacionarios muy grandes.
++++ 
+Para introducir el seguimiento de referencias, siguiendo la idea de control clásico uno podría hacer $u=-\mathbf K \mathbf x + r$, siendo $r$ la referencia. Sin embargo esto en general llevaría a tener errores de estados estacionarios muy grandes.
 
 La forma correcta sería tratar de calcular los estados y la entrada en estado estacionario($t \rightarrow \infty$). Si entramos con el valor de estado estacionario de $u$ y hacemos que para $t \rightarrow \infty$ la realimentación sea 0, entonces nos aseguramos que el sistema tendrá error nulo. Matemáticamente esto lo podemos lograr haciendo que:
 
 $$u=u_{ss}-\mathbf K(\mathbf x - \mathbf{x_ss})$$
 
-Para resolver cuanto vales $u_ss$ y $\mathbf{x_ss}$ debemos expresar las ecuaciones de estado con las condicones de estado estacionario, es decir:
+Para resolver cuanto vales $u_ss$ y $\mathbf{x_ss}$ debemos expresar las ecuaciones de estado con las condiciones de estado estacionario, es decir:
 
+$$
 \begin{eqnarray}
 0&=&\mathbf{Ax_{ss}}+\mathbf{B}u_{ss} \\
 yss&=&\mathbf{Cx_{ss}}+\mathbf{D}u_{ss}
 \end{eqnarray}
+$$
 
 Entonces se quiere resolver los valores para los cuales $y_{ss }=r_{ss}$ para cualquier $y_ss$. Para hacer esto hacemos que $\mathbf{x_{ss}}=\mathbf{N_x}r_{ss}$ y $u_{ss}=N_ur_{ss}$. Haciendo esto tenemos el siguiente sistema de ecuaciones:
+
 $$
 \begin{bmatrix}
 \mathbf A & \mathbf B\\
@@ -43,7 +45,7 @@ N_u\\ \end{bmatrix} =\begin{bmatrix}
 1\end{bmatrix}
 $$
 
-+++ {"id": "jHhoORbjkNw8"}
++++ 
 
 De esta manera
 
@@ -63,18 +65,25 @@ Con estos valores, entonces podemos introducir la referencia (de forma "no robus
 $$u=N_ur-\mathbf {K}(\mathbf{x} - \mathbf{N_x}r)$$
 
 
-Sabiendo cuanto vale la ley de control, es decri $\mathbf{K}$, podemos simplificar la exrepsión anterior de la siguiente manera:
+Sabiendo cuanto vale la ley de control, es decir $\mathbf{K}$, podemos simplificar la expresión anterior de la siguiente manera:
 
 $$u=-\mathbf{Kx}+\bar Nr$$ 
 
 donde $\bar N = N_u+\mathbf{KN_x}$
 
-+++ {"id": "2QujbCxXkNw9"}
++++ 
 
-Definimos funciones que hacen los cálculos anteriores:
+Para poder ver el esfuerzo de control en la salida del sistema que agreguemos tenemos que  expresar las ecuaciones de estado en función de las entradas (ahora la entrada es $r$) y los estados (siguen siendo $\mathbf{x}$). Entonces la ecuación de salida que tengo que agregar es 
 
-```{code-cell} ipython3
-:id: IKXMyIEKkNw9
+$$u=-\mathbf{K x}+\bar Nr$$
+
+
+````{admonition} Funciones para el cálculo del seguimiento a referencia
+:class: Hint
+
+Con esta función podemos calcular las matrices para el seguimiento a referencia:
+
+```{code} ipython3
 
 def seguimiento_referencia(sys):
     aux1=np.vstack((np.hstack((sys.A,sys.B)),
@@ -87,40 +96,31 @@ def seguimiento_referencia(sys):
     return Nx, Nu
 ```
 
-```{code-cell} ipython3
-:id: 5Q2QUMBzkNxC
+Para simplificar la implementación podemos usar solo esta ganancia:
 
+```{code} ipython3
 def calculate_Nbar(Nx,Nu,K):
     return Nu+K@Nx
 ```
 
-+++ {"id": "SpObNiD9kNxc"}
+````
 
 
-
-
-Para poder ver el esfuerzo de control en la salida del sistema que agreguemos tenemos que  expresar lasde ecuaciones de estado en función de las entradas (ahora la entrada es $r$) y los estados (siguen siendo $\mathbf{x}$). Entonces la ecuación de salida que tengo que agregar es 
-
-$$u=-\mathbf{K x}+\bar Nr$$
-
-
-+++ {"id": "5XNdai26kNxk"}
++++ 
 
 ## Elección de la ubicación de los polos a lazo cerrado
 
-+++ {"id": "_xUz-kdIkNxl"}
 
 Una forma de seleccionar la ubicación de los polos es hacer lo mismo que se hacía en control clásico, es decir buscar que el sistema sea parecido a un segundo orden dominante. 
 
-Esto es perfectamante factible en control moderno. Sin embargo, tiene la desventaja que no sabemos para nada que sucederá con el esfuerzo de control $u$. Ubicando los polos de esta manera podemos obtener esfuerzos de control imposibles de realizar por nuestros actuadores, o que lleven a consumos de energías demasiado altos para nuestro sistema.
+Esto es perfectamente factible en control moderno. Sin embargo, tiene la desventaja que no sabemos para nada que sucederá con el esfuerzo de control $u$. Ubicando los polos de esta manera podemos obtener esfuerzos de control imposibles de realizar por nuestros actuadores, o que lleven a consumos de energías demasiado altos para nuestro sistema.
 
 Por esto, lo más recomendable es usar técnicas de control óptimo para seleccionar los polos del sistema a lazo cerrado.
 
-+++ {"id": "YqNlco1MdY2W"}
++++ 
 
 ## Lugar simétrico de las raíces
 
-+++ {"id": "5PFE5ueHkNxm"}
 
 Una técnica de control óptimo ampliamente usado es el control `regulador cuadrático lineal (LQR)`. En este curso veremos una versión simplificada que se conoce como __Lugar de las Raíces Simétrico__. Esta versión simplificada consiste en resolver el problema de minimización del siguiente índice de costo:
 
@@ -137,7 +137,7 @@ mediante la ley de control:
 
 $$ u =-\mathbf{Kx}$$
 
-+++ {"id": "riZyAVFykNxm"}
++++ 
 
 Se puede demostrar que la ubicación de los polos a lazo cerrado que minimizan el funcional de costo anterior, son los polos estables del lugar simétrico de las raíces dado por la ecuación:
 $$1+\rho G_0(-s)G_0(s)=0$$

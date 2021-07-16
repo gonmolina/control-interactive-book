@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -880,23 +880,23 @@ Bode asintótico de $G(s)$
 
 +++
 
-:::{figure-md}
-
-<img style="display:block; margin-left: auto; margin-right: auto;" src="asintotico_mag.png" width="700" alt="asintotico_mag.png">
-
-
-Bode asintótico de magnitud $G(s)$
-:::
-
-
-:::{figure-md}
-
-
-<img style="display:block; margin-left: auto; margin-right: auto;" src="asintotico_fase.png" width="700" alt="asintotico_fase.png">
-
-Bode asintótico de fase $G(s)$
-:::
-
-```{code-cell} ipython3
-
-```
+% :::{figure-md}
+% 
+% <img style="display:block; margin-left: auto; margin-right: auto;" % src="asintotico_mag.png" width="700" alt="asintotico_mag.png">
+% 
+% 
+% Bode asintótico de magnitud $G(s)$
+% :::
+% 
+% 
+% :::{figure-md}
+% 
+% 
+% <img style="display:block; margin-left: auto; margin-right: auto;" % src="asintotico_fase.png" width="700" alt="asintotico_fase.png">
+% 
+% Bode asintótico de fase $G(s)$
+% :::
+% 
+% ```{code-cell} ipython3
+% 
+% ```

@@ -512,8 +512,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conxion-de-sistemas-entrada-salida">
-   Conxión de sistemas entrada/salida
+  <a class="reference internal nav-link" href="#conexion-de-sistemas-entrada-salida">
+   Conexión de sistemas entrada/salida
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -534,11 +534,13 @@
                 
   <div class="section" id="diseno-para-un-motor-de-continua">
 <h1>Diseño para un motor de continua<a class="headerlink" href="#diseno-para-un-motor-de-continua" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Supongamos que la transferencia de nuestro sistema es:
-$<span class="math notranslate nohighlight">\(G(s)=\frac{10}{s(s+2)(s+8)}\)</span><span class="math notranslate nohighlight">\(
-Diseño un controlador que ubique los polos en:
-\)</span><span class="math notranslate nohighlight">\(pc=[-1.42;\quad -1.04\pm2.14j]\)</span>$
-y los del estimador tres veces más rápidos.</p>
+<p>Supongamos que la transferencia de nuestro sistema es:</p>
+<div class="math notranslate nohighlight">
+\[G(s)=\frac{10}{s(s+2)(s+8)}\]</div>
+<p>Diseño un controlador que ubique los polos en:</p>
+<div class="math notranslate nohighlight">
+\[pc=[-1.42;\quad -1.04\pm2.14j]\]</div>
+<p>y los del estimador tres veces más rápidos.</p>
 <p>Como tenemos el sistema en forma de función transferencia lo llevamos a alguna forma en espacio de estados (la que sea por defecto de Python)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -594,7 +596,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 </div>
-<p>Notar que hubiera podido escribir pc como una lista de los valores en donde quiero ubicar los polos a lazo cerrado. Sin embargo, luego no hubiera podido haer la operación de <code class="docutils literal notranslate"><span class="pre">pc*3</span></code> sobre la lista, ya que hubiera resultado en algo que no es lo que buscabamos.</p>
+<p>Notar que hubiera podido escribir pc como una lista de los valores en donde quiero ubicar los polos a lazo cerrado. Sin embargo, luego no hubiera podido hacer la operación de <code class="docutils literal notranslate"><span class="pre">pc*3</span></code> sobre la lista, ya que hubiera resultado en algo que no es lo que buscábamos.</p>
 <p><strong>Obtenemos la ley de control:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -611,8 +613,8 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 </div>
-<p>Hemos podido utilizar el comando <code class="docutils literal notranslate"><span class="pre">place</span></code> debido a que los 3 polos tanto del estimador como de los elegidos para la ley de control son distintos. De haber querido ubicar dos polos en el mismo lugar, hubieramos tenido que usar el comando <code class="docutils literal notranslate"><span class="pre">acker</span></code>.</p>
-<p>Sin mebargo es necesario tener en cuenta que <code class="docutils literal notranslate"><span class="pre">acker</span></code> no es recomendable para sistema de orden mayor a 4.</p>
+<p>Hemos podido utilizar el comando <code class="docutils literal notranslate"><span class="pre">place</span></code> debido a que los 3 polos tanto del estimador como de los elegidos para la ley de control son distintos. De haber querido ubicar dos polos en el mismo lugar, hubiéramos tenido que usar el comando <code class="docutils literal notranslate"><span class="pre">acker</span></code>.</p>
+<p>Sin embargo es necesario tener en cuenta que <code class="docutils literal notranslate"><span class="pre">acker</span></code> no es recomendable para sistema de orden mayor a 4.</p>
 <div class="section" id="sistema-controlador-con-estimador-completo">
 <h3>Sistema controlador con estimador completo<a class="headerlink" href="#sistema-controlador-con-estimador-completo" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell docutils container">
@@ -645,8 +647,8 @@ y los del estimador tres veces más rápidos.</p>
 <p>Podemos ver que el controlador diseñado es inestable!. Esto no es deseable.</p>
 <p>La razones por la que no es deseable un controlador inestable  son:</p>
 <ol class="simple">
-<li><p>Presenta dificultades para ser testeado, ya sea el compensador por si solo o en lazo abierto durante la puesta en funcionamiento. Sin embargo, en agunos casos, se puede lograr una mejor performance del sistema de controlado con un controlador inestable (hay casos de sistemas que ni siquiera pueden ser estabilizados con controladores estables.). En ese caso se aceptan estos incevenientes de testeo.</p></li>
-<li><p>Para ganancias bajas el sistema a lazo cerrado con un controlador inestable resulta inestable (visulizar el root locus). En general, los actuadores prensetan saturaciones, es decir valor máximos de actuación. Cuando un actuador satura se ve desde el punto de vista de lazo como una reducción de la ganancia, llevando a la zona instable o acercandose a la misma.</p></li>
+<li><p>Presenta dificultades para ser testeado, ya sea el compensador por si solo o en lazo abierto durante la puesta en funcionamiento. Sin embargo, en algunos casos, se puede lograr una mejor performance del sistema de controlado con un controlador inestable (hay casos de sistemas que ni siquiera pueden ser estabilizados con controladores estables.). En ese caso se aceptan estos inconvenientes de testeo.</p></li>
+<li><p>Para ganancias bajas el sistema a lazo cerrado con un controlador inestable resulta inestable (visualizar el root locus). En general, los actuadores presentan saturaciones, es decir valor máximos de actuación. Cuando un actuador satura se ve desde el punto de vista de lazo como una reducción de la ganancia, llevando a la zona instable o acercándose a la misma.</p></li>
 </ol>
 <p>Los sistemas que necesitan se vuelven inestables cuando su valor ganancia se reduce se los conoce como sistemas <strong>condicionalmente estables</strong> y <strong>deben ser evitados</strong> en la medida de lo posible.</p>
 </div>
@@ -667,7 +669,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 </div>
-<p>Necesitamos las sub-matrices de A para calcular el estimadore reducido</p>
+<p>Necesitamos las sub-matrices de A para calcular el estimadores reducido</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
@@ -681,18 +683,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aaa</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-10.]])
-</pre></div>
-</div>
-</div>
-</div>
+<p>Ahora calculemos el estimador reducido.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ltred</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">Abb</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">Aab</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">pe_red</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -787,7 +778,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_35_0.png" src="../../_images/ejemplo_A_ve_motor_cc_35_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_33_0.png" src="../../_images/ejemplo_A_ve_motor_cc_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -800,7 +791,7 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_36_0.png" src="../../_images/ejemplo_A_ve_motor_cc_36_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_34_0.png" src="../../_images/ejemplo_A_ve_motor_cc_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -811,10 +802,10 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_38_0.png" src="../../_images/ejemplo_A_ve_motor_cc_38_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_35_0.png" src="../../_images/ejemplo_A_ve_motor_cc_35_0.png" />
 </div>
 </div>
-<p>Agragamos referencia al controlador de orden reducido.</p>
+<p>Agregamos referencia al controlador de orden reducido.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seguimiento_referencia</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
@@ -886,8 +877,8 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 <div class="section" id="rediseno-usando-srl">
 <h2>Rediseño usando SRL<a class="headerlink" href="#rediseno-usando-srl" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Vamos a diseñar el sistema para ubicar los polos de forma tal que se tenga un ancho de banda de 2.5rad/seg y que los polos del estimador esten aproximadamiente 2.5 veces más raṕido.</p>
-<p>Para usar SRL vamos a tomat que <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{C_1}\)</span> y que <span class="math notranslate nohighlight">\(\mathbf{B} = \mathbf{B_1}\)</span></p>
+<p>Vamos a diseñar el sistema para ubicar los polos de forma tal que se tenga un ancho de banda de 2.5rad/seg y que los polos del estimador estén aproximadamente 2.5 veces más rápido.</p>
+<p>Para usar SRL vamos a tomar que <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{C_1}\)</span> y que <span class="math notranslate nohighlight">\(\mathbf{B} = \mathbf{B_1}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
@@ -920,10 +911,10 @@ y los del estimador tres veces más rápidos.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_49_0.png" src="../../_images/ejemplo_A_ve_motor_cc_49_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_46_0.png" src="../../_images/ejemplo_A_ve_motor_cc_46_0.png" />
 </div>
 </div>
-<p>Con <span class="math notranslate nohighlight">\(K=26\)</span> obtenemos los polos con una frecuenca de corte de 2.5 rad/seg.</p>
+<p>Con <span class="math notranslate nohighlight">\(K=26\)</span> obtenemos los polos con una frecuencia de corte de 2.5 rad/seg.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc</span><span class="p">,</span><span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">conjugate_tf</span><span class="p">(</span><span class="n">G</span><span class="p">),</span><span class="n">kvect</span><span class="o">=</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span><span class="n">Plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1013,7 +1004,7 @@ Polos del estimador:  [-9.16842047+0.j         -4.00280684-4.90432763j -4.002806
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.04830455e+17+0.j, -7.98559378e+00+0.j, -2.50686229e+00+0.j])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.34091949e+17+0.j, -7.98559378e+00+0.j, -2.50686229e+00+0.j])
 </pre></div>
 </div>
 </div>
@@ -1026,7 +1017,7 @@ Polos del estimador:  [-9.16842047+0.j         -4.00280684-4.90432763j -4.002806
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_59_0.png" src="../../_images/ejemplo_A_ve_motor_cc_59_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_56_0.png" src="../../_images/ejemplo_A_ve_motor_cc_56_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1038,9 +1029,9 @@ Polos del estimador:  [-9.16842047+0.j         -4.00280684-4.90432763j -4.002806
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.6817283208674022, 13.183302483780267, 1.3027826533899076, 2.608292172554142)
-(1.3198762960800359, -35.20865106169404, 2.0788986358803316, 4.058211662618327)
-(3.7818445925935746, 60.09561708471924, 5.497487495572731, 1.7117848527162454)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.6817283208673983, 13.183302483780011, 1.3027826533898883, 2.608292172554138)
+(1.3198762960800288, -35.20865106169387, 2.078898635880349, 4.058211662618313)
+(3.7818445925935946, 60.09561708471924, 5.49748749557276, 1.7117848527162414)
 </pre></div>
 </div>
 </div>
@@ -1083,7 +1074,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 </div>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;T1&quot;</span><span class="p">)</span>
@@ -1098,15 +1089,15 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_65_0.png" src="../../_images/ejemplo_A_ve_motor_cc_65_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_62_0.png" src="../../_images/ejemplo_A_ve_motor_cc_62_0.png" />
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="conxion-de-sistemas-entrada-salida">
-<h2>Conxión de sistemas entrada/salida<a class="headerlink" href="#conxion-de-sistemas-entrada-salida" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Podemos ver en el caso anterior que mediante el uso de la función ctrl.feedback hemos perdido, al menos parcialmente, saber de que manera estan ordenados los estados del sistema.</p>
-<p>Par aun mayor control de como están ubicados los eatados, las entradas y la salidas es conveniente usar la función <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> y <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code>.</p>
+<div class="section" id="conexion-de-sistemas-entrada-salida">
+<h2>Conexión de sistemas entrada/salida<a class="headerlink" href="#conexion-de-sistemas-entrada-salida" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Podemos ver en el caso anterior que mediante el uso de la función ctrl.feedback hemos perdido, al menos parcialmente, saber de que manera están ordenados los estados del sistema.</p>
+<p>Par aun mayor control de como están ubicados los estados, las entradas y la salidas es conveniente usar la función <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> y <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ctrl.connect<span class="o">?</span>
@@ -1196,11 +1187,11 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 <li><p>El tercer argumento, nos dice que entradas van a ser tomadas como entradas del sistema.</p></li>
 <li><p>El cuarto y último argumento son las salidas del sistema.</p></li>
 </ol>
-<p>Revisemos la utilización de <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code> en nuetro ejemplo:</p>
+<p>Revisemos la utilización de <code class="docutils literal notranslate"><span class="pre">ctrl.connect</span></code> en nuestro ejemplo:</p>
 <ol class="simple">
-<li><p>El primer argumento es un sistema construído a partir de <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> que incluye a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (la planta que queremos controlar) y a <code class="docutils literal notranslate"><span class="pre">Dc</span></code> (el controlador). Esta función nos va a devoler un sistema cuyos primeros 3 estados serán los estados de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y los restantes son los del observador; tendrá dos donde la primer entrada es la de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y la segunda entrada es la de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>; y la primer salida es la de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y la segunda salida es la de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>.</p></li>
+<li><p>El primer argumento es un sistema construído a partir de <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> que incluye a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (la planta que queremos controlar) y a <code class="docutils literal notranslate"><span class="pre">Dc</span></code> (el controlador). Esta función nos va a devolver un sistema cuyos primeros 3 estados serán los estados de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y los restantes son los del observador; tendrá dos donde la primer entrada es la de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y la segunda entrada es la de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>; y la primer salida es la de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y la segunda salida es la de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>.</p></li>
 <li><p>El segundo argumento es la matriz de interconexión. Primero conecto la entrada de <code class="docutils literal notranslate"><span class="pre">sys</span></code> con la salida de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>. Como <code class="docutils literal notranslate"><span class="pre">sys</span></code> en <code class="docutils literal notranslate"><span class="pre">ctrl.append</span></code> está primero, la entrada 1 corresponde a la de <code class="docutils literal notranslate"><span class="pre">sys</span></code> y la salida 2 corresponde a la salida de <code class="docutils literal notranslate"><span class="pre">Dc</span></code>. De esta manera tenemos la primer fila de <code class="docutils literal notranslate"><span class="pre">Q</span></code>. La segunda fila de <code class="docutils literal notranslate"><span class="pre">Q</span></code> conecta la entrada de <code class="docutils literal notranslate"><span class="pre">Dc</span></code> con la salida de <code class="docutils literal notranslate"><span class="pre">sys</span></code>.</p></li>
-<li><p>El sistema que estamos generando no tiene entradas, pero el módulo de control tiene algunos problemas en sistemas que notienen entradas o que no tiene salidas, por eso el tercer argumento vamos a poner [1], que significa una entrada que se sumará a la salida de <code class="docutils literal notranslate"><span class="pre">Dc</span></code> en la entrada de <code class="docutils literal notranslate"><span class="pre">sys</span></code>.</p></li>
+<li><p>El sistema que estamos generando no tiene entradas, pero el módulo de control tiene algunos problemas en sistemas que no tienen entradas o que no tiene salidas, por eso el tercer argumento vamos a poner [1], que significa una entrada que se sumará a la salida de <code class="docutils literal notranslate"><span class="pre">Dc</span></code> en la entrada de <code class="docutils literal notranslate"><span class="pre">sys</span></code>.</p></li>
 <li><p>El último argumento son las salidas. Voy a tomar como salidas de mi sistema el esfuerzo de control, es decir la salida del sistema <code class="docutils literal notranslate"><span class="pre">Dc</span></code>, y la salida de la planta, es decir la salida de <code class="docutils literal notranslate"><span class="pre">sys</span></code>.</p></li>
 </ol>
 <p>Vamos a realizar nuevamente las simulaciones con los sistemas definidos mediante el connect.</p>
@@ -1228,7 +1219,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_76_0.png" src="../../_images/ejemplo_A_ve_motor_cc_76_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_73_0.png" src="../../_images/ejemplo_A_ve_motor_cc_73_0.png" />
 </div>
 </div>
 <p>Podemos también mirar el esfuerzo de control, ya que es salida de la planta.</p>
@@ -1241,16 +1232,16 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta a condiciones iniciales&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Esfuerzp de control&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Esfuerzo de control&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_78_0.png" src="../../_images/ejemplo_A_ve_motor_cc_78_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_75_0.png" src="../../_images/ejemplo_A_ve_motor_cc_75_0.png" />
 </div>
 </div>
-<p>Este ejemplo muestra claramente como la elección de los polos usando cirterios de optimización como son los de lugar simétrico de las ráices nos da un control mucho mejor, tanto en tiempo de respuesta como en el esfuerzo de control.</p>
+<p>Este ejemplo muestra claramente como la elección de los polos usando criterios de optimización como son los de lugar simétrico de las raíces nos da un control mucho mejor, tanto en tiempo de respuesta como en el esfuerzo de control.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psys_controlado_con_ref</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">Dcr_ref</span><span class="p">),</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
@@ -1272,8 +1263,8 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00],
-       [-5.32907052e-15]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.],
+       [0.]])
 </pre></div>
 </div>
 </div>
@@ -1297,7 +1288,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_83_0.png" src="../../_images/ejemplo_A_ve_motor_cc_83_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_80_0.png" src="../../_images/ejemplo_A_ve_motor_cc_80_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1312,7 +1303,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_84_0.png" src="../../_images/ejemplo_A_ve_motor_cc_84_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_81_0.png" src="../../_images/ejemplo_A_ve_motor_cc_81_0.png" />
 </div>
 </div>
 </div>
@@ -1387,7 +1378,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4116711999999563
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4116711999999754
 </pre></div>
 </div>
 </div>
@@ -1413,7 +1404,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###  Estimado  mas ley de control</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimado  mas ley de control</span>
 
 <span class="n">L</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">place</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.42</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.04</span><span class="o">+</span><span class="mf">2.14</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.04</span><span class="o">-</span><span class="mf">2.14</span><span class="n">j</span><span class="p">])</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">L</span>
@@ -1540,7 +1531,7 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_99_0.png" src="../../_images/ejemplo_A_ve_motor_cc_99_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_96_0.png" src="../../_images/ejemplo_A_ve_motor_cc_96_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1568,9 +1559,10 @@ Los polos de T3 son: [-9.16842047+0.j         -8.04131959+0.j         -4.0028068
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ejemplo_A_ve_motor_cc_101_0.png" src="../../_images/ejemplo_A_ve_motor_cc_101_0.png" />
+<img alt="../../_images/ejemplo_A_ve_motor_cc_98_0.png" src="../../_images/ejemplo_A_ve_motor_cc_98_0.png" />
 </div>
 </div>
+<p>`</p>
 </div>
 </div>
 

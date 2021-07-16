@@ -486,8 +486,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#calculo-del-obsrevador-completo">
-     Cálculo del obsrevador completo
+    <a class="reference internal nav-link" href="#calculo-del-observador-completo">
+     Cálculo del observador completo
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -510,31 +510,34 @@
                 
   <div class="section" id="diseno-de-estimadores">
 <h1>Diseño de estimadores<a class="headerlink" href="#diseno-de-estimadores" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Hasta ahora aprendimos a obetner la ley de control suponiendo conocido el vetor de estados. En general en control no se mido de forma completa todos lo estados del sistema. Por lo tanto será necesario contruir un sistema que nos permita <strong>estimar</strong> los estados de la planta que quremos controlar a partir de lsa varaibles que conocemos. En general las variables que conocemos son las <em>salidas</em> (mediciones) y las <em>entradas</em> que son las variables que no da nuestro controlador y que serán entradas de los acutadores de la planta.</p>
+<p>Hasta ahora aprendimos a obtener la ley de control suponiendo conocido el vector de estados. En general en control no se mido de forma completa todos lo estados del sistema. Por lo tanto será necesario construir un sistema que nos permita <strong>estimar</strong> los estados de la planta que queremos controlar a partir de lsa variables que conocemos. En general las variables que conocemos son las <em>salidas</em> (mediciones) y las <em>entradas</em> que son las variables que no da nuestro controlador y que serán entradas de los actuadores de la planta.</p>
 <div class="section" id="estimador-de-orden-completo">
 <h2>Estimador de orden completo<a class="headerlink" href="#estimador-de-orden-completo" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Con el modelo de la planta, suponiendo que es fiel a la realidad, uno podría pensar en darle las mismas entradas que tiene la planta y de obtener los estados del modelo directamente. Sin embargo esto choca con dos problemas:</p>
 <ul class="simple">
 <li><p>se debe conocer las condiciones iniciales en todo momento, sino el sistema tardará lo que corresponda para  según sus modos para obtener una estimación correcta.</p></li>
-<li><p>cualuier error en el modelado pueda hacer diverger las estiaciones respecto al vaor de los estados reales sin ningún control de las mismas.</p></li>
+<li><p>cualquier error en el modelado pueda hacer divergir las estimaciones respecto al valor de los estados reales sin ningún control de las mismas.</p></li>
 </ul>
 <p>Por estos problemas, es que se hace lo que mejor hacemos en control, <strong>REALIMENTAR</strong>.</p>
 <p>La idea es utilizar lo que sabemos de la salida tanto del modelo como de la planta para obtener una estimación de los estados.</p>
-<p>Llamando <span class="math notranslate nohighlight">\(\mathbf {\hat x}\)</span> a la estimación de <span class="math notranslate nohighlight">\(\mathbf x\)</span> lo que se propone es un estimador que siga la siguiente escuciones:</p>
+<p>Llamando <span class="math notranslate nohighlight">\(\mathbf {\hat x}\)</span> a la estimación de <span class="math notranslate nohighlight">\(\mathbf x\)</span> lo que se propone es un estimador que siga la siguiente ecuaciones:</p>
 <div class="math notranslate nohighlight">
 \[\dot{ \hat{ \mathbf{x}}}=\mathbf A\hat{\mathbf{x}}+\mathbf B u+\mathbf L(y-\mathbf C \hat{\mathbf{x}})\]</div>
-<p>Definimos entonces error de estimación como:
-$<span class="math notranslate nohighlight">\(\tilde{\mathbf x} = \mathbf x -  \mathbf {\hat {\mathbf x}}\)</span>$</p>
-<p>Por lo tanto la dinámica del error de estimación resulta:
-$<span class="math notranslate nohighlight">\(\dot {\tilde {\mathbf{ x}}} = (\mathbf A - \mathbf{LC})\tilde {\mathbf x}\)</span>$</p>
-<p>La ecuación caraterística del error de estimación entonces e:
-$<span class="math notranslate nohighlight">\(\det\left[s\mathbf I -(\mathbf{A-LC}\right)]=0\)</span>$</p>
-<p>Esta ecuación no esta dicendo que podemos elegir un <span class="math notranslate nohighlight">\(\mathbf L\)</span> de forma tal que la dinámica del error sea la que querramos.</p>
+<p>Definimos entonces error de estimación como:</p>
+<div class="math notranslate nohighlight">
+\[\tilde{\mathbf x} = \mathbf x -  \mathbf {\hat {\mathbf x}}\]</div>
+<p>Por lo tanto la dinámica del error de estimación resulta:</p>
+<div class="math notranslate nohighlight">
+\[\dot {\tilde {\mathbf{ x}}} = (\mathbf A - \mathbf{LC})\tilde {\mathbf x}\]</div>
+<p>La ecuación característica del error de estimación entonces e:</p>
+<div class="math notranslate nohighlight">
+\[\det\left[s\mathbf I -(\mathbf{A-LC}\right)]=0\]</div>
+<p>Esta ecuación no esta diciendo que podemos elegir un <span class="math notranslate nohighlight">\(\mathbf L\)</span> de forma tal que la dinámica del error sea la que queramos.</p>
 <p>Si se compara con la de la ley de control:</p>
 <div class="math notranslate nohighlight">
 \[\det\left[s\mathbf I -(\mathbf{A-BK}\right)]=0\]</div>
-<p>podemos ver ciertas simiitudes o semejanzas.</p>
-<p>Por ejemplo, si transponemos la ecuación caraterística del observador resulta:</p>
+<p>podemos ver ciertas similitudes o semejanzas.</p>
+<p>Por ejemplo, si transponemos la ecuación característica del observador resulta:</p>
 <div class="math notranslate nohighlight">
 \[\det\left[s\mathbf I -(\mathbf{A'-C'L'}\right)]=0\]</div>
 <p>De esta ecuación podemos ver que <span class="math notranslate nohighlight">\(\mathbf L\)</span> de forma análoga a como obtenemos <span class="math notranslate nohighlight">\(\mathbf K\)</span>.</p>
@@ -542,28 +545,40 @@ $<span class="math notranslate nohighlight">\(\det\left[s\mathbf I -(\mathbf{A-L
 
 </pre></div>
 </div>
-<p>Siguiendo con el análisis análogo al de la ley de control, se puede decir que:</p>
-<p><strong>solo podremos tener una única L que no permite ubicar los polos de la dinámica del error de estimación si y solo si el sistema es observable</strong></p>
-<p>Y el sistema es observable si y solo si el rango de la matriz de obserbavilidad <span class="math notranslate nohighlight">\(\mathcal O\)</span> es igual al orden <span class="math notranslate nohighlight">\(n\)</span> del sistema.</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>De forma análoga a la ley de control, podemos decir que solo podremos tener una única <span class="math notranslate nohighlight">\(L\)</span> que no permite ubicar los polos de la dinámica del error de estimación si y solo si el sistema es observable</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
+<p>Y el sistema es observable si y solo si el rango de la matriz de observabilidad <span class="math notranslate nohighlight">\(\mathcal O\)</span> es igual al orden <span class="math notranslate nohighlight">\(n\)</span> del sistema.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
 <p>A esto se lo conoce como <strong>dualidad</strong> entre los problemas de control y estimación.</p>
+</div>
 </div>
 <div class="section" id="estimador-de-orden-reducido">
 <h2>Estimador de orden reducido<a class="headerlink" href="#estimador-de-orden-reducido" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>La idea de este estimador es reducir el orden del mismo.
-Para esto lo que se busca es no estimar las varaibles que se conocen de antemano, es decir las mediciones.</p>
-<p>Escribamos el sistema como:
-$<span class="math notranslate nohighlight">\(\begin{bmatrix}
+Para esto lo que se busca es no estimar las variables que se conocen de antemano, es decir las mediciones.</p>
+<p>Escribamos el sistema como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
 \dot {x_a} \\
 \dot{\mathbf{ x}_b}\end{bmatrix}=
 \begin{bmatrix} A_{aa}&amp;\mathbf A_{ab}\\
 \mathbf A_{ba} &amp; \mathbf{A}_{bb}\end{bmatrix}\begin{bmatrix}
 x_a \\
-\mathbf x_b\end{bmatrix}\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(y=[1 \quad\mathbf 0]\begin{bmatrix} x_a \\ \mathbf{x}_b\end{bmatrix}\)</span>$</p>
-<p>La dinámica de las variables no medidas está dada por:
-$<span class="math notranslate nohighlight">\(\mathbf {\dot x}_b = \mathbf {A}_{bb}\mathbf{x}_b + \underbrace{\mathbf{A}_{ba} x_a + \mathbf B_bu}_{\text{entradas conocidas}}\)</span>$</p>
-<p>La ecuación de salida y de las variables de estado conocidas la podemos expresar como:
-$<span class="math notranslate nohighlight">\(\underbrace{\dot y - A_{aa}y - B_au}_{\text{mediciones conocidas}} =\mathbf A_{ab}\mathbf{x}_b\)</span>$</p>
+\mathbf x_b\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}y=[1 \quad\mathbf 0]\begin{bmatrix} x_a \\ \mathbf{x}_b\end{bmatrix}\end{split}\]</div>
+<p>La dinámica de las variables no medidas está dada por:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {\dot x}_b = \mathbf {A}_{bb}\mathbf{x}_b + \underbrace{\mathbf{A}_{ba} x_a + \mathbf B_bu}_{\text{entradas conocidas}}\]</div>
+<p>La ecuación de salida y de las variables de estado conocidas la podemos expresar como:</p>
+<div class="math notranslate nohighlight">
+\[\underbrace{\dot y - A_{aa}y - B_au}_{\text{mediciones conocidas}} =\mathbf A_{ab}\mathbf{x}_b\]</div>
 <p>De esta manera podemos hacer un equivalente con el estimador de orden completo.</p>
 <p>La primer ecuación la podemos comparar con la ecuación de la dinámica del estimador y la segunda ecuación la podemos comparar con la ecuación de salida, ambas del trabajo realizado para el estimador completo.</p>
 <p>Haciendo esto tenemos que:</p>
@@ -575,13 +590,13 @@ $<span class="math notranslate nohighlight">\(\underbrace{\dot y - A_{aa}y - B_a
 y &amp;\leftarrow&amp;\dot y - A_{aa}y-\mathbf B_{a}u\\
 \mathbf{C} &amp;\leftarrow&amp;\mathbf A_{ab}\\
 \end{eqnarray}\end{split}\]</div>
-<p>Sustituyendo en las ecuaciones del estimador completo, podemos obtener que las variables estiamadas del estimador reducido tienen la siguiente dinámica:</p>
+<p>Sustituyendo en las ecuaciones del estimador completo, podemos obtener que las variables estimadas del estimador reducido tienen la siguiente dinámica:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf {\dot {\hat x}}_b = \mathbf {A}_{bb}\mathbf{\hat{x}}_b + \underbrace{\mathbf{A}_{ba} y + \mathbf B_bu}_{\text{entradas}} + \mathbf L ( \underbrace{\dot y -A_{aa}y-B_a u}_{\text{mediciones}}-\mathbf A_{ab}\mathbf{\hat{x}_b})\]</div>
 <p>Entonces definimos el error de estimación como:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{\tilde{x}_b}=\mathbf x_b-\mathbf{\hat{x}}_b\]</div>
-<p>y obtenmos la siguiente dinámica del error:</p>
+<p>y obtenemos la siguiente dinámica del error:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf{\dot{\tilde{x}}}_b = \mathbf{\dot{x}_b}-\mathbf{\dot{\hat{x}}_b}
@@ -597,25 +612,27 @@ y &amp;\leftarrow&amp;\dot y - A_{aa}y-\mathbf B_{a}u\\
 <p>Finalmente:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{\dot{\tilde{x}}}_b=(\mathbf A_{bb} -\mathbf L \mathbf A_{ab})\mathbf{\tilde{x}}_b\]</div>
-<p>y la ecuación caraterística resulta:</p>
+<p>y la ecuación característica resulta:</p>
 <div class="math notranslate nohighlight">
 \[\det\left[s\mathbf I -(\mathbf{A}_{bb}-\mathbf {LA}_{ab}\right)]=0\]</div>
-<p>El problema que tiene el estimador es que depende de la derivada de <span class="math notranslate nohighlight">\(y\)</span>: uno mide <span class="math notranslate nohighlight">\(y\)</span> y a partir de esta varible resuelve <span class="math notranslate nohighlight">\(\dot y\)</span>, lo cual implica amplificar cualquier ruido presente en la medición:</p>
+<p>El problema que tiene el estimador es que depende de la derivada de <span class="math notranslate nohighlight">\(y\)</span>: uno mide <span class="math notranslate nohighlight">\(y\)</span> y a partir de esta variable resuelve <span class="math notranslate nohighlight">\(\dot y\)</span>, lo cual implica amplificar cualquier ruido presente en la medición:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf {\dot {\hat x}}_b = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a) +\mathbf L \dot y \]</div>
-<p>Para poder obetner una ecuación del estimador sin la reivada de medición, lo que se puede hacer es redefinir la variable de esado como:</p>
+<p>Para poder obtener una ecuación del estimador sin la derivada de la medición, lo que se puede hacer es redefinir la variable de estado como:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf x_c \overset{\Delta}{=}\mathbf{\hat{x}_b}-\mathbf Ly\]</div>
-<p>Entonces la dinámica del este estimador resulta:
-$<span class="math notranslate nohighlight">\(\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u \)</span>$</p>
-<p>Para dejarlo todo en función de <span class="math notranslate nohighlight">\(\mathbf{x}_c\)</span>:
-$<span class="math notranslate nohighlight">\(\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})(\mathbf{x}_c+\mathbf Ly) + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u \)</span>$</p>
+<p>Entonces la dinámica del este estimador resulta:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u \]</div>
+<p>Para dejarlo todo en función de <span class="math notranslate nohighlight">\(\mathbf{x}_c\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})(\mathbf{x}_c+\mathbf Ly) + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u \]</div>
 <div class="math notranslate nohighlight">
 \[\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{x}_c + (\mathbf{A}_{ba}-\mathbf L A_{aa} + \mathbf {A}_{bb} \mathbf L-\mathbf L\mathbf A_{ab}\mathbf L)y + (\mathbf B_b- \mathbf L B_a)u \]</div>
 </div>
 <div class="section" id="retomamos-el-ejemplo-de-pendulo">
 <h2>Retomamos el ejemplo de péndulo<a class="headerlink" href="#retomamos-el-ejemplo-de-pendulo" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Obtener el estimador completo para el péndulo. Ubicar los polos del error del estiamdor en <span class="math notranslate nohighlight">\(10\omega_0\)</span>. Es decir 5 veces más rápido que los que ubicamos los polos de la ley de control.</p>
+<p>Obtener el estimador completo para el péndulo. Ubicar los polos del error del estimador en <span class="math notranslate nohighlight">\(10\omega_0\)</span>. Es decir 5 veces más rápido que los que ubicamos los polos de la ley de control.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w0</span><span class="o">=</span><span class="mi">2</span>
@@ -628,8 +645,8 @@ $<span class="math notranslate nohighlight">\(\mathbf {\dot {\hat x}}_c = (\math
 </div>
 </div>
 </div>
-<div class="section" id="calculo-del-obsrevador-completo">
-<h3>Cálculo del obsrevador completo<a class="headerlink" href="#calculo-del-obsrevador-completo" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="section" id="calculo-del-observador-completo">
+<h3>Cálculo del observador completo<a class="headerlink" href="#calculo-del-observador-completo" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">acker</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">,[</span><span class="mi">10</span><span class="o">*</span><span class="n">w0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">w0</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>

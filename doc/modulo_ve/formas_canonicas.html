@@ -507,8 +507,8 @@
                 
   <div class="section" id="formas-canonicas-de-un-espacio-de-estados">
 <h1>Formas canónicas de un espacio de estados<a class="headerlink" href="#formas-canonicas-de-un-espacio-de-estados" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Para un sistema dado, existen un númeor infinito de posbiles modelos en espacios de estados que nos darán las mismas salidas para las mismas entradas. Por lo tanto es deseable tener ciertas formas estandarizadas de estrutras de espacioes de estados. Llamaremos a estas, las <strong>formas canónicas</strong>.</p>
-<p>Dado un sistema en su forma de función transferencia, es posible obtener cada una de sus formas canónicas es espacios de estados. Considerar el siguiente sistema linial definido por sus ecuacuibes diferenciales:</p>
+<p>Para un sistema dado, existen un número infinito de posibles modelos en espacios de estados que nos darán las mismas salidas para las mismas entradas. Por lo tanto es deseable tener ciertas formas estandarizadas de estructuras de espacios de estados. Llamaremos a estas, las <strong>formas canónicas</strong>.</p>
+<p>Dado un sistema en su forma de función transferencia, es posible obtener cada una de sus formas canónicas es espacios de estados. Considerar el siguiente sistema lineal definido por sus ecuaciones diferenciales:</p>
 <div class="math notranslate nohighlight">
 \[  
 y^{(n)}(t) + a_{1} ~ y^{(n-1)}(t) + ~ \cdots ~ + a_{n-1} ~ \dot{y}(t) + a_n ~ y(t) = b_0 ~ u^{(n)}(t) + ~ \cdots ~ + b_{n-1} ~ \dot{u}(t) + b_n ~ u(t) 
@@ -525,7 +525,7 @@ Y(s)(s^n + a_{1}s^{n-1} + ~ \cdots ~ + a_{n-1}s + a_n ) = U(s)(b_0 s^{n} + ~ \cd
 \]</div>
 <div class="section" id="forma-canonica-de-controlabilidad">
 <h2>Forma canónica de controlabilidad<a class="headerlink" href="#forma-canonica-de-controlabilidad" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Para obtener la forma <strong>canónica contorlable</strong> debemos escribir las matrices del sistema en espacio de estado <span class="math notranslate nohighlight">\({A_c, B_c, C_c, D_c}\)</span>, de la siguiente manera:</p>
+<p>Para obtener la forma <strong>canónica controlable</strong> debemos escribir las matrices del sistema en espacio de estado <span class="math notranslate nohighlight">\({A_c, B_c, C_c, D_c}\)</span>, de la siguiente manera:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix} \dot{x_1}\\\dot{x_2} \\ \vdots \\ \dot{x_{n-1}}\\ \dot{x_n} \end{bmatrix} 
@@ -551,7 +551,7 @@ y= \underbrace{\begin{bmatrix} b_1-a_1 b_0 &amp; b_2-a_2 b_0  &amp; \cdots &amp;
 \[  
 \frac{Y(s)}{U(s)} = \frac{s + 3}{s^2 + 3s + 2}
 \]</div>
-<p>Obtener la representanción de estados en la forma <strong>canonica de controlabildad</strong>.</p>
+<p>Obtener la representación de estados en la forma <strong>canónica de controlabilidad</strong>.</p>
 <p>Por inspección vemos que, <span class="math notranslate nohighlight">\(n = 2\)</span> (el exponente más grande del denominador en <span class="math notranslate nohighlight">\(s\)</span>), por lo tanto  <span class="math notranslate nohighlight">\(a_1 = 3,~ a_2 = 2,~ b_0 = 0,~ b_1 = 1\)</span> y <span class="math notranslate nohighlight">\(b_2 = 3\)</span>. Por lo tanto tenemos que:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -578,7 +578,7 @@ u
 </div>
 <div class="section" id="forma-canonica-de-observabilidad">
 <h2>Forma Canónica de Observabilidad<a class="headerlink" href="#forma-canonica-de-observabilidad" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Suponiendo que <span class="math notranslate nohighlight">\(A_c, B_c, C_c, D_c\)</span> son las matrices de un sistema en su forma canónica de controlabildad, el sistema en su forma <strong>canónica de observable</strong> tendrá la siguiente forma:</p>
+<p>Suponiendo que <span class="math notranslate nohighlight">\(A_c, B_c, C_c, D_c\)</span> son las matrices de un sistema en su forma canónica de controlabilidad, el sistema en su forma <strong>canónica de observable</strong> tendrá la siguiente forma:</p>
 <div class="math notranslate nohighlight">
 \[ A_o = A_c^T \quad B_o =B_c^T \quad C_o = B_C^T \quad D_o=D_c \]</div>
 <div class="section" id="ejemplo-2">

@@ -87,7 +87,7 @@ sys_c.dcgain()
 G.dcgain()
 ```
 
-Por lo tanto podemos ver que la función transferencia de $sys$ será la misma que la de $G$. Es decir, $sys$ se comporta externamente igual que $G$. Verificamos
+Por lo tanto podemos ver que la función transferencia de $sys$ será la misma que la de $G$. Es decir, $sys$ se comporta **externamente** igual que $G$. Verificamos
 
 ```{code-cell} ipython3
 ctrl.tf(sys_c)
@@ -155,7 +155,7 @@ Existe otra forma canónica de representación en espacio de estados que se la c
 ctrl.canonical_form(sys, 'modal')
 ```
 
-Esta forma canónica lo que haces es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz $\mathbf A$. Esto sucede por que hay casos que no se puede o no se desea aislarlos:
+Esta forma canónica lo que hace es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz $\mathbf A$. Esto sucede por que hay casos que no se puede o no se desea aislarlos:
 - en caso de que se tengan autovalores complejos conjugados, no se aíslan para lograr tener una matriz $\mathbf A$, $\mathbf B$ y $\mathbf C$ a coeficiente reales.
 - en caso de que sean multiples no se pueden aislar por que tienen el mismo autovector y no se pueden usar estos para la transformación. Para estos casos se utiliza la forma de Jordan.
 
@@ -200,8 +200,8 @@ sys2_m.A
 
 ```{note}
 - La función `canonical_form` devuelve un sistema en la forma canónica solicitada y la matriz de transformación necesaria para obtenerlo
-- En la diagonal tenemos los modos del sistema (polos de $G$ o autovalores de $A$)
-- Fuera de la diagonal tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)
+- en la diagonal de $\mathbf A$ tenemos los modos del sistema (polos de $G$ o autovalores de $A$)
+- fuera de la diagonal $\mathbf A$ tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)
 ```
 
 +++
@@ -286,9 +286,15 @@ Ahora obtengamos la forma canónica de observabilidad:
 ctrl.canonical_form(sys_c, 'observable')
 ```
 
-Podemos ver que este sistema no puede ser escrito en su forma canónica de observabilidad. Esto sucede por que el sistema no es observable.
+Podemos ver que este sistema no puede ser escrito en su forma canónica de observabilidad. Esto sucede por que el sistema no es observable
 
-La interpretación se da por que un sistema observable necesita tener evidencia de lo que sucede con cada modo a la salida. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene ninguna evidencia del modo en -1 a la salida del mismo.
+```{admonition} Interpretación
+:class: hint
+
+Un sistema observable necesita tener evidencia de lo que sucede con cada modo en al menos una salida del sistema. Como el modo en -1 se ve completamente tapado por el cero en esa misma frecuencia este sistema no es observable por que no tiene ninguna evidencia del modo en -1 a la salida del mismo.
+
+```
+
 
 +++
 
@@ -315,9 +321,15 @@ ctrl.canonical_form(sys_o, 'reachable')
 
 Podemos ver que ahora no podemos obtener la forma canónica de observabilidad.
 
-La razón de esto es que no se puede excitar el modo -1, que ahora quedó tapado desde el lado de la entrada. Toda excitación que tenga "frecuencia generalizada -1" será tapada por el cero en -1. Por lo tanto este sistema no es controlable, ya que no puede excitar desde esa entrada el modo -1.
+```{admonition} Interpretación
+:class: hint
 
-Es importante destacar que ambos sistemas presentan la misma función transferencia $G1.G2$, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilidad son propiedades internas de un sistema, por lo que no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.
+La razón de esto es que no se puede excitar el modo -1, que ahora quedó tapado desde el lado de la entrada. Toda excitación que tenga "frecuencia generalizada -1" será tapada por el cero en -1. Por lo tanto este sistema no es controlable, ya que no puede excitar desde esa entrada el modo -1.
+```
+
+Es importante destacar que ambos sistemas presentan la misma función transferencia $G1.G2$, pero uno es solo controlable y el otro es solo observable. Esto se debe a que la controlabilidad y la observabilidad son propiedades internas de un sistema. 
+
+
 
 ```{attention}
 La **controlabilidad** y la **observabilidad**  no pueden ser decididas a partir de modelos externos de un sistema como son las funciones transferencias.
@@ -343,10 +355,7 @@ ctrl.canonical_form(sys_o, 'modal')
 
 Podemos ver ahora que la matriz $\mathbf C$ no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenemos un 0 en la primer fila de $\mathbf B$, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.
 
-```{attention}
+```{important}
 La controlabilidad y la observabilidad pueden ser evaluadas con el sistema en su forma **canónica modal** analizando las relaciones  de la matrices $\mathbf{B}$ y $\mathbf{C}$ con la matriz $\mathbf{A}$.
 ```
 
-```{code-cell} ipython3
-
-```
