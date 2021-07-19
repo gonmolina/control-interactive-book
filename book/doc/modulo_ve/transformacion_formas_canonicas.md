@@ -19,22 +19,23 @@ kernelspec:
 Consideremos un sistema descripto por las ecuaciones de estado
 
 $$
-\begin{eqnarray}
+\begin{array}{rcl}
 \dot{\mathbf {x}} &=&  \mathbf A \mathbf x + \mathbf B \mathbf u\\
  y &=& \mathbf C \mathbf x + Du
- \end{eqnarray}
+ \end{array}
 $$
 
 Una transformación lineal mediante la matriz $\mathbf T$, que hace:
+
 $$\mathbf x= \mathbf T \mathbf z$$
 
 Sustituyendo la ecuación de la transformación en la de la ecuación de estados
 
 $$
-\begin{eqnarray}
-\dot{\mathbf {x}} = \mathbf {T\dot z} &=& \mathbf {AT} \mathbf z + \mathbf B \mathbf u\\
- \dot{\mathbf {z}} &=& \mathbf {T}^{-1}\mathbf{AT} \mathbf z + \mathbf {T}^{-1}\mathbf B \mathbf u
- \end{eqnarray}
+\begin{array}{rl}
+\dot{\mathbf {x}} = \mathbf {T\dot z} &= \mathbf {AT} \mathbf z + \mathbf B \mathbf u\\
+\dot{\mathbf {z}} & = \mathbf {T}^{-1}\mathbf{AT} \mathbf z + \mathbf {T}^{-1}\mathbf B \mathbf u
+ \end{array}
 $$
 
 Sustituyendo el la ecuación de salida se tiene:
@@ -44,12 +45,12 @@ Sustituyendo el la ecuación de salida se tiene:
 Comparando las ecuaciones del sistema transformado, podemos ver que la matriz $\mathbf T$ transforma al sistema en:
 
 $$
-\begin{eqnarray}
-\mathbf{\bar A} &=& \mathbf {T^{-1}} \mathbf A \mathbf T\\
-\mathbf{\bar B} &=& \mathbf{T^{-1} B}\\
-\mathbf{\bar C} &=& \mathbf{CT}\\
+\begin{array}{lll}
+\mathbf{\bar A} & = & \mathbf {T^{-1}} \mathbf A \mathbf T\\
+\mathbf{\bar B} & = & \mathbf{T^{-1} B}\\
+\mathbf{\bar C} & = & \mathbf{CT}\\
 \bar D &=& D
-\end{eqnarray}
+\end{array}
 $$
 
 
@@ -139,11 +140,11 @@ $$  \begin{bmatrix}
 
 Combinando las ecuaciones anteriores se tiene que:
 
-$$\begin{eqnarray}
+$$\begin{array}{lcccl}
 \mathbf{t_3}\mathbf B &=& 0\\
 \mathbf{t_2}\mathbf B &=& \mathbf{t_3}\mathbf {AB} &=& 0\\
 \mathbf{t_1}\mathbf B &=& \mathbf{t_3}\mathbf {A^2B} &=& 1\\
-\end{eqnarray}$$
+\end{array}$$
 
 Estas ecuaciones pueden ser escritas de la siguiente manera:
 
@@ -220,12 +221,12 @@ $$\mathbf{x}=\mathbf{Tz}$$
 Esto transforma a mi sistema en:
 
 $$
-\begin{eqnarray}
+\begin{array}{rcl}
 \bar{\mathbf{A}} &=& \mathbf{T^{-1} A T}\\
 \bar{\mathbf{B}} &=& \mathbf{T^{-1} B}\\
 \bar{\mathbf{C}} &=&\mathbf{CT}\\
 \bar D &=& D
-\end{eqnarray}
+\end{array}
 $$
 
 +++ 
@@ -561,10 +562,13 @@ $$
 +++
 
 Si hacemos que:
+
 $$\mathbf{T}=\begin{bmatrix}
 \mathbf{v_1}&\mathbf{v_2}&\mathbf{v_3}
 \end{bmatrix}$$
+
 tenemos que:
+
 $$\begin{bmatrix}
 \lambda_1&0&0\\
 0&\lambda_2&0\\

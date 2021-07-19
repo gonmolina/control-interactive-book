@@ -51,11 +51,11 @@ parts:
   - file: doc/modulo5/lead_lag_design
 - caption: Control Moderno
   chapters:
-  - file: doc/modulo_ve/ctrb_obsv
-  - file: doc/modulo_ve/estimadores
   - file: doc/modulo_ve/formas_canonicas
   - file: doc/modulo_ve/transformacion_formas_canonicas
+  - file: doc/modulo_ve/ctrb_obsv
   - file: doc/modulo_ve/referencia
+  - file: doc/modulo_ve/estimadores
   - file: doc/modulo_ve/ejemplo_A_ve_motor_cc
   - file: doc/modulo_ve/ejemplo_B_ve_atitud_satelite
   - file: doc/modulo_ve/ejemplo_C_ve_pendulo_invertido
