@@ -93,7 +93,7 @@ Como vemos del ejemplo en lazo abierto la salida es exactamente la referencia de
 
 Una perturbación es una entrada adicional a nuestra planta, que afecta a la salida de nuestra planta.
 
-En debajo mostramos los diagramas de bloques de sistemas a lazo abierto y cerrado, con perturbaciones w. Analicemos como afectan a la salida dichas perturbaciones:
+En debajo mostramos los diagramas de bloques de sistemas a lazo abierto y cerrado, con perturbaciones w. Analicemos como afectan a la salida dichas perturbaciones.
 
 +++
 
@@ -115,7 +115,7 @@ $$Y_2 = \dfrac{G}{1+DG}\Omega(s)$$
 
 Por lo tanto, aquí el diseñador puede elegir un compensador $D$, de módulo grande, de manera de reducir el efecto de la perturbación sobre la salida.
 
-<img src="fig3.gif" width=600px>
+
 
 +++
 

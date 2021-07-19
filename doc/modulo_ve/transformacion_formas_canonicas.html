@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transformación lineal del espacio de estado &#8212; Diseño Control</title>
+    <title>Transformación lineal del espacio de estado &#8212; Diseño y Ajuste de Sistemas de Control</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -91,7 +91,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="canonical" href="https://gonmolina.github.io/control-interactive-book/doc/modulo_ve/transformacion_formas_canonicas.html" />
     <link rel="index" title="Índice" href="../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../search.html" />
-    <link rel="next" title="Inserción de referencias" href="referencia.html" />
+    <link rel="next" title="Análisis de los sistemas en su forma de espacio de estados" href="ctrb_obsv.html" />
     <link rel="prev" title="Formas canónicas de un espacio de estados" href="formas_canonicas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -114,7 +114,7 @@ commentsRunWhenDOMLoaded(addUtterances);
       <img src="../../_static/sala_de_control.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Diseño Control</h1>
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -359,16 +359,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="formas_canonicas.html">
    Formas canónicas de un espacio de estados
   </a>
@@ -379,8 +369,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="referencia.html">
    Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="estimadores.html">
+   Diseño de estimadores
   </a>
  </li>
  <li class="toctree-l1">
@@ -574,20 +574,21 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Consideremos un sistema descripto por las ecuaciones de estado</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
+\begin{array}{rcl}
 \dot{\mathbf {x}} &amp;=&amp;  \mathbf A \mathbf x + \mathbf B \mathbf u\\
  y &amp;=&amp; \mathbf C \mathbf x + Du
- \end{eqnarray}
+ \end{array}
 \end{split}\]</div>
-<p>Una transformación lineal mediante la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span>, que hace:
-$<span class="math notranslate nohighlight">\(\mathbf x= \mathbf T \mathbf z\)</span>$</p>
+<p>Una transformación lineal mediante la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span>, que hace:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf x= \mathbf T \mathbf z\]</div>
 <p>Sustituyendo la ecuación de la transformación en la de la ecuación de estados</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
-\dot{\mathbf {x}} = \mathbf {T\dot z} &amp;=&amp; \mathbf {AT} \mathbf z + \mathbf B \mathbf u\\
- \dot{\mathbf {z}} &amp;=&amp; \mathbf {T}^{-1}\mathbf{AT} \mathbf z + \mathbf {T}^{-1}\mathbf B \mathbf u
- \end{eqnarray}
+\begin{array}{rl}
+\dot{\mathbf {x}} = \mathbf {T\dot z} &amp;= \mathbf {AT} \mathbf z + \mathbf B \mathbf u\\
+\dot{\mathbf {z}} &amp; = \mathbf {T}^{-1}\mathbf{AT} \mathbf z + \mathbf {T}^{-1}\mathbf B \mathbf u
+ \end{array}
 \end{split}\]</div>
 <p>Sustituyendo el la ecuación de salida se tiene:</p>
 <div class="math notranslate nohighlight">
@@ -595,12 +596,12 @@ $<span class="math notranslate nohighlight">\(\mathbf x= \mathbf T \mathbf z\)</
 <p>Comparando las ecuaciones del sistema transformado, podemos ver que la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span> transforma al sistema en:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
-\mathbf{\bar A} &amp;=&amp; \mathbf {T^{-1}} \mathbf A \mathbf T\\
-\mathbf{\bar B} &amp;=&amp; \mathbf{T^{-1} B}\\
-\mathbf{\bar C} &amp;=&amp; \mathbf{CT}\\
+\begin{array}{lll}
+\mathbf{\bar A} &amp; = &amp; \mathbf {T^{-1}} \mathbf A \mathbf T\\
+\mathbf{\bar B} &amp; = &amp; \mathbf{T^{-1} B}\\
+\mathbf{\bar C} &amp; = &amp; \mathbf{CT}\\
 \bar D &amp;=&amp; D
-\end{eqnarray}
+\end{array}
 \end{split}\]</div>
 </div>
 <div class="section" id="transformacion-a-la-forma-canonica-de-controlabilidad">
@@ -674,11 +675,11 @@ c_1&amp;c_2&amp;c_3
 \end{bmatrix}\end{split}\]</div>
 <p>Combinando las ecuaciones anteriores se tiene que:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray}
+\[\begin{split}\begin{array}{lcccl}
 \mathbf{t_3}\mathbf B &amp;=&amp; 0\\
 \mathbf{t_2}\mathbf B &amp;=&amp; \mathbf{t_3}\mathbf {AB} &amp;=&amp; 0\\
 \mathbf{t_1}\mathbf B &amp;=&amp; \mathbf{t_3}\mathbf {A^2B} &amp;=&amp; 1\\
-\end{eqnarray}\end{split}\]</div>
+\end{array}\end{split}\]</div>
 <p>Estas ecuaciones pueden ser escritas de la siguiente manera:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{t_3}\left[\mathbf B\quad \mathbf{AB}\quad \mathbf{A^2B}\right] = \left[0\quad 0 \quad 1 \right]\]</div>
@@ -736,12 +737,12 @@ b_3\\
 <p>Esto transforma a mi sistema en:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
+\begin{array}{rcl}
 \bar{\mathbf{A}} &amp;=&amp; \mathbf{T^{-1} A T}\\
 \bar{\mathbf{B}} &amp;=&amp; \mathbf{T^{-1} B}\\
 \bar{\mathbf{C}} &amp;=&amp;\mathbf{CT}\\
 \bar D &amp;=&amp; D
-\end{eqnarray}
+\end{array}
 \end{split}\]</div>
 <p>Como queremos obtener el forma canónica de observabilidad llamamos <span class="math notranslate nohighlight">\(\mathbf{\bar A} = \mathbf{A_o}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\bar B} =  \mathbf{B_o}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\bar C} = \mathbf{C_o}\)</span> y a <span class="math notranslate nohighlight">\(\bar D = D_o\)</span>.</p>
 <p>De las ecuaciones de la transformación tenemos:</p>
@@ -1126,16 +1127,18 @@ s^2 + 20 s + 10
 \end{bmatrix}=\mathbf A\begin{bmatrix}
 \mathbf{v_1}&amp;\mathbf{v_2}&amp;\mathbf{v_3}
 \end{bmatrix}\end{split}\]</div>
-<p>Si hacemos que:
-$<span class="math notranslate nohighlight">\(\mathbf{T}=\begin{bmatrix}
+<p>Si hacemos que:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{T}=\begin{bmatrix}
 \mathbf{v_1}&amp;\mathbf{v_2}&amp;\mathbf{v_3}
-\end{bmatrix}\)</span><span class="math notranslate nohighlight">\(
-tenemos que:
-\)</span><span class="math notranslate nohighlight">\(\begin{bmatrix}
+\end{bmatrix}\]</div>
+<p>tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
 \lambda_1&amp;0&amp;0\\
 0&amp;\lambda_2&amp;0\\
 0&amp;0&amp;\lambda_3\\
-\end{bmatrix}=\mathbf{T}^{-1}\mathbf{A T}\)</span>$</p>
+\end{bmatrix}=\mathbf{T}^{-1}\mathbf{A T}\end{split}\]</div>
 <p>donde:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{A_m}=\begin{bmatrix}
@@ -1254,7 +1257,7 @@ autovalores:
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="formas_canonicas.html" title="previous page">Formas canónicas de un espacio de estados</a>
-    <a class='right-next' id="next-link" href="referencia.html" title="next page">Inserción de referencias</a>
+    <a class='right-next' id="next-link" href="ctrb_obsv.html" title="next page">Análisis de los sistemas en su forma de espacio de estados</a>
 
         </div>
         
@@ -1264,7 +1267,7 @@ autovalores:
     <div class="container">
       <p>
         
-          Por Dr. Ing. Gonzalo Molina; Ing. Juan Pablo Pierini<br/>
+          Por Somebody<br/>
         
             &copy; Derechos de autor 2021.<br/>
       </p>

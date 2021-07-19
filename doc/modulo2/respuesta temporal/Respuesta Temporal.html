@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Respuesta temporal de sistemas dinámicos &#8212; Diseño Control</title>
+    <title>Respuesta temporal de sistemas dinámicos &#8212; Diseño y Ajuste de Sistemas de Control</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -114,7 +114,7 @@ commentsRunWhenDOMLoaded(addUtterances);
       <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Diseño Control</h1>
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
@@ -359,16 +359,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
    Formas canónicas de un espacio de estados
   </a>
@@ -379,8 +369,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../modulo_ve/referencia.html">
    Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/estimadores.html">
+   Diseño de estimadores
   </a>
  </li>
  <li class="toctree-l1">
@@ -680,10 +680,8 @@ Polos de la función H(s): 0.5
 <p>Utilizando la <strong>tabla de transformadas de Laplace</strong>, obtenemos la <strong>respuesta natural</strong> del sistema:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-h(t) =
-  \left\
-    {\begin{array}{rl}
-      -e^{-t}+3e^{-2t},&amp;t\ge 0\\
+h(t) = \left\{\begin{array}{rl}
+      -e^{-t}+3e^{-2t}, &amp; t\ge 0\\
       0,  &amp; t&lt;0
     \end{array}
   \right.
@@ -780,15 +778,18 @@ h(t) =
 \[Y(s) = \frac{1/2}{s}+\frac{1}{s+1} +\frac{-3/2}{s+2}\]</div>
 <p>luego usando la tabla de transformadas de Laplace, obtenemos la respuesta al escalón del sistema en el tiempo:</p>
 <div class="math notranslate nohighlight">
+\[\begin{split}
+\left\{
+  \begin{array}{lr}
+y(t)=0 &amp; \text{para} \quad t&lt;0\\
+y(t) = \frac{1}{2} + e^{-t} - \frac{3}{2}e^{-2t} &amp; \text{para}\quad  t\ge 0
+\end{array}
+\right.\end{split}\]</div>
+<p>Graficamos <span class="math notranslate nohighlight">\(y(t)\)</span> la señal de salida del sistema cuando la entrada es un escalón unitario, pero antes calcularemos el valor final de la señal, usando el teorema del valor final (TVF):</p>
+<div class="math notranslate nohighlight">
 \[
-\begin{matrix}
-y(t) = \frac{1}{2} + e^{-t} - \frac{3}{2}e^{-2t} &amp; \mbox{para} &amp; t\ge 0 &amp; \mbox{y,} &amp; y(t)=0 &amp; \mbox{para} &amp;  t&lt;0
-\end{matrix}
-\]</div>
-<p>Graficamos <span class="math notranslate nohighlight">\(y(t)\)</span> la señal de salida del sistema cuando la entrada es un escalón unitario, pero antes calcularemos el valor final de la señal, usando el teorema del valor final (TVF):
-$<span class="math notranslate nohighlight">\(
 y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s+2)}=\frac{1}{2}
-\)</span>$</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
@@ -1328,7 +1329,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
     <div class="container">
       <p>
         
-          Por Dr. Ing. Gonzalo Molina; Ing. Juan Pablo Pierini<br/>
+          Por Somebody<br/>
         
             &copy; Derechos de autor 2021.<br/>
       </p>

@@ -98,10 +98,8 @@ $$H(s) = \frac{-1}{s+1} +\frac{3}{s+2}$$
 Utilizando la **tabla de transformadas de Laplace**, obtenemos la **respuesta natural** del sistema:
 
 $$
-h(t) =
-  \left\
-    {\begin{array}{rl}
-      -e^{-t}+3e^{-2t},&t\ge 0\\
+h(t) = \left\{\begin{array}{rl}
+      -e^{-t}+3e^{-2t}, & t\ge 0\\
       0,  & t<0
     \end{array}
   \right.
@@ -185,12 +183,17 @@ $$Y(s) = \frac{1/2}{s}+\frac{1}{s+1} +\frac{-3/2}{s+2}$$
 luego usando la tabla de transformadas de Laplace, obtenemos la respuesta al escalón del sistema en el tiempo:
 
 $$
-\begin{matrix}
-y(t) = \frac{1}{2} + e^{-t} - \frac{3}{2}e^{-2t} & \mbox{para} & t\ge 0 & \mbox{y,} & y(t)=0 & \mbox{para} &  t<0
-\end{matrix}
+\left\{
+  \begin{array}{lr}
+y(t)=0 & \text{para} \quad t<0\\
+y(t) = \frac{1}{2} + e^{-t} - \frac{3}{2}e^{-2t} & \text{para}\quad  t\ge 0
+\end{array}
+\right.
+
 $$
 
 Graficamos $y(t)$ la señal de salida del sistema cuando la entrada es un escalón unitario, pero antes calcularemos el valor final de la señal, usando el teorema del valor final (TVF):
+
 $$
 y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s+2)}=\frac{1}{2}
 $$
